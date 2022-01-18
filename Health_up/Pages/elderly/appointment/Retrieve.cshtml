@@ -1,0 +1,52 @@
+﻿@page
+@model HealthUP.Pages.elderly.appointment.RetrieveModel
+@{
+    ViewData["Title"] = "Retrieve";
+
+}
+<h1>Upcoming Appointments</h1>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Symptoms</th>
+            <th>Appointment Date</th>
+            <th>Appointment Timeslot</th>
+            <th>Payment Method</th>
+            <th>Consultation Fee ($)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ if (Model.allappointments != null)
+           {
+                @foreach (var item in Model.allappointments)
+                {
+
+
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Symptoms</td>
+                        <td>@item.AvailableDate.ToShortDateString()</td>
+                        <td>@item.AvailableTimeslot</td>
+                        <td>@item.PaymentMethod</td>
+                        <td>@item.ConsultationFee</td>
+                        <td>
+                            <a class="btn btn-primary" asp-page="/elderly/appointment/Edit" asp-route-id="@item.Id">Reschedule</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" asp-route-id="@item.Id">Cancel</a>
+                        </td>
+                    </tr>
+                 }
+            }
+
+            }
+        </tbody>
+</table>
+
+
+
+

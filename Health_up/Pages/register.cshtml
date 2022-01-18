@@ -1,0 +1,182 @@
+﻿@page
+@model HealthUP.Pages.RegisterModel
+@{
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/css/register.css">
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <h3>Welcome</h3>
+            <p>You are only a few minutes away to get full access of our website!</p>
+            <input type="submit" asp-page="/login" value="Login" /><br />
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Elderly</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Doctor</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Register as an elderly</h3>
+                    <form method="post" class="row register-form">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div> <label class="text-danger">@Model.MyMessage</label> </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input asp-for="MyUser.NRIC" type="text" class="form-control" placeholder="NRIC *" value="" />
+                                <span asp-validation-for="MyUser.NRIC" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="MyUser.Fname" type="text" class="form-control" placeholder="First Name *" value="" />
+                                <span asp-validation-for="MyUser.Fname" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.Lname" type="text" class="form-control" placeholder="Last Name *" value="" />
+                                <span asp-validation-for="MyUser.Lname" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.Password" type="password" class="form-control" placeholder="Password *" value="" />
+                                <span asp-validation-for="MyUser.Password" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input  type="password" class="form-control" placeholder="Confirm Password *" value="" />
+
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline">
+                                        @Html.RadioButton("MyUser.Gender", "Male") <span>Male</span>
+                                    </label>
+                                    <br />
+                                    <label class="radio inline">
+                                        @Html.RadioButton("MyUser.Gender", "Female") <span>Female</span>
+                                        <span asp-validation-for="MyUser.Gender" class="text-danger"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input asp-for="MyUser.Email" type="email" class="form-control" placeholder="Your Email *" value="" />
+                                <span asp-validation-for="MyUser.Email" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.PhoneNum" type="text" minlength="8" maxlength="10" name="PhoneNum" class="form-control" placeholder="Your Phone Number *" value="" />
+                                <span asp-validation-for="MyUser.PhoneNum" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.BirthDate" type="date" class="form-control" placeholder="Date of Birth*" value="" />
+                                <span asp-validation-for="MyUser.BirthDate" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.PostalCode" type="number" class="form-control" placeholder="Postal Code *" value="" />
+                                <span asp-validation-for="MyUser.PostalCode" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.UnitNumber" type="text" class="form-control" placeholder="Unit Number *" value="" />
+                                <span asp-validation-for="MyUser.UnitNumber" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.Role" type="hidden" class="form-control" placeholder="Role *" value="elderly" />
+                            </div>
+                            <input id="registerElderly" type="submit" class="btnRegister" value="Register" />
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h3 class="register-heading">Register as a Doctor</h3>
+                    <form method="post" class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input asp-for="MyUser.NRIC" type="text" class="form-control" placeholder="NRIC *" value="" />
+                                <span asp-validation-for="MyUser.NRIC" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <div class="maxl">
+                                    <label class="radio inline">
+                                        @Html.RadioButton("MyUser.Gender", "Male") <span>Male</span>
+                                    </label>
+                                    <br />
+                                    <label class="radio inline">
+                                        @Html.RadioButton("MyUser.Gender", "Female") <span>Female</span>
+                                        <span asp-validation-for="MyUser.Gender" class="text-danger"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" maxlength="10" minlength="8" class="form-control" placeholder="Phone Number *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="MyUser.Role" type="hidden" class="form-control" placeholder="Role *" value="doctor" />
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
+                            </div>
+                            <div class="form-group">
+                                <select name="MyUser.Specialisation" class="form-control">
+                                    <option class="hidden" selected disabled>--Select your specialisation--</option>
+                                    <option value="Allergy and immunology">Allergy and immunology</option>
+                                    <option value="Emergency medicine">Emergency medicine</option>
+                                    <option value="Internal medicine">Internal medicine</option>
+                                    <option value="Family medicine">Family medicine</option>
+                                    <option value="Anesthesiology">Anesthesiology</option>
+                                    <option value="Dermatology">Dermatology</option>
+                                    <option value="Diagnostic radiology">Diagnostic radiology</option>
+                                    <option value="Medical genetics">Medical genetics</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Hospital Postal Code *" value="" />
+                            </div>
+                            <input id="registerDoctor" type="submit" class="btnRegister" value="Register" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

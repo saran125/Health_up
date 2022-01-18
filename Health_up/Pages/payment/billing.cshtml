@@ -1,0 +1,56 @@
+﻿@page
+@model HealthUP.Pages.payment.billingModel
+@{
+    ViewData["Title"] = "Billing";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Billing</title>
+    <link rel="stylesheet" type="text/css" href="~/css/billing.css">
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <form runat="server" method="post">
+                <span class="login100-form-title">
+                    Billing
+                </span>
+                <table>
+                    <tr>
+                        <td colspan="3" class="details">
+                            <h6>Johanathan Smith</h6>
+                            <h6>S1234567890Z</h6>
+                            <h6>Male</h6>
+                            <h6>1/10/1846</h6>
+                        </td>
+                        <td><p>qrcode here</p></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Medicine
+                        </td>
+                        <td>
+                            Amount
+                        </td>
+                        <td>
+                            or
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" rowspan="2">medname</td>
+                        <td rowspan="2">amountname</td>
+                        <td rowspan="2">
+                            <div class="container-login100-form-btn">
+                                <<input id="payment" type="submit" value="Payment" class="login100-form-btn">
+                                    
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

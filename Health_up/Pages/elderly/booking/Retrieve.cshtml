@@ -1,0 +1,38 @@
+﻿@page
+@model HealthUP.Pages.elderly.booking.RetrieveModel
+@{
+    ViewData["Title"] = "Retrieve";
+
+}
+<h1>Upcoming Bookings</h1>
+
+<div>
+    <label class="col-sm-2 col-form-label">Available Date:</label>
+    <label>@Model.MyBooking.Date.ToShortDateString()</label>
+
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Available Timeslot:</label>
+    <label>@Model.MyBooking.TimeSlot</label>
+</div>
+
+<div>
+    <label class="col-sm-2 col-form-label">Available Location:</label>
+    <label>@Model.MyBooking.Location</label>
+</div>
+
+<div>
+    <label class="col-sm-2 col-form-label">Payment Method:</label>
+    <label>@Model.MyBooking.PaymentMethod</label>
+</div>
+<div>
+    <label class="col-sm-2 col-form-label">Activity Price:</label>
+    <label>@Model.MyBooking.ActivityPrice</label>
+</div>
+</div>
+<div class="col-sm-10">
+    <a class="btn btn-primary" asp-page="/elderly/booking/Edit">Reschedule</a>
+
+</div>
+
+

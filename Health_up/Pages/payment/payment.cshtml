@@ -1,0 +1,70 @@
+﻿@page
+@model HealthUP.Pages.payment.paymentModel
+@{ ViewData["Title"] = "Payment";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" type="text/css" href="~/css/payment.css">
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="row">
+                <span class="login100-form-title">
+                    Payment
+                </span>
+                <div class="column">
+                    <form runat="server" method="post">
+                        <table>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="text" placeholder="Card Number" id="cardnum" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" placeholder="Expiry Date" id="expdate" /></td>
+                                <td><input type="text" placeholder="CVV" id="cvv" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="text" placeholder="Name on Card" id="name" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="container-login100-form-btn">
+                                        <<input id="payment" type="submit" value="Payment" class="login100-form-btn">
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="column">
+                    <table>
+                        <tr>
+                            <td>
+                                <h6>medname 1</h6>
+                                <h6>medname 1</h6>
+                                <h6>medname 1</h6>
+                                <h6>medname 1</h6>
+                                <h6>medname 1</h6>
+                                <h6>medname 1</h6><h6>medname 1</h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Total : $90
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

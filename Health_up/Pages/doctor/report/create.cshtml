@@ -1,0 +1,89 @@
+﻿@page
+@model Health_up.Pages.doctor.medical_reportModel
+@{
+    ViewData["Title"] = "Medical Report";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Medical Report</title>
+    <link rel="stylesheet" type="text/css" href="~/css/report.css">
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <form runat="server" method="post">
+                <span class="login100-form-title">
+                    Medical Report
+                </span>
+                <table>
+                    <tr>
+                        <td>Namwvwvcvcwcdce<br /></td>
+                        </tr>
+                    <tr>
+                        <td>NRIwevvwcewcwcC<<br /></td>
+                        </tr>
+                    <tr>
+                        <td>Emailvwccwc<br /></td>
+                        </tr>
+                    <tr>
+                        <td>Genderwvwcvww<br /></td>
+                        </tr>
+                    <tr>
+                        <td>Birthdewvecwate<br /></td>
+                        </tr>
+                    <tr>
+                        <td>Addrvwecqwess<br /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Symptoms</label>
+                            <input class="input100" type="text" name="symptom" placeholder="Symptoms">
+                            <span class="focus-input100"></span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Imunities</label>
+                            <input class="input100" type="text" name="immunities" placeholder="Immunities">
+                            <span class="focus-input100"></span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Medicines</label>
+                            <input class="input100" type="text" name="medicines" placeholder="Medicines">
+                            <span class="focus-input100"></span>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="doctor_validation" name="doctor_validation" value="True" />
+                            <p>I,[doctorname] of [specialisation] in [hospital] approve of this medical report</p>
+                            <input type="checkbox" id="mail" name="mail" value="mail" />
+                            <p>Email this medical report to the patient</p>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="container-login100-form-btn">
+                                <input id="home" type="submit" value="Create Report" class="login100-form-btn"/>
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
