@@ -35,7 +35,7 @@ namespace Health_up.Models
 
         public string Specialisation { get; set; }
         public string HospitalAddress { get; set; }
-
+        public string Verify { get; set; }
 
     }
 }

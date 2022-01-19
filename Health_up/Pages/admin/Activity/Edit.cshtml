@@ -1,0 +1,69 @@
+﻿@page
+@model Health_up.Pages.admin.update_activityModel
+@{ }
+
+<h1>Edit Activity</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input disabled asp-for="Myactivity.Id" value="@Model.Myactivity.Id" />
+
+
+    <div>
+        <label asp-for="Myactivity.Activity_name" class="col-sm-2 col-form-label">Name:</label>
+        <input asp-for="Myactivity.Activity_name" value="@Model.Myactivity.Activity_name" />
+        <span asp-validation-for="Myactivity.Activity_name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Description:</label>
+        <input asp-for="Myactivity.Activity_description" value="@Model.Myactivity.Activity_description" />
+        <span asp-validation-for="Myactivity.Activity_description" class="text-danger"></span>
+
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Start Date:</label>
+        <input asp-for="Myactivity.Activity_start_date" value="@Model.Myactivity.Activity_start_date" />
+        <span asp-validation-for="Myactivity.Activity_start_date" class="text-danger"></span>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">End Date:</label>
+        <input asp-for="Myactivity.Activity_end_date" value="@Model.Myactivity.Activity_end_date" />
+        <span asp-validation-for="Myactivity.Activity_end_date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="end_date" required="required">Timeslot</label>
+        <select class="form-control" asp-for="Myactivity.Activity_timeslot">
+            <option class="hidden" selected disabled>--Select timeslot--</option>
+            <option value="07:00am - 08:30am">07:00am - 08:30am</option>
+            <option value="09:00am - 10:30am">09:00am - 10:30am</option>
+            <option value="11:00am - 12:30pm">11:00am - 12:30pm</option>
+            <option value="01:00pm - 02:30pm">01:00pm - 02:30pm</option>
+            <option value="03:00pm - 04:30pm">03:00pm - 04:30pm</option>
+            <option value="05:00pm - 06:30pm">05:00pm - 06:30pm</option>
+            <option value="07:00pm - 08:30pm">07:00pm - 08:30pm</option>
+        </select>
+        <span asp-validation-for="Myactivity.Activity_timeslot" class="text-danger"></span>
+    </div>
+
+    <label for="price" required="required">Price </label>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+        </div>
+        <input type="number" re class="form-control" value="@Model.Myactivity.Activity_price" asp-for="Myactivity.Activity_price">
+        <span asp-validation-for="Myactivity.Activity_price" class="text-danger"></span>
+    </div>
+    <hr>
+    <div class="form-group mt-3">
+        <label class="mr-2">Upload The Activity Image:</label>
+        <input type="file" asp-for="Myactivity.Activity_photo">
+        <span asp-validation-for="Myactivity.Activity_photo" class="text-danger"></span>
+    </div>
+    <div class="col-sm-10">
+        <input id="edit" type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

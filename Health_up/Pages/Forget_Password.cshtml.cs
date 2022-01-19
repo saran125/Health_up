@@ -4,14 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Health_up.Models;
 
-namespace Health_up.Pages.admin
+namespace Health_up.Pages
 {
-    public class ActivityModel : PageModel
+    public class Forget_PasswordModel : PageModel
     {
-        [BindProperty]
-        public Activity myactivity { get; set; }
         public void OnGet()
         {
         }

@@ -1,0 +1,44 @@
+﻿@page
+@model Health_up.Pages.admin.Activity.DetailsModel
+@{
+}
+<h1>Detail of Activity</h1>
+
+<form method="post">
+
+
+    <div>
+        <label class="col-sm-2 col-form-label">Name:</label>
+        <label>@Model.MyActivity.Activity_name</label>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Description:</label>
+        <label>@Model.MyActivity.Activity_description</label>
+
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Start Date:</label>
+        <label>@Model.MyActivity.Activity_start_date</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Start End:</label>
+        <label>@Model.MyActivity.Activity_end_date</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Timeslot:</label>
+        <label>@Model.MyActivity.Activity_timeslot</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Price:</label>
+        <label>@Model.MyActivity.Activity_price</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Photo:</label>
+      <img src="~/Photos/`@Model.MyActivity.Activity_photo`"/>
+    </div>
+
+    <div class="col-sm-10">
+        <input id="btn1" type="submit" value="Back" class="btn btn-primary" />
+    </div>
+</form>

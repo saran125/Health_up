@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HealthUP.Pages.admin
+namespace Health_up.Pages
 {
-    public class update_activityModel : PageModel
+    public class Registered_doneModel : PageModel
     {
         public void OnGet()
         {

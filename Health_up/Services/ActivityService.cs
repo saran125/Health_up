@@ -27,9 +27,66 @@ namespace Health_up.Services
         }
         private bool ActivityExists(string id)
         {
-            return _context.Activity.Any(e => e.Id == id);
+            return _context.Activitys.Any(e => e.Id == id);
         }
+        public List<Activity> GetAllActivitys()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+            return AllActivity;
+        }
+        public bool UpdateActivity(Activity theactivity)
+        {
+            bool updated = true;
+            _context.Attach(theactivity).State = EntityState.Modified;
+            try
+            {
+                _context.Update(theactivity);
+                _context.SaveChanges();
+                updated = true;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ActivityExists(theactivity.Id))
+                {
+                    updated = false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return updated;
+        }
+        public bool DeleteActivity(Activity theactivity)
+        {
+            bool deleted = true;
+            try
+            {
+                _context.Remove(theactivity);
+                _context.SaveChanges();
+                deleted = true;
 
 
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ActivityExists(theactivity.Id))
+                {
+                    deleted = false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return deleted;
+
+        }
+        public Activity GetActivityById(String id)
+        {
+            Activity theActivity = _context.Activitys.Where(e => e.Id == id).FirstOrDefault();
+            return theActivity;
+        }
     }
 }

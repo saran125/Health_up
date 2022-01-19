@@ -27,9 +27,9 @@ namespace Health_up.Models
         [Required]
         public string Activity_timeslot { get; set; }
         [Required]
-        public string Activity_price { get; set; }
+        public Double Activity_price { get; set; }
         [Required]
-        public double Activity_photo { get; set; }
+        public string Activity_photo { get; set; }
 
     }
 }
