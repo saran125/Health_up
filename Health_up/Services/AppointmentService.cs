@@ -53,7 +53,7 @@ namespace Health_up.Services
         {
             return _context.Appointments.Any(e => e.Id == id);
         }
-        public bool UpdateEmployee(Appointment theappointment)
+        public bool UpdateAppointment(Appointment theappointment)
         {
             bool updated = true;
             _context.Attach(theappointment).State = EntityState.Modified;
@@ -77,6 +77,31 @@ namespace Health_up.Services
             }
             return updated;
 
+
+        }
+        public bool DeleteAppointment(Appointment theappointment)
+        {
+            bool deleted = true;
+            try
+            {
+                _context.Remove(theappointment);
+                _context.SaveChanges();
+                deleted = true;
+
+
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AppointmentExists(theappointment.Id))
+                {
+                    deleted = false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return deleted;
 
         }
 

@@ -25,10 +25,14 @@ namespace HealthUP.Pages.elderly.appointment
 
             _svc = service;
         }
-
+        [BindProperty]
+        public Appointment MyAppointment { get; set; }
+        [BindProperty]
+        public string MyMessage { get; set; }
         public void OnGet()
         {
             allappointments = _svc.GetAllAppointments();
+
 
         }
         //public IActionResult OnPost()

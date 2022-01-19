@@ -37,7 +37,7 @@
                             <a class="btn btn-primary" asp-page="/elderly/appointment/Edit" asp-route-id="@item.Id">Reschedule</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" asp-route-id="@item.Id">Cancel</a>
+                            <a class="btn btn-danger"  onclick="return confirm('Are you sure you want to cancel your appointment? No refund will be made if you paid by credit card.');" asp-page="/elderly/appointment/Delete" asp-route-id="@item.Id">Cancel</a>
                         </td>
                     </tr>
                  }
