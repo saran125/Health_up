@@ -5,37 +5,38 @@
 }
 <h1>Edit your booking</h1>
 
-<!--<form method="post">
+<form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div> <label class="text-danger">@Model.MyMessage</label> </div>
 
+    <div>
+        <input type="hidden" asp-for="MyBooking.Id" class="form-control" value="@Model.MyBooking.Id" />
+    </div>
+
 
     <div>
-        <label class="col-sm-2 col-form-label">Do you need to change your symptoms?</label>
-        <select name="MyBooking.Symptoms" class="form-control">
-            <option class="hidden" selected disabled>--Select your symptoms--</option>
-            <option value="Stomach Pain">Stomach Pain</option>
-            <option value="Back Pain">Back Pain</option>
-            <option value="Cough">Cough</option>
-            <option value="Anxiety">Anxiety</option>
-            <option value="Abdominal bloating">Abdominal bloating</option>
-            <option value="Allergies">Allergies</option>
-            <option value="Ankle Pain">Ankle Pain</option>
-            <option value="Athlete’s Foot">Athlete’s Foot</option>
+        <label>Do you need to change your Location?</label>
+        <select name="MyBooking.Location" class="form-control">
+            <option value="@Model.MyBooking.Location">@Model.MyBooking.Location</option>
+            <option value="Kelvins House">Kelvins House</option>
+            <option value="Woodlands">Woodlands</option>
+            <option value="Admiralty">Admiralty</option>
+            <option value="Yishun">Yishun</option>
+            <option value="Jurong">Jurong</option>
         </select>
-        <span asp-validation-for="MyBooking.Symptoms" class="text-danger"></span>
+        <span asp-validation-for="MyBooking.Location" class="text-danger"></span>
     </div>
 
     <div>
-        <label class="col-sm-2 col-form-label">Reschedule your appointment date:</label>
-        <input asp-for="MyAppointment.AvailableDate" class="form-control" value="" placeholder="Available Date *" />
-        <span asp-validation-for="MyAppointment.AvailableDate" class="text-danger"></span>
+        <label>Reschedule your booking date:</label>
+        <input asp-for="MyBooking.Date" class="form-control" value="@Model.MyBooking.Date.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="MyBooking.Date" class="text-danger"></span>
     </div>
 
     <div>
-        <label class="col-sm-2 col-form-label">Reschedule your timeslot:</label>
-        <select name="MyAppointment.AvailableTimeslot" class="form-control">
-            <option class="hidden" selected disabled>--Select your preferred timeslot--</option>
+        <label>Reschedule your timeslot:</label>
+        <select name="MyBooking.TimeSlot" class="form-control">
+            <option value="@Model.MyBooking.TimeSlot">@Model.MyBooking.TimeSlot</option>
             <option value="00:00 - 00:30">00:00 - 00:30</option>
             <option value="00:30 - 01:00">00:30 - 01:00</option>
             <option value="01:00 - 01:30">01:00 - 01:30</option>
@@ -44,27 +45,33 @@
             <option value="06:00 - 06:30">06:00 - 06:30</option>
             <option value="23:00 - 23:30">23:00 - 23:30</option>
         </select>
-        <span asp-validation-for="MyAppointment.AvailableTimeslot" class="text-danger"></span>
+        <span asp-validation-for="MyBooking.TimeSlot" class="text-danger"></span>
     </div>
 
     <div>
-        <label class="col-sm-2 col-form-label">Do you need to change your payment method?</label>
-        <select name="MyAppointment.PaymentMethod" class="form-control">
-            <option class="hidden" selected disabled>--Select your payment method--</option>
-            <option value="Cash">Cash</option>
+        <label>Do you need to change your payment method?</label>
+        <select name="MyBooking.PaymentMethod" class="form-control">
+            <option value="@Model.MyBooking.PaymentMethod">@Model.MyBooking.PaymentMethod</option>
             <option value="Credit Card">Credit Card</option>
+            <option value="PayPal">PayPal</option>
             <option value="No rush, I will pay when I can">No rush, I will pay when I can</option>
         </select>
-        <span asp-validation-for="MyAppointment.AvailableTimeslot" class="text-danger"></span>
+        <span asp-validation-for="MyBooking.PaymentMethod" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Activity Price:</label>
+        <input readonly asp-for="MyBooking.ActivityPrice" class="form-control" value="3.5" />
+        <span asp-validation-for="MyBooking.ActivityPrice" class="text-danger"></span>
     </div>
 
     <div class="col-sm-10">
         <input id="edit" type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-primary" asp-page="/elderly/booking/Retrieve">Cancel</a>
+
     </div>
-    <div class="col-sm-10">
-        <a asp-page=""></a>
-    </div>
-</form>-->
+
+</form>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

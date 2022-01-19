@@ -41,7 +41,9 @@ namespace Health_up.Services
                 //string iv = "Hello";
                 var password = Security.ComputeHash(newuser.Password, CreateSalt(8));
                 newuser.Password = password;
-                //string cipherKey = "Hello";
+                byte[] cipherKey;
+                byte[] cipherIV;
+                var nric = Security.Encrypt(newuser.NRIC, cipherKey, cipherIV);
 
                 /*var nric = Security.Encrypt(newuser.NRIC, cipherKey, iv);
                 newuser.NRIC = nric;
