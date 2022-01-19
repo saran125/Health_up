@@ -5,10 +5,6 @@
 <h1>Edit Activity</h1>
 
 <form method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input disabled asp-for="Myactivity.Id" value="@Model.Myactivity.Id" />
-
-
     <div>
         <label asp-for="Myactivity.Activity_name" class="col-sm-2 col-form-label">Name:</label>
         <input asp-for="Myactivity.Activity_name" value="@Model.Myactivity.Activity_name" />

@@ -26,10 +26,10 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Activity_name</td>
-            <td>@item.Activity_start_date</td>
-            <td>@item.Activity_end_date</td>
+            <td>@item.Activity_start_date.ToShortDateString()</td>
+            <td>@item.Activity_end_date.ToShortDateString()</td>
             <td>
-                <a asp-page="/admin/Activity/Detail" asp-route-id="@item.Id">View</a>|
+                <a asp-page="/admin/Activity/Details" asp-route-id="@item.Id">View</a>|
                 <a asp-page="/admin/Activity/Edit" asp-route-id="@item.Id">Edit</a>|
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>

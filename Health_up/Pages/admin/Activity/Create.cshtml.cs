@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Health_up.Models;
 using Health_up.Services;
+using crypto;
 
 namespace Health_up.Pages.admin
 {
@@ -13,25 +14,27 @@ namespace Health_up.Pages.admin
     {
         [BindProperty]
         public Models.Activity Myactivity { get; set; }
-
+        public string id = Security.GenerateText(16);
+        
         private readonly ActivityService _svc;
         public ActivityModel(ActivityService service)
         {
             _svc = service;
 
         }
+      
         [BindProperty]
         public string MyMessage { get; set; }
 
         public void OnGet()
         {
-
+           
         }
         public IActionResult OnPost()
         {
+            Myactivity.Id = id;
             if (ModelState.IsValid)
             {
-
                 if (_svc.AddActivity(Myactivity))
                 {
                     return RedirectToPage("/Index");

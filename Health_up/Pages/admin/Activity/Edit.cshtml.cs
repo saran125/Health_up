@@ -34,18 +34,20 @@ namespace Health_up.Pages.admin
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
+
+                if (_svc.UpdateActivity(Myactivity) == true)
+                {
+                    return RedirectToPage("/admin/Activity/View");
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            if (_svc.UpdateActivity(Myactivity) == true)
-            {
-                return RedirectToPage("/admin/Activity/View");
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
+            return Page();
+        
+    }
     }
 }
