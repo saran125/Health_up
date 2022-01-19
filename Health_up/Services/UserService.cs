@@ -41,11 +41,12 @@ namespace Health_up.Services
                 //string iv = "Hello";
                 var password = Security.ComputeHash(newuser.Password, CreateSalt(8));
                 newuser.Password = password;
-                byte[] cipherKey;
+                
+                /*byte[] cipherKey;
                 byte[] cipherIV;
                 var nric = Security.Encrypt(newuser.NRIC, cipherKey, cipherIV);
 
-                /*var nric = Security.Encrypt(newuser.NRIC, cipherKey, iv);
+               var nric = Security.Encrypt(newuser.NRIC, cipherKey, iv);
                 newuser.NRIC = nric;
                 */
                 _context.Add(newuser);
