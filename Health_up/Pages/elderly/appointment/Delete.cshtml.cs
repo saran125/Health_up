@@ -8,23 +8,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace HealthUP.Pages.elderly.appointment
+namespace Health_up.Pages.elderly.appointment
 {
-    public class EditModel : PageModel
+    public class DeleteModel : PageModel
     {
-        private readonly ILogger<EditModel> _logger;
-        private AppointmentService _svc;
-        public EditModel(ILogger<EditModel> logger, AppointmentService service)
+        private readonly ILogger<DeleteModel> _logger;
+
+
+        private readonly AppointmentService _svc;
+        public DeleteModel(ILogger<DeleteModel> logger, AppointmentService service)
         {
             _logger = logger;
+
             _svc = service;
         }
-
         [BindProperty]
         public Appointment MyAppointment { get; set; }
         [BindProperty]
         public string MyMessage { get; set; }
-        //public DateTime AvailableDate { get; set; }
 
         public IActionResult OnGet(string id)
         {
@@ -32,28 +33,20 @@ namespace HealthUP.Pages.elderly.appointment
             {
                 MyAppointment = _svc.GetAppointmentById(id);
 
-                return Page();
             }
             else
                 return RedirectToPage("Index");
 
-        }
-
-        public IActionResult OnPost()
-        {
-            if (!ModelState.IsValid)
+            if (_svc.DeleteAppointment(MyAppointment))
             {
-                return Page();
-            }
-
-            if (_svc.UpdateAppointment(MyAppointment) == true)
-            {
-                // save button is clicked
                 return RedirectToPage("/elderly/appointment/Retrieve");
+
             }
             else
-                return BadRequest();
+            {
+                MyMessage = "Appointment Id does not exist!";
+                return Page();
+            }
         }
-
     }
 }
