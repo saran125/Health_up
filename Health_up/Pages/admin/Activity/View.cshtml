@@ -1,0 +1,41 @@
+﻿@page
+@model Health_up.Pages.admin.Activity.ActivityModel
+@{
+}
+<div>
+    <p>
+        <a asp-page="admin/Activity/Create">Create New Activity</a>
+    </p>
+    <h5>List of Activities</h5>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Activity Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ if (Model.allactivity != null)
+        {
+
+        @foreach (var item in Model.allactivity)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Activity_name</td>
+            <td>@item.Activity_start_date</td>
+            <td>@item.Activity_end_date</td>
+            <td>
+                <a asp-page="/admin/Activity/Detail" asp-route-id="@item.Id">View</a>|
+                <a asp-page="/admin/Activity/Edit" asp-route-id="@item.Id">Edit</a>|
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
+        }
+        }
+    </tbody>
+</table>

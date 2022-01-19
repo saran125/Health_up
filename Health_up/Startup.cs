@@ -30,8 +30,8 @@ namespace Health_up
             services.AddTransient<AppointmentService>();
             services.AddTransient<BookingService>();
             services.AddTransient<ReportService>();
-            //services.AddTransient<ActivityService>();
-            //
+            services.AddTransient<ActivityService>();
+            
             services.AddDbContext<HealthUPDbContext>();
         }
 
