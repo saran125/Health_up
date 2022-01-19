@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using crypto;
 using Health_up.Models;
@@ -36,12 +37,17 @@ namespace Health_up.Services
             }
             else
             {
+
+                //string iv = "Hello";
                 var password = Security.ComputeHash(newuser.Password, CreateSalt(8));
                 newuser.Password = password;
                 byte[] cipherKey;
                 byte[] cipherIV;
-                //var nric = Security.Encrypt(newuser.NRIC, cipherKey, cipherIV);
+                var nric = Security.Encrypt(newuser.NRIC, cipherKey, cipherIV);
 
+                /*var nric = Security.Encrypt(newuser.NRIC, cipherKey, iv);
+                newuser.NRIC = nric;
+                */
                 _context.Add(newuser);
                 _context.SaveChanges();
                 return true;
