@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using crypto;
 using Health_up.Models;
 using Health_up.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace HealthUP.Pages.elderly.booking
         public Booking MyBooking { get; set; }
         [BindProperty]
         public string MyMessage { get; set; }
+        public string id = Security.GenerateText(16);
 
         public void OnGet()
         {
