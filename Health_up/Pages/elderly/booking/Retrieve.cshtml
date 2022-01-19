@@ -5,34 +5,50 @@
 
 }
 <h1>Upcoming Bookings</h1>
+<br />
 
-<div>
-    <label class="col-sm-2 col-form-label">Available Date:</label>
-    <label>@Model.MyBooking.Date.ToShortDateString()</label>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Timeslot</th>
+            <th>Location</th>
+            <th>Payment Method</th>
+            <th>Activity Price($)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ if (Model.allbookings != null)
+            {
+                @foreach (var item in Model.allbookings)
+                {
 
-</div>
-<div>
-    <label class="col-sm-2 col-form-label">Available Timeslot:</label>
-    <label>@Model.MyBooking.TimeSlot</label>
-</div>
 
-<div>
-    <label class="col-sm-2 col-form-label">Available Location:</label>
-    <label>@Model.MyBooking.Location</label>
-</div>
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Date.ToShortDateString()</td>
+                        <td>@item.TimeSlot</td>
+                        <td>@item.Location</td>
+                        <td>@item.PaymentMethod</td>
+                        <td>@item.ActivityPrice</td>
+                        <td>
+                            <a class="btn btn-primary" asp-page="/elderly/booking/Edit" asp-route-id="@item.Id">Reschedule</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel your booking? No refund will be made.');" asp-page="/elderly/booking/Delete" asp-route-id="@item.Id">Cancel</a>
+                        </td>
+                    </tr>
+                }
+            }
 
-<div>
-    <label class="col-sm-2 col-form-label">Payment Method:</label>
-    <label>@Model.MyBooking.PaymentMethod</label>
-</div>
-<div>
-    <label class="col-sm-2 col-form-label">Activity Price:</label>
-    <label>@Model.MyBooking.ActivityPrice</label>
-</div>
-</div>
-<div class="col-sm-10">
-    <a class="btn btn-primary" asp-page="/elderly/booking/Edit">Reschedule</a>
+        }
+    </tbody>
+</table>
 
-</div>
+
+
+
 
 

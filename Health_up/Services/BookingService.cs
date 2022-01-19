@@ -55,5 +55,56 @@ namespace Health_up.Services
         }
 
 
+        public bool UpdateBooking(Booking thebooking)
+        {
+            bool updated = true;
+            _context.Attach(thebooking).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+                updated = true;
+
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(thebooking.Id))
+                {
+                    updated = false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return updated;
+
+
+        }
+        public bool DeleteBooking(Booking thebooking)
+        {
+            bool deleted = true;
+            try
+            {
+                _context.Remove(thebooking);
+                _context.SaveChanges();
+                deleted = true;
+
+
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BookingExists(thebooking.Id))
+                {
+                    deleted = false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return deleted;
+
+        }
     }
 }

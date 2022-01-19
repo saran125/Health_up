@@ -40,7 +40,7 @@ namespace Health_up.Services
                 newuser.Password = password;
                 byte[] cipherKey;
                 byte[] cipherIV;
-                var nric = Security.Encrypt(newuser.NRIC, cipherKey, cipherIV);
+                //var nric = Security.Encrypt(newuser.NRIC, cipherKey, cipherIV);
 
                 _context.Add(newuser);
                 _context.SaveChanges();

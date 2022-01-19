@@ -12,8 +12,6 @@ namespace HealthUP.Pages.elderly.booking
 {
     public class ThankYouModel : PageModel
     {
-        [BindProperty]
-        public List<Booking> allbookings { get; set; }
 
         private readonly ILogger<ThankYouModel> _logger;
         private BookingService _svc;
@@ -25,7 +23,6 @@ namespace HealthUP.Pages.elderly.booking
 
         public void OnGet()
         {
-            allbookings = _svc.GetAllBookings();
 
         }
         //public IActionResult OnPost()
