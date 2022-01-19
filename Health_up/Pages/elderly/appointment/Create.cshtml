@@ -10,10 +10,7 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <div> <label class="text-danger">@Model.MyMessage</label> </div>
         <div class="form-group">
-            <label>Appointment Id</label>
-            <input asp-for="MyAppointment.Id" class="form-control" value="" placeholder="1" />
-
-            <span asp-validation-for="MyAppointment.Id" class="text-danger"></span>
+            <input type="hidden" asp-for="MyAppointment.Id" class="form-control" value="@Model.id"  />
         </div>
         <div class="form-group">
             <label>Symptoms</label>
@@ -60,7 +57,7 @@
             <span asp-validation-for="MyAppointment.AvailableTimeslot" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label>Consultation Fee</label>
+            <label>Consultation Fee ($)</label>
             <input readonly asp-for="MyAppointment.ConsultationFee" class="form-control" value="30" />
             <span asp-validation-for="MyAppointment.ConsultationFee" class="text-danger"></span>
         </div>
