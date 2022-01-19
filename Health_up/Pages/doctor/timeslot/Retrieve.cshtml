@@ -1,0 +1,51 @@
+﻿@page
+@model Health_up.Pages.doctor.timeslot.RetrieveModel
+@{
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    .dot {
+        height: 15px;
+        width: 15px;
+        background-color: #FFA62F;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="d-flex justify-content-between mb-3">
+        <h2>My Appointment Timeslot</h2>
+        <a class="btn btn-primary h-25" style="margin-top: 20px;" asp-page="/doctor/timeslot/Create">Create Appointment</a>
+    </div>
+
+    @{ if (Model.alltimeslots != null)
+        {
+            @foreach (var item in Model.alltimeslots)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">@item.Date.ToShortDateString()</div>
+                    <div class="panel-body">
+                        <div class="float-left mt-3">
+                            @item.Time
+                            <span class="dot"></span>
+                            Appointment
+                        </div>
+                        <div class="float-right">
+                            <a class="btn btn-primary" asp-page="/doctor/timeslot/Edit" asp-route-id="@item.Id">Reschedule</a>
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this timeslot?');" asp-page="/doctor/timeslot/Delete" asp-route-id="@item.Id">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    }
+</div>
+

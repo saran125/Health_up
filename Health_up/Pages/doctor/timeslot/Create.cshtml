@@ -1,0 +1,92 @@
+﻿@page
+@model Health_up.Pages.doctor.timeslot.CreateModel
+@{
+    ViewData["Title"] = "Create Appointment TimeSlot";
+}
+<link rel="stylesheet" href="~/css/timeslotCreate.css" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container">
+    <h2 class="headerName">Create Appointment</h2>
+    <div class="panel panel-default">
+        <form method="post">
+            <div class="item">
+                <input asp-for="DocTimeslot.Id" id="uuid" class="form-control" type="hidden"/>
+                <span asp-validation-for="DocTimeslot.Id" class="text-danger"></span>
+            </div>
+
+            <div class="item">
+                <label class="col-sm-2 col-form-label">Date:</label>
+                <br />
+                <input asp-for="DocTimeslot.Date" class="form-control" id="datepicker" value="" placeholder="dd/mm/yyyy" />
+                <span asp-validation-for="DocTimeslot.Date" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="item">
+                <label class="col-sm-2 col-form-label">Time:</label>
+                <br />
+                <input asp-for="DocTimeslot.Time" class="form-control" value="" placeholder="hh:mm AM/PM" />
+                <span>*12-hour format</span>
+                <br />
+                <span asp-validation-for="DocTimeslot.Time" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="item">
+                <label class="col-sm-2 col-form-label">Repeat:</label>
+                <br />
+                <select name="DocTimeslot.Repeat" class="form-control">
+                    <option class="hidden" selected disabled>-- Select your preference --</option>
+                    <option value="Never">Never</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Custom">Custom</option>
+                </select>
+                <span asp-validation-for="DocTimeslot.Repeat" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="item mb-4 d-flex justify-content-between">
+                <div class="col-sm-10 pl-0">
+                    <a class="btn btn-secondary" asp-page="/doctor/timeslot/Retrieve">Back</a>
+                </div>
+
+                <div class="col-sm-10 pl-0">
+                    <input id="create" type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script language="javascript">
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#datepicker').attr('min', today);
+</script>
+
+<script>
+    function createUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    document.getElementById('uuid').value = createUUID();
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
