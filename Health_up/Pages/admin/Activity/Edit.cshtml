@@ -5,26 +5,28 @@
 <h1>Edit Activity</h1>
 
 <form method="post">
-    <div>
+    <input asp-for="Myactivity.Id" value="@Model.Myactivity.Id" type="hidden"/>
+    <div class="form-group">
         <label asp-for="Myactivity.Activity_name" class="col-sm-2 col-form-label">Name:</label>
-        <input asp-for="Myactivity.Activity_name" value="@Model.Myactivity.Activity_name" />
+        <input class="form-control" asp-for="Myactivity.Activity_name" value="@Model.Myactivity.Activity_name" />
         <span asp-validation-for="Myactivity.Activity_name" class="text-danger"></span>
     </div>
 
-    <div>
+    <div class="form-group">
         <label class="col-sm-2 col-form-label">Description:</label>
-        <input asp-for="Myactivity.Activity_description" value="@Model.Myactivity.Activity_description" />
+        <input class="form-control" asp-for="Myactivity.Activity_description" value="@Model.Myactivity.Activity_description" />
         <span asp-validation-for="Myactivity.Activity_description" class="text-danger"></span>
 
     </div>
-    <div>
+    <div class="form-group">
         <label class="col-sm-2 col-form-label">Start Date:</label>
-        <input asp-for="Myactivity.Activity_start_date" value="@Model.Myactivity.Activity_start_date" />
+        <input class="form-control" asp-for="Myactivity.Activity_start_date" value="@Model.Myactivity.Activity_start_date" />
         <span asp-validation-for="Myactivity.Activity_start_date" class="text-danger"></span>
     </div>
-    <div>
+
+    <div class="form-group">
         <label class="col-sm-2 col-form-label">End Date:</label>
-        <input asp-for="Myactivity.Activity_end_date" value="@Model.Myactivity.Activity_end_date" />
+        <input class="form-control" asp-for="Myactivity.Activity_end_date" value="@Model.Myactivity.Activity_end_date" />
         <span asp-validation-for="Myactivity.Activity_end_date" class="text-danger"></span>
     </div>
     <div class="form-group">

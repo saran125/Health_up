@@ -32,7 +32,6 @@ namespace Health_up.Pages.admin
         }
         public IActionResult OnPost()
         {
-            Myactivity.Id = id;
             if (ModelState.IsValid)
             {
                 if (_svc.AddActivity(Myactivity))
