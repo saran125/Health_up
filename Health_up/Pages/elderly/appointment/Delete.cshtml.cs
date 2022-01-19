@@ -35,11 +35,12 @@ namespace Health_up.Pages.elderly.appointment
 
             }
             else
+                // shouldnt come here
                 return RedirectToPage("Index");
 
             if (_svc.DeleteAppointment(MyAppointment))
             {
-                return RedirectToPage("/elderly/appointment/Retrieve");
+                return Page();
 
             }
             else
