@@ -23,7 +23,7 @@ namespace Health_up.Models
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Activity> Activitys { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<MedicalReport> Reports { get; set; }
+        public DbSet<MedicalReport> Report { get; set; }
         public DbSet<DoctorTimeslot> DoctorTimeslots { get; set; }
 
         //

@@ -1,7 +1,7 @@
 ﻿@page
-@model Health_up.Pages.doctor.report.medical_reportModel
+@model Health_up.Pages.doctor.report.updateModel
 @{
-    ViewData["Title"] = "Medical Report";
+    ViewData["Title"] = "Update report";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +16,13 @@
         <div class="container-login100">
             <form runat="server" method="post">
                 <span class="login100-form-title">
-                    Medical Report
+                    Update Medical Report
                 </span>
                 <table>
                     <tr>
                         <td>
                             <label>Report ID</label>
-                            <input asp-for="report.Report_id" placeholder="id" />
+                            <input asp-for="report.Report_id" value="@Model.report.Report_id" />
                             <span asp-validation-for="report.Report_id" class="text-danger"></span>
                             <br />
                         </td>
@@ -30,7 +30,7 @@
                     <tr>
                         <td>
                             <label>Elderly NRIC</label>
-                            <input asp-for="report.Elderly_ID" placeholder="elderly nric" />
+                            <input asp-for="report.Elderly_ID" value="@Model.report.Elderly_ID" />
                             <span asp-validation-for="report.Elderly_ID" class="text-danger"></span>
                             <br />
                         </td>
@@ -38,7 +38,7 @@
                     <tr>
                         <td>
                             <label>Doctor NRIC</label>
-                            <input asp-for="report.Doctor_ID" placeholder="doctor nric" />
+                            <input asp-for="report.Doctor_ID" value="@Model.report.Doctor_ID" />
                             <span asp-validation-for="report.Doctor_ID" class="text-danger"></span>
                             <br />
                         </td>
@@ -46,7 +46,7 @@
                     <tr>
                         <td>
                             <label>Date of Report</label>
-                            <input asp-for="report.Report_date" placeholder="date" />
+                            <input asp-for="report.Report_date" value="@Model.report.Report_date" />
                             <span asp-validation-for="report.Report_date" class="text-danger"></span>
                             <br />
                         </td>
@@ -54,7 +54,7 @@
                     <tr>
                         <td>
                             <label>Symptoms</label>
-                            <input asp-for="report.Symptoms" placeholder="Symptoms" />
+                            <input asp-for="report.Symptoms" value="@Model.report.Symptoms" />
                             <span asp-validation-for="report.Symptoms" class="text-danger"></span>
                         </td>
 
@@ -62,7 +62,7 @@
                     <tr>
                         <td>
                             <label>Imunities</label>
-                            <input asp-for="report.Immunities" placeholder="Immunities" />
+                            <input asp-for="report.Immunities" value="@Model.report.Immunities" />
                             <span asp-validation-for="report.Immunities" class="text-danger"></span>
                         </td>
 
@@ -70,26 +70,26 @@
                     <tr>
                         <td>
                             <label>Medicines</label>
-                            <input asp-for="report.Medicines" placeholder="Medicines" />
+                            <input asp-for="report.Medicines" value="@Model.report.Medicines" />
                             <span asp-validation-for="report.Medicines" class="text-danger"></span>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Medicines Cost</label>
-                            <input asp-for="report.Medicine_Cost" placeholder="Medicines Cost" />
+                            <input asp-for="report.Medicine_Cost" value="@Model.report.Medicine_Cost" />
                             <span asp-validation-for="report.Medicine_Cost" class="text-danger"></span>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Additional Notes</label>
-                            <input asp-for="report.Note" placeholder="Additional Note" />
+                            <input asp-for="report.Note" value="@Model.report.Note" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" id="doctor_validation" name="doctor_validation" value="false" asp-for="report.Signature" onclick="Change" />
+                            <input type="checkbox" id="doctor_validation" name="doctor_validation" value="@Model.report.Signature" asp-for="report.Signature" onclick="Change" />
                             <p>I,[doctorname] of [specialisation] in [hospital] approve of this medical report</p>
                             <input type="checkbox" id="mail" name="mail" value="mail" />
                             <p>Email this medical report to the patient</p>
@@ -99,7 +99,7 @@
                     <tr>
                         <td>
                             <div class="container-login100-form-btn">
-                                <input id="home" type="submit" value="Create Report" class="login100-form-btn" />
+                                <input id="home" type="submit" value="Update Report" class="login100-form-btn" />
 
                             </div>
                         </td>
@@ -117,7 +117,7 @@
     <script>
         function Change() {
             if (document.getElementById("doctor_validation").value == false) {
-                
+
                 return document.getElementById("doctor_validation").value = true;
             }
             else if (document.getElementById("doctor_validation").value == true) {

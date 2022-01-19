@@ -5,11 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Health_up.Models;
+using Health_up.Services;
+using Microsoft.Extensions.Logging;
 
-namespace Health_up.Pages.doctor
+namespace Health_up.Pages.doctor.report
 {
     public class medical_reportModel : PageModel
     {
+        private readonly ILogger<medical_reportModel> _logger;
+        private ReportService _svc;
+        public medical_reportModel(ILogger<medical_reportModel> logger, ReportService service)
+        {
+            _logger = logger;
+            _svc = service;
+        }
+        [BindProperty]
+        public MedicalReport report { get; set; }
+        public string msg { get; set; }
         public void OnGet()
         {
         }
@@ -17,8 +29,16 @@ namespace Health_up.Pages.doctor
         {
             if (ModelState.IsValid)
             {
-                // Create session
-                return RedirectToPage("success");
+                if(_svc.AddReport(report))
+                {
+                    return RedirectToPage("success");
+
+                }
+                else
+                {
+                    msg = "report already exist";
+                    return Page();
+                }
 
             }
             return Page();
