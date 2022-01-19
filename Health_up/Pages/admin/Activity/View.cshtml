@@ -2,40 +2,55 @@
 @model Health_up.Pages.admin.Activity.ActivityModel
 @{
 }
-<div>
-    <p>
-        <a asp-page="admin/Activity/Create">Create New Activity</a>
-    </p>
-    <h5>List of Activities</h5>
-</div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Activity Name</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Time slot</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{ if (Model.allactivity != null)
-        {
+@{ if (Model.allactivity != null)
+    {
+        <div>
+            <p>
+                <a class="btn btn-primary" asp-page="/admin/Activity/Create">Create New Activity</a>
+            </p>
+            <h5>List of Activities</h5>
+        </div>
 
-        @foreach (var item in Model.allactivity)
-        {
-        <tr>
-            <td>@item.Activity_name</td>
-            <td>@item.Activity_start_date.ToShortDateString()</td>
-            <td>@item.Activity_end_date.ToShortDateString()</td>
-            <td>@item.Activity_timeslot</td>
-            <td>
-                <a asp-page="/admin/Activity/Details" asp-route-id="@item.Id">View</a>|
-                <a asp-page="/admin/Activity/Edit" asp-route-id="@item.Id">Edit</a>|
-                <a  onclick="return confirm('Are you sure you want to Delete this activity?');" asp-page="/admin/Activity/Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-        }
-        }
-        }
-    </tbody>
-</table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Activity Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Time slot</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+                @foreach (var item in Model.allactivity)
+                {
+                    <tr>
+                        <td>@item.Activity_name</td>
+                        <td>@item.Activity_start_date.ToShortDateString()</td>
+                        <td>@item.Activity_end_date.ToShortDateString()</td>
+                        <td>@item.Activity_timeslot</td>
+                        <td>
+                            <a asp-page="/admin/Activity/Details" asp-route-id="@item.Id">View</a>|
+                            <a asp-page="/admin/Activity/Edit" asp-route-id="@item.Id">Edit</a>|
+                            <a onclick="return confirm('Are you sure you want to Delete this activity?');" asp-page="/admin/Activity/Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+
+
+                }
+
+            </tbody>
+        </table>
+    }
+}
+@{ if (Model.allactivity == null)
+    {
+        <div class="card-body">
+            <h5 class="card-title">Activity</h5>
+            <p class="card-text">You have not Added any Activity to this page! please proceed to add!</p>
+            <a asp-page="admin/Activity/Create" class="btn btn-primary">Add Activity</a>
+        </div>
+    }
+}

@@ -36,7 +36,7 @@ namespace Health_up.Pages.admin
             {
                 if (_svc.AddActivity(Myactivity))
                 {
-                    return RedirectToPage("/Index");
+                    return RedirectToPage("/admin/Activity/View");
 
                 }
 
