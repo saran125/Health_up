@@ -32,9 +32,9 @@ namespace HealthUP.Pages
         {
             if (ModelState.IsValid)
             {
-                if (_svc.AddUser(MyUser))
+                if (_svc.Register(MyUser))
                 {
-                    return RedirectToPage("login");
+                    return RedirectToPage("/login");
                 }
                 else
                 {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using crypto;
 using Health_up.Models;
 using Microsoft.EntityFrameworkCore;
+using BC = BCrypt.Net.BCrypt;
 
 namespace Health_up.Services
 {
@@ -17,6 +18,7 @@ namespace Health_up.Services
         public UserService(HealthUPDbContext context)
         {
             _context = context;
+
         }
 
         private static string CreateSalt(int size)
@@ -29,17 +31,16 @@ namespace Health_up.Services
             // Return a Base64 string representation of the random number.
             return Convert.ToBase64String(buff);
         }
-        public bool AddUser(User newuser)
+        public bool Register(User newuser)
         {
-            if (UserExists(newuser.NRIC))
+            if (UserExists(newuser.Email))
             {
                 return false;
             }
             else
             {
-
-                //string iv = "Hello";
-                var password = Security.ComputeHash(newuser.Password, CreateSalt(8));
+                newuser.Verify = "False";
+                var password = BC.HashPassword(newuser.Password);
                 newuser.Password = password;
                 
                 /*byte[] cipherKey;
@@ -54,10 +55,56 @@ namespace Health_up.Services
                 return true;
             }
         }
-        private bool UserExists(string id)
+
+        public bool Login(User existuser)
         {
-            return _context.Users.Any(e => e.NRIC == id);
+            
+            try
+            {
+                if (!UserExists(existuser.Email))
+                {
+                    return false;
+                }
+
+                else {
+                    User account = GetUserById(existuser.Email);
+                    if (BC.Verify(existuser.Password, account.Password))
+                    {
+
+                        return true;
+
+                    }
+                    else
+
+                        // authentication successful
+                        return false;
+
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+                throw;
+
+              
+
+
+            }
+            
+            //return true;
+            
         }
+        public User GetUserById(string Email)
+        {
+            
+           User theuser = _context.Users.Where(e => e.Email == Email).FirstOrDefault();
+            return theuser;
+        }
+        private bool UserExists(string email)
+        {
+            return _context.Users.Any(e => e.Email == email);
+        }
+
 
     }
 }
