@@ -20,13 +20,13 @@
     </div>
     <div class="form-group">
         <label class="col-sm-2 col-form-label">Start Date:</label>
-        <input class="form-control" asp-for="Myactivity.Activity_start_date" value="@Model.Myactivity.Activity_start_date" />
+        <input class="form-control" asp-for="Myactivity.Activity_start_date" value="@Model.Myactivity.Activity_start_date.ToString("yyyy-MM-dd")" />
         <span asp-validation-for="Myactivity.Activity_start_date" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label class="col-sm-2 col-form-label">End Date:</label>
-        <input class="form-control" asp-for="Myactivity.Activity_end_date" value="@Model.Myactivity.Activity_end_date" />
+        <input class="form-control" asp-for="Myactivity.Activity_end_date" value="@Model.Myactivity.Activity_end_date.ToString("yyyy-MM-dd")" />
         <span asp-validation-for="Myactivity.Activity_end_date" class="text-danger"></span>
     </div>
     <div class="form-group">

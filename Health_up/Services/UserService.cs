@@ -96,7 +96,6 @@ namespace Health_up.Services
         }
         public User GetUserById(string Email)
         {
-            
            User theuser = _context.Users.Where(e => e.Email == Email).FirstOrDefault();
             return theuser;
         }
