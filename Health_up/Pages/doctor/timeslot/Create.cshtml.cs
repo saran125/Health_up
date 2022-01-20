@@ -2,26 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Health_up.Pages.doctor.report
+namespace Health_up.Pages.doctor.timeslot
 {
-    public class medical_reportModel : PageModel
+    public class CreateModel : PageModel
     {
-        private readonly ILogger<medical_reportModel> _logger;
-        private ReportService _svc;
-        public medical_reportModel(ILogger<medical_reportModel> logger, ReportService service)
+        private readonly ILogger<CreateModel> _logger;
+        private DoctorTimeslotService _svc;
+        public CreateModel(ILogger<CreateModel> logger, DoctorTimeslotService service)
         {
             _logger = logger;
             _svc = service;
         }
         [BindProperty]
-        public MedicalReport report { get; set; }
-        public string msg { get; set; }
+        public DoctorTimeslot DocTimeslot { get; set; }
         public void OnGet()
         {
         }
@@ -29,20 +28,18 @@ namespace Health_up.Pages.doctor.report
         {
             if (ModelState.IsValid)
             {
-                if(_svc.AddReport(report))
+                if (_svc.AddTimeslot(DocTimeslot))
                 {
-                    return RedirectToPage("success");
+                    return RedirectToPage("/doctor/timeslot/Retrieve");
 
                 }
                 else
                 {
-                    msg = "report already exist";
                     return Page();
                 }
 
             }
             return Page();
         }
-
     }
 }

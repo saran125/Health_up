@@ -1,0 +1,46 @@
+﻿@page
+@model Health_up.Pages.doctor.report.viewModel
+@{
+    ViewData["Title"] = "View Reports";
+}
+<h2>View Reports</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Report ID</th>
+            <th scope="col">Report Date</th>
+            <th scope="col">Is Signed</th>
+            <th scope="col">Symptoms</th>
+            <th scope="col">Immunities</th>
+            <th scope="col">Medicines</th>
+            <th scope="col">Medicine Cost</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Doctor NRIC</th>
+            <th scope="col">Elderly NRIC</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.reports != null)
+        {
+            @foreach (var report in Model.reports)
+            {
+                <tr>
+                    <th scope="row">@report.Report_id</th>
+                    <td>@report.Report_date</td>
+                    <td>@report.Signature</td>
+                    <td>@report.Symptoms</td>
+                    <td>@report.Immunities</td>
+                    <td>@report.Medicines</td>
+                    <td>@report.Medicine_Cost</td>
+                    <td>@report.Note</td>
+                    <td>@report.Doctor_ID</td>
+                    <td>@report.Elderly_ID</td>
+                    <td><a class="btn btn-primary" asp-page="/doctor/report/update" asp-route-id="@report.Report_id">Update</a></td>
+                    <td><a class="btn btn-danger" asp-page="/doctor/report/delete" asp-route-id="@report.Report_id">Delete</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

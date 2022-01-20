@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Health_up.Services
 {
@@ -28,18 +29,56 @@ namespace Health_up.Services
         }
         private bool ReportExist(string id)
         {
-            return _context.Reports.Any(e => e.Report_id == id);
+            return _context.Report.Any(e => e.Report_id == id);
         }
-        private List<MedicalReport> GetAllReports()
+        public List<MedicalReport> GetAllReports()
         {
             List<MedicalReport> AllReports = new List<MedicalReport>();
-            AllReports = _context.Reports.ToList();
+            AllReports = _context.Report.ToList();
             return AllReports;
         }
-        private MedicalReport GetReportById(string id)
+        public MedicalReport GetReportById(string id)
         {
-            MedicalReport report = _context.Reports.Where(e => e.Report_id == id).FirstOrDefault();
+            MedicalReport report = _context.Report.Where(e => e.Report_id == id).FirstOrDefault();
             return report;
+        }
+        public bool UpdateReport(MedicalReport reportID)
+        {
+            bool update = true;
+            _context.Attach(reportID).State = EntityState.Modified;
+            try
+            {
+                _context.SaveChanges();
+                update = true;
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if (!ReportExist(reportID.Report_id))
+                {
+                    update = false;
+                }
+                else throw;
+            }
+            return update;
+        }
+        public bool DeleteReport(MedicalReport reportID)
+        {
+            bool delete = true;
+            try
+            {
+                _context.Remove(reportID);
+                _context.SaveChanges();
+                delete = true;
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if (!ReportExist(reportID.Report_id))
+                {
+                    delete = false;
+                }
+                else throw;
+            }
+            return delete;
         }
     }
 }

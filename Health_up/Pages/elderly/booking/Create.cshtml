@@ -10,11 +10,8 @@
     <div asp-validation-summary="All" class="text-danger"></div>
     <div> <label class="text-danger">@Model.MyMessage</label> </div>
 
-    <div>
-        <label class="col-sm-2 col-form-label">Booking Id:</label>
-        <input asp-for="MyBooking.Id" class="form-control" value="" placeholder="1" />
-
-        <span asp-validation-for="MyBooking.Id" class="text-danger"></span>
+    <div class="form-group">
+        <input type="hidden" asp-for="MyBooking.Id" class="form-control" value="@Model.id" />
     </div>
 
     <div>

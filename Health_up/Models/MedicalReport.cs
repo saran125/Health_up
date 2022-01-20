@@ -12,14 +12,23 @@ namespace Health_up.Models
         [Key]
         public string Report_id { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Report_date { get; set; }
         [Required]
         public bool Signature { get; set; }
-        public long Note { get; set; }
         [Required]
-        public string DoctorNRIC { get; set; }
+        public string Symptoms { get; set; }
         [Required]
-        public string ElderlyNRIC { get; set; }
+        public string Immunities { get; set; }
+        [Required]
+        public string Medicines { get; set; }
+        [Required]
+        public double Medicine_Cost { get; set; }
+        public string Note { get; set; }
+        [Required]
+        public string Doctor_ID { get; set; }
+        [Required]
+        public string Elderly_ID { get; set; }
 
     }
 }
