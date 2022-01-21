@@ -28,6 +28,8 @@ namespace Health_up.Models
         [Required]
         public Double Activity_price { get; set; }
         [Required]
+        [FileExtensions(Extensions = "jpg, jpeg, png", ErrorMessage = "Provide a valid File Type (JPG/PNG)")]
+        [DataType(DataType.Upload)]
         public string Activity_photo { get; set; }
 
     }
