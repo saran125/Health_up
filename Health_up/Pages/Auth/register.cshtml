@@ -14,7 +14,7 @@
             <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
             <h3>Welcome</h3>
             <p>You are only a few minutes away to get full access of our website!</p>
-            <input type="submit" asp-page="/login" value="Login" /><br />
+           <a class="nav-link" id="profile-tab"  asp-page="/Auth/login" role="tab" aria-controls="profile" ><input type="submit" asp-page="/Auth/login" value="Login" /></a><br />
         </div>
         <div class="col-md-9 register-right">
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -141,7 +141,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password *" value="" />
+                                <input type="password"  asp-for="MyUser.Password" class="form-control" placeholder="Password *"  />
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Confirm Password *" value="" />

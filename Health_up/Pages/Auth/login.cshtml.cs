@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -34,6 +35,12 @@ namespace HealthUP.Pages
             {
                 if (_svc.Login(MyUser))
                 {
+                    User currentuser = _svc.Theuser(MyUser);
+                    HttpContext.Session.SetString("Email", currentuser.Email);
+                    HttpContext.Session.SetString("Fname", currentuser.Fname);
+                    HttpContext.Session.SetString("Lname", currentuser.Lname);
+                    HttpContext.Session.SetString("Role", currentuser.Role);
+                    
                     return RedirectToPage("/Index");
                 }
                 else

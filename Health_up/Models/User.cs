@@ -25,7 +25,7 @@ namespace Health_up.Models
         public string Gender { get; set; }
         public string Phone { get; set; }
         public string Role { get; set; }
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
         
         public string UnitNumber { get; set; }
 

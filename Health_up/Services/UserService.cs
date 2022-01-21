@@ -67,6 +67,8 @@ namespace Health_up.Services
                 }
 
                 else {
+                  //  return true;
+                   
                     User account = GetUserById(existuser.Email);
                     if (BC.Verify(existuser.Password, account.Password))
                     {
@@ -78,25 +80,26 @@ namespace Health_up.Services
 
                         // authentication successful
                         return false;
+                    
 
                 }
             }
             catch (DbUpdateConcurrencyException)
             {
-
                 throw;
-
-              
-
 
             }
             
-            //return true;
             
+        }
+        public User Theuser(User existuser)
+        {
+            User account = GetUserById(existuser.Email);
+            return account;
         }
         public User GetUserById(string Email)
         {
-           User theuser = _context.Users.Where(e => e.Email == Email).FirstOrDefault();
+            User theuser = _context.Users.SingleOrDefault(o => o.Email == Email);
             return theuser;
         }
         private bool UserExists(string email)

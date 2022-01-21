@@ -8,7 +8,6 @@ namespace Health_up.Models
 {
     public class Activity
     {
-        [Required]
         public string Id { get; set; }
 
         [Required, MaxLength(25)]
