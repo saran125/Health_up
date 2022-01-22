@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HealthUP.Pages.doctor
+namespace Health_up.Pages.doctor
 {
     public class indexModel : PageModel
     {

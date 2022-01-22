@@ -17,10 +17,7 @@ namespace Health_up.Services
 
         public bool AddActivity(Activity newactivity)
         {
-            if (ActivityExists(newactivity.Id))
-            {
-                return false;
-            }
+            newactivity.Id = Guid.NewGuid().ToString();
             _context.Add(newactivity);
             _context.SaveChanges();
             return true;

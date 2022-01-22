@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Health_up.Pages.doctor
+namespace Health_up.Pages.Auth
 {
-    public class appoinmentModel : PageModel
+    public class ProfileModel : PageModel
     {
         public void OnGet()
         {

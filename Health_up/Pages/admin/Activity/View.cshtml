@@ -4,6 +4,10 @@
 }
 @{ if (Model.allactivity != null)
     {
+        <p>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
         <div>
             <p>
                 <a class="btn btn-primary" asp-page="/admin/Activity/Create">Create New Activity</a>

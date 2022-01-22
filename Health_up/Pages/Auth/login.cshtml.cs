@@ -4,17 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 namespace HealthUP.Pages
 {
-    public class RegisterModel : PageModel
+    public class loginModel : PageModel
     {
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<loginModel> _logger;
         private UserService _svc;
-        public RegisterModel(ILogger<RegisterModel> logger, UserService service)
+        public loginModel(ILogger<loginModel> logger, UserService service)
         {
             _logger = logger;
             _svc = service;
@@ -32,18 +33,23 @@ namespace HealthUP.Pages
         {
             if (ModelState.IsValid)
             {
-                if (_svc.Register(MyUser))
+                if (_svc.Login(MyUser))
                 {
-                    return RedirectToPage("/login");
+                    User currentuser = _svc.Theuser(MyUser);
+                    HttpContext.Session.SetString("Email", currentuser.Email);
+                    HttpContext.Session.SetString("Fname", currentuser.Fname);
+                    HttpContext.Session.SetString("Lname", currentuser.Lname);
+                    HttpContext.Session.SetString("Role", currentuser.Role);
+                    
+                    return RedirectToPage("/Index");
                 }
                 else
                 {
-                    MyMessage = "User Id already exist!";
+                    MyMessage = "Invalid Email or Password";
                     return Page();
                 }
             }
             return Page();
         }
-
     }
 }

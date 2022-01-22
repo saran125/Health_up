@@ -14,8 +14,6 @@ namespace Health_up.Pages.admin
     {
         [BindProperty]
         public Models.Activity Myactivity { get; set; }
-        public string id = Security.GenerateText(16);
-        
         private readonly ActivityService _svc;
         public ActivityModel(ActivityService service)
         {

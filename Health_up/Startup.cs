@@ -32,7 +32,7 @@ namespace Health_up
             services.AddTransient<ReportService>();
             services.AddTransient<ActivityService>();
             services.AddTransient<DoctorTimeslotService>();
-
+            services.AddSession();
             services.AddDbContext<HealthUPDbContext>();
         }
 
@@ -54,7 +54,7 @@ namespace Health_up
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

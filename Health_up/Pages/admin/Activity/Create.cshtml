@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model Health_up.Pages.admin.ActivityModel
 @using Health_up.Models;
 @{ }
@@ -8,9 +8,6 @@
     <h1>Adding Activity</h1>
     <div asp-validation-summary="All" class="text-danger"></div>
     <form accept-charset="UTF-8" method="POST">
-        <div class="form-group">
-            <input type="hidden" asp-for="Myactivity.Id" class="form-control" value="@Model.id" ty />
-        </div>
         <div class="form-group">
             <label for="name">Activity Name</label>
             <input type="text" class="form-control" asp-for="Myactivity.Activity_name" placeholder="Enter Activity Name" required="required">
