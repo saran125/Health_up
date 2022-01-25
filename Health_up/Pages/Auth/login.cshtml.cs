@@ -41,7 +41,7 @@ namespace HealthUP.Pages
                     HttpContext.Session.SetString("Lname", currentuser.Lname);
                     HttpContext.Session.SetString("Role", currentuser.Role);
                     
-                    return RedirectToPage("/Index");
+                    return RedirectToPage("/elderly/home");
                 }
                 else
                 {

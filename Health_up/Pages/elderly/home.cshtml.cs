@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Health_up.Pages.elderly
 {
-    public class IndexModel : PageModel
+    public class homeModel : PageModel
     {
         public void OnGet()
         {
