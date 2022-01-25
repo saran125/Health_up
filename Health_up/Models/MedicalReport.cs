@@ -8,7 +8,6 @@ namespace Health_up.Models
 {
     public class MedicalReport
     {
-        [Required]
         [Key]
         public string Report_id { get; set; }
         [Required]

@@ -3,127 +3,60 @@
 @{
     ViewData["Title"] = "Update report";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Medical Report</title>
-    <link rel="stylesheet" type="text/css" href="~/css/report.css">
-</head>
-<body>
-
-    <div class="limiter">
-        <div> <label class="text-danger">@Model.msg</label> </div>
-        <div class="container-login100">
-            <form runat="server" method="post">
-                <span class="login100-form-title">
-                    Update Medical Report
-                </span>
-                <table>
-                    <tr>
-                        <td>
-                            <label>Report ID</label>
-                            <input asp-for="report.Report_id" value="@Model.report.Report_id" disabled />
-                            <span asp-validation-for="report.Report_id" class="text-danger"></span>
-                            <br />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Elderly NRIC</label>
-                            <input asp-for="report.Elderly_ID" value="@Model.report.Elderly_ID" />
-                            <span asp-validation-for="report.Elderly_ID" class="text-danger"></span>
-                            <br />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Doctor NRIC</label>
-                            <input asp-for="report.Doctor_ID" value="@Model.report.Doctor_ID" />
-                            <span asp-validation-for="report.Doctor_ID" class="text-danger"></span>
-                            <br />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Date of Report</label>
-                            <input asp-for="report.Report_date" value="@Model.report.Report_date" />
-                            <span asp-validation-for="report.Report_date" class="text-danger"></span>
-                            <br />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Symptoms</label>
-                            <input asp-for="report.Symptoms" value="@Model.report.Symptoms" />
-                            <span asp-validation-for="report.Symptoms" class="text-danger"></span>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Imunities</label>
-                            <input asp-for="report.Immunities" value="@Model.report.Immunities" />
-                            <span asp-validation-for="report.Immunities" class="text-danger"></span>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Medicines</label>
-                            <input asp-for="report.Medicines" value="@Model.report.Medicines" />
-                            <span asp-validation-for="report.Medicines" class="text-danger"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Medicines Cost</label>
-                            <input asp-for="report.Medicine_Cost" value="@Model.report.Medicine_Cost" />
-                            <span asp-validation-for="report.Medicine_Cost" class="text-danger"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Additional Notes</label>
-                            <input asp-for="report.Note" value="@Model.report.Note" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="doctor_validation" name="doctor_validation" value="@Model.report.Signature" asp-for="report.Signature" onclick="Change" />
-                            <p>I,[doctorname] of [specialisation] in [hospital] approve of this medical report</p>
-                            <input type="checkbox" id="mail" name="mail" value="mail" />
-                            <p>Email this medical report to the patient</p>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="container-login100-form-btn">
-                                <input id="home" type="submit" value="Update Report" class="login100-form-btn" />
-
-                            </div>
-                        </td>
-
-                    </tr>
-
-                </table>
-
-            </form>
+<div class="col-md-6 offset-md-3 mt-5">
+    <h1>Update Medical Report</h1>
+    <form method="post" runat="server">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div><label class="text-danger">@Model.msg</label></div>
+        <div class="form-group">
+            <label>Elderly NRIC</label>
+            <input asp-for="report.Elderly_ID" class="form-control" value="@Model.report.Elderly_ID" />
+            <span asp-validation-for="report.Elderly_ID" class="text-danger"></span>
         </div>
-    </div>
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
-    <script>
-        function Change() {
-            if (document.getElementById("doctor_validation").value == false) {
-
-                return document.getElementById("doctor_validation").value = true;
-            }
-            else if (document.getElementById("doctor_validation").value == true) {
-                return document.getElementById("doctor_validation").value = false;
-            }
-        }
-    </script>
-</body>
-</html>
+        <div class="form-group">
+            <label>Doctor NRIC</label>
+            <input asp-for="report.Doctor_ID" class="form-control" value="@Model.report.Doctor_ID" />
+            <span asp-validation-for="report.Doctor_ID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Date of Report</label>
+            <input asp-for="report.Report_date" class="form-control" value="@Model.report.Report_date" />
+            <span asp-validation-for="report.Report_date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Symptoms</label>
+            <input asp-for="report.Symptoms" class="form-control" value="@Model.report.Symptoms" />
+            <span asp-validation-for="report.Symptoms" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Imunities</label>
+            <input asp-for="report.Immunities" class="form-control" value="@Model.report.Immunities" />
+            <span asp-validation-for="report.Immunities" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Medicines</label>
+            <input asp-for="report.Medicines" class="form-control" value="@Model.report.Medicines" />
+            <span asp-validation-for="report.Medicines" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Medicines Cost</label>
+            <input asp-for="report.Medicine_Cost" class="form-control" value="@Model.report.Medicine_Cost" />
+            <span asp-validation-for="report.Medicine_Cost" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Additional Notes</label>
+            <input asp-for="report.Note" class="form-control" value="@Model.report.Note" />
+        </div>
+        <input type="checkbox" id="doctor_validation" name="doctor_validation" value="@Model.report.Signature" asp-for="report.Signature" onclick="Change" />
+        <label for="doctor_validation">I,[doctorname] of [specialisation] in [hospital] approve of this medical report</label><br />
+        <input type="checkbox" id="mail" name="mail" value="mail" />
+        <label for="mail">Email this medical report to the patient</label>
+        <input id="create" type="submit" value="Update Report" class="btn btn-primary float-right" />
+        <br />
+        <br />
+        <br />
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

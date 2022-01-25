@@ -22,10 +22,12 @@ namespace Health_up.Pages.doctor.report
 
         [BindProperty]
         public List<MedicalReport> reports { get; set; }
+        public int counter { get; set; }
 
         public void OnGet()
         {
             reports = _svc.GetAllReports();
+            counter = reports.Count();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Health_up.Pages.doctor.report
                 report = _svc.GetReportById(id);
                 return Page();
             }
-            else return RedirectToPage("index");
+            else return RedirectToPage("/doctor/404");
         }
         public IActionResult OnPost()
         {
