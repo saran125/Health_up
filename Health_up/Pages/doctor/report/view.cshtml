@@ -15,6 +15,7 @@
             <th scope="col">Medicine Cost</th>
             <th scope="col">Notes</th>
             <th scope="col">Update</th>
+            <th scope="col">PDF</th>
         </tr>
     </thead>
     <tbody>
@@ -22,40 +23,53 @@
         {
             @foreach (var report in Model.reports)
             {
-        <tr>
-            <td>@report.Elderly_ID</td>
-            <td>@report.Report_date</td>
-            <td>@report.Symptoms</td>
-            <td>@report.Immunities</td>
-            <td>@report.Medicines</td>
-            <td>$@report.Medicine_Cost</td>
-            <td>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#@report.Elderly_ID@report.Signature@report.Medicine_Cost">Notes</button>
-                <div class="modal fade" id="@report.Elderly_ID@report.Signature@report.Medicine_Cost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Additional Notes</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">
-                                        &times;
-                                    </span>
-                                </button>
+
+                @if (Model.datelist.Contains(@report.Report_date.ToString().Split(" ")[0]))
+                {
+                    <tr>
+                        <td colspan="8" style="text-align:center;">
+                            <h6>@report.Report_date.ToString().Split(" ")[0]</h6>
+                            <div hidden>
+                                @Model.datelist.Remove(@report.Report_date.ToString().Split(" ")[0])
                             </div>
-                            <div class="modal-body">
-                                <table>
-                                    <tr>
-                                        <td>@report.Note</td>
-                                    </tr>
-                                </table>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td>@report.Elderly_ID</td>
+                    <td>@report.Report_date.ToString().Split(" ")[1]@report.Report_date.ToString().Split(" ")[2] </td>
+                    <td>@report.Symptoms</td>
+                    <td>@report.Immunities</td>
+                    <td>@report.Medicines</td>
+                    <td>$@report.Medicine_Cost</td>
+                    <td>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#@report.Elderly_ID@report.Signature@report.Medicine_Cost">Notes</button>
+                        <div class="modal fade" id="@report.Elderly_ID@report.Signature@report.Medicine_Cost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Additional Notes</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                &times;
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table>
+                                            <tr>
+                                                <td>@report.Note</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-            </td>
-            <td><a class="btn btn-primary" asp-page="/doctor/report/update" asp-route-id="@report.Report_id">Update</a></td>
-        </tr>
+                    </td>
+                    <td><a class="btn btn-primary" asp-page="/doctor/report/update" asp-route-id="@report.Report_id">Update</a></td>
+                    <td><a class="btn btn-primary" asp-page="/doctor/report/download" asp-route-id="@report.Report_id">&#9432;</a></td>
+                </tr>
             }
         }
     </tbody>
