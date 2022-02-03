@@ -36,6 +36,14 @@ namespace HealthUP.Pages
                 if (_svc.Login(MyUser))
                 {
                     User currentuser = _svc.Theuser(MyUser);
+                    if(currentuser.Role == "doctor")
+                    {
+                        HttpContext.Session.SetString("Email", currentuser.Email);
+                        HttpContext.Session.SetString("Fname", currentuser.Fname);
+                        HttpContext.Session.SetString("Lname", currentuser.Lname);
+                        HttpContext.Session.SetString("Role", currentuser.Role);
+                        return RedirectToPage("/doctor/index");
+                    }
                     HttpContext.Session.SetString("Email", currentuser.Email);
                     HttpContext.Session.SetString("Fname", currentuser.Fname);
                     HttpContext.Session.SetString("Lname", currentuser.Lname);
