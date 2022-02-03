@@ -113,10 +113,10 @@
                                                 if (Context.Session.GetString("Role") == "doctor")
                                                 {
                                                     <li class="nav-item">
-                                                        <a class="page-scroll" asp-page="/doctor/">Home</a>
+                                                        <a class="page-scroll" asp-page="/doctor/index">Home</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="page-scroll" asp-page="/Auth/register">My Schedule</a>
+                                                        <a class="page-scroll" asp-page="/doctor/timeslot/retrieve">My Schedule</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="page-scroll" asp-page="/faq">FAQ</a>
@@ -130,16 +130,19 @@
                                                             </button>
 
                                                             <div class="dropdown-content">
-                                                                <a href="#">
+                                                                <a href="/doctor/profile">
                                                                     Profile
                                                                     <i class="fas fa-user"></i>
+                                                                </a>
+
+                                                                <a href="/doctor/report/view">
+                                                                    View Reports
                                                                 </a>
 
                                                                 <a href="#">
                                                                     Log Out
                                                                     <i class="fas fa-sign-out-alt"></i>
                                                                 </a>
-
 
                                                             </div>
                                                         </div>
