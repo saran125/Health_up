@@ -83,18 +83,9 @@
 
                     </td>
                     <td><a class="btn btn-primary" asp-page="/doctor/report/update" asp-route-id="@report.Report_id">Update</a></td>
-                    <td>
-                        <a class="btn btn-primary" onclick="toPDF('@report.Report_id')">&#9432;</a>
-
-                    </td>
-
+                    <td><a class="btn btn-primary" asp-page="/doctor/report/download" asp-route-id="@report.Report_id">&#9432;</a></td>
                 </tr>
             }
         }
     </tbody>
 </table>
-<script>
-    function toPDF(report_id) {
-        return window.print();
-    }
-</script>
