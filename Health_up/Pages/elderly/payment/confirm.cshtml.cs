@@ -17,7 +17,7 @@ namespace HealthUP.Pages.payment
         {
             if (ModelState.IsValid)
             {
-                return RedirectToPage("home");
+                return RedirectToPage("/elderly/home");
             }
             return Page();
         }
