@@ -33,6 +33,7 @@ namespace HealthUP.Pages
         public void OnGet()
         {
         }
+        
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)

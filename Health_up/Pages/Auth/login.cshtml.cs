@@ -29,12 +29,14 @@ namespace HealthUP.Pages
         public void OnGet()
         {
         }
+
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
                 if (_svc.Login(MyUser))
                 {
+                   
                     User currentuser = _svc.Theuser(MyUser);
                     HttpContext.Session.SetString("Email", currentuser.Email);
                     HttpContext.Session.SetString("Fname", currentuser.Fname);
