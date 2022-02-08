@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -13,7 +14,7 @@ namespace HealthUP.Pages.elderly.appointment
     public class RetrieveModel : PageModel
     {
         [BindProperty]
-        public List<Appointment> allappointments { get; set; }
+        public List<Appointment> appointmentsByEmail { get; set; }
 
         private readonly ILogger<RetrieveModel> _logger;
 
@@ -31,7 +32,8 @@ namespace HealthUP.Pages.elderly.appointment
         public string MyMessage { get; set; }
         public void OnGet()
         {
-            allappointments = _svc.GetAllAppointments();
+            //allappointments = _svc.GetAllAppointments();
+            appointmentsByEmail = _svc.GetAppointmentByEmail(HttpContext.Session.GetString("Email"));
 
 
         }

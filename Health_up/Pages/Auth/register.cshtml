@@ -34,11 +34,6 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label><b>NRIC:</b></label>
-                                <input asp-for="MyUser.NRIC" type="text" required class="form-control" placeholder="NRIC *" value="" />
-                                <span asp-validation-for="MyUser.NRIC" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
                                 <label><b>First Name:</b></label>
                                 <input asp-for="MyUser.Fname" type="text" required class="form-control" placeholder="First Name *" value="" />
                                 <span asp-validation-for="MyUser.Fname" class="text-danger"></span>
@@ -120,11 +115,6 @@
                     <form method="post" class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label><b>NRIC:</b></label>
-                                <input asp-for="MyUser.NRIC" type="text" class="form-control" required placeholder="NRIC *" value="" />
-                                <span asp-validation-for="MyUser.NRIC" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
                                 <label><b>First Name:</b></label>
                                 <input asp-for="MyUser.Fname" type="text" class="form-control" required placeholder="First Name *" value="" />
                                 <span asp-validation-for="MyUser.Fname" class="text-danger"></span>
@@ -155,6 +145,7 @@
 
                         </div>
                         <div class="col-md-6">
+
                             <div class="form-group">
                                 <label><b>Email:</b></label>
                                 <input asp-for="MyUser.Email" type="email" class="form-control" placeholder="Your Email *" value="" />
@@ -166,6 +157,7 @@
                                 <span asp-validation-for="MyUser.Lname" class="text-danger"></span>
 
                             </div>
+
                             <div class="form-group">
                                 <label><b>Confirm Password:</b></label>
                                 <input type="password" asp-for="Cfmpwd" class="form-control" placeholder="Confirm Password *" value="" />

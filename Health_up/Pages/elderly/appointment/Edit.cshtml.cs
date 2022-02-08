@@ -34,8 +34,8 @@ namespace HealthUP.Pages.elderly.appointment
 
                 return Page();
             }
-            else
-                return RedirectToPage("Index");
+            else 
+                return RedirectToPage("/elderly/404");
 
         }
 

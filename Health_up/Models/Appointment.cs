@@ -23,8 +23,8 @@ namespace Health_up.Models
 
         [Required]
         public double ConsultationFee { get; set; }
-        //public string DoctorId { get; set; }
-        //public string ElderlyId { get; set; }
+        public string DoctorId { get; set; }
+        public string ElderlyId { get; set; }
 
     }
 }

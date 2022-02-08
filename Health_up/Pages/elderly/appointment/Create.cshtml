@@ -1,9 +1,12 @@
-﻿@page
+﻿
+@page
 @model HealthUP.Pages.elderly.appointments.CreateModel
 @{
     ViewData["Title"] = "Make an Appointment";
 
 }
+@using Microsoft.AspNetCore.Http;
+
 <div class="col-md-6 offset-md-3 mt-5">
     <h1>Make an appointment</h1>
     <form method="post">
@@ -58,12 +61,20 @@
             <input readonly asp-for="MyAppointment.ConsultationFee" class="form-control" value="30" />
             <span asp-validation-for="MyAppointment.ConsultationFee" class="text-danger"></span>
         </div>
+        @{ if (HttpContext.Session.GetString("Email") != null)
+            {
+                <input type="hidden" asp-for="MyAppointment.ElderlyId" class="form-control" value="@(HttpContext.Session.GetString("Email"))" />
+            } 
+        }
+
+        @*<input type="hidden" asp-for="MyAppointment.DoctorId" class="form-control" value="@Model.MyUser.Email" />*@
+
         <input id="create" type="submit" value="Pay" class="btn btn-primary float-right" />
         <br />
         <br />
         <br />
     </form>
 </div>
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
