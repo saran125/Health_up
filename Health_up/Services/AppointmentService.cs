@@ -18,6 +18,7 @@ namespace Health_up.Services
 
         public bool AddAppointment(Appointment newappointment)
         {
+            newappointment.Id = Guid.NewGuid().ToString();
             if (AppointmentExists(newappointment.Id))
             {
                 return false;

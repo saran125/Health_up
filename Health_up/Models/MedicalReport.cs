@@ -8,11 +8,10 @@ namespace Health_up.Models
 {
     public class MedicalReport
     {
-        [Required]
         [Key]
         public string Report_id { get; set; }
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime Report_date { get; set; }
         [Required]
         public bool Signature { get; set; }

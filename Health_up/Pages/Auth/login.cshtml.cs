@@ -42,8 +42,18 @@ namespace HealthUP.Pages
                     HttpContext.Session.SetString("Fname", currentuser.Fname);
                     HttpContext.Session.SetString("Lname", currentuser.Lname);
                     HttpContext.Session.SetString("Role", currentuser.Role);
-                    
-                    return RedirectToPage("/Index");
+                    if (currentuser.Role == "doctor")
+                    {
+                        return RedirectToPage("/doctor/index");
+                    }
+                    if (currentuser.Role == "elderly")
+                    {
+                        return RedirectToPage("/Index");
+                    }
+                    if (currentuser.Role == "admin")
+                    {
+                        return RedirectToPage("/Admin");
+                    }
                 }
                 else
                 {

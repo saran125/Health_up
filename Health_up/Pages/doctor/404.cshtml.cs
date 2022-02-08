@@ -5,21 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HealthUP.Pages.payment
+namespace Health_up.Pages.doctor
 {
-    public class confirmModel : PageModel
+    public class _404Model : PageModel
     {
         public void OnGet()
         {
-
         }
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                return RedirectToPage("home");
-            }
-            return Page();
+            return RedirectToPage("/doctor/index");
         }
     }
 }

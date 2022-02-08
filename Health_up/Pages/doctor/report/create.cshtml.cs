@@ -22,6 +22,7 @@ namespace Health_up.Pages.doctor.report
         [BindProperty]
         public MedicalReport report { get; set; }
         public string msg { get; set; }
+
         public void OnGet()
         {
         }
@@ -29,6 +30,8 @@ namespace Health_up.Pages.doctor.report
         {
             if (ModelState.IsValid)
             {
+                //make unique uuid for report
+
                 if(_svc.AddReport(report))
                 {
                     return RedirectToPage("success");

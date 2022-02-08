@@ -10,9 +10,6 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <div> <label class="text-danger">@Model.MyMessage</label> </div>
         <div class="form-group">
-            <input type="hidden" asp-for="MyAppointment.Id" class="form-control" value="@Model.id"  />
-        </div>
-        <div class="form-group">
             <label>Symptoms</label>
             <select name="MyAppointment.Symptoms" class="form-control">
                 <option class="hidden" selected disabled>--Select your symptoms--</option>

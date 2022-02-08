@@ -22,6 +22,7 @@ namespace Health_up.Services
             }
             else
             {
+                report.Report_id = Guid.NewGuid().ToString();
                 _context.Add(report);
                 _context.SaveChanges();
                 return true;

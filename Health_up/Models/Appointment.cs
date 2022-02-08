@@ -8,7 +8,7 @@ namespace Health_up.Models
 {
     public class Appointment
     {
-        [Required]
+        
         public string Id { get; set; }
 
         [Required, MaxLength(25)]
