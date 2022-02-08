@@ -9,16 +9,16 @@ namespace Health_up.Models
     public class User
     {
 
-     
         [Key]
-        public string NRIC { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
+
 
         [ MaxLength(25)]
         public string Fname { get; set; }
         [ MaxLength(25)]
         public string Lname { get; set; }
-        [EmailAddress]
-        public string Email { get; set; }
+        public string NRIC { get; set; }
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
           ErrorMessage = "Password need to be at least 8 characters, combination of lower case, upper case, numbers & special characters")]
         public string Password { get; set; }
