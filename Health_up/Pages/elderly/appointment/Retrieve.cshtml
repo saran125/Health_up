@@ -10,7 +10,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Symptoms</th>
             <th>Appointment Date</th>
             <th>Appointment Timeslot</th>
@@ -20,14 +19,13 @@
         </tr>
     </thead>
     <tbody>
-        @{ if (Model.allappointments != null)
+        @{ if (Model.appointmentsByEmail != null)
            {
-                @foreach (var item in Model.allappointments)
+                @foreach (var item in Model.appointmentsByEmail)
                 {
 
 
                     <tr>
-                        <td>@item.Id</td>
                         <td>@item.Symptoms</td>
                         <td>@item.AvailableDate.ToShortDateString()</td>
                         <td>@item.AvailableTimeslot</td>

@@ -49,6 +49,14 @@ namespace Health_up.Services
             Appointment theAppointment = _context.Appointments.Where(e => e.Id == id).FirstOrDefault();
             return theAppointment;
         }
+        public List<Appointment> GetAppointmentByEmail(String email)
+        {
+            List<Appointment> AppointmentsByEmail = new List<Appointment>();
+            AppointmentsByEmail = _context.Appointments.Where(e => e.ElderlyId == email).ToList();
+            return AppointmentsByEmail;
+
+        }
+
 
         private bool AppointmentExists(string id)
         {

@@ -18,7 +18,6 @@ namespace Health_up.Models
         public string Fname { get; set; }
         [ MaxLength(25)]
         public string Lname { get; set; }
-        public string NRIC { get; set; }
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
           ErrorMessage = "Password need to be at least 8 characters, combination of lower case, upper case, numbers & special characters")]
         public string Password { get; set; }
