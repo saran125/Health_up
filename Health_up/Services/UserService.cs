@@ -119,6 +119,37 @@ namespace Health_up.Services
 
 
         }
+        public bool ResendCode(User existuser)
+        {
+            try
+            {
+                if (!UserExists(existuser.Email))
+                {
+                    return false;
+                }
+                else
+                {
+                    //  return true;
+
+                    User account = GetUserById(existuser.Email);
+                    account.OTP = existuser.OTP;
+                    account.OTPTime = existuser.OTPTime;
+                    _context.Attach(account).State = EntityState.Modified;
+                    _context.Update(account);
+                    _context.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+
+            }
+
+
+        }
         public bool CheckEmailVerify(string Email)
         {
             try

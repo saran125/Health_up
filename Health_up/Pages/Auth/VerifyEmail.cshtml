@@ -98,11 +98,9 @@
 </style>
 <div class="verify">
 
-    <h5>Enter the OTP Send to Your Email:</h5>
+    <h6>Verify Email Entering the OTP Send to Your Email:</h6>
 
     <form method="post">
-
-
         <div class="group">
             <input type="text" asp-for="MyUser.Email" value="@Model.Email" readonly required>
             <span asp-validation-for="MyUser.Email" class="text-danger"></span>
@@ -117,8 +115,6 @@
             <label>OTP</label>
         </div>
         <button type="submit" class="btn btn-primary btn-sm">Verify</button>
-        <button type="button" class="btn btn-primary btn-sm">Resend</button>
     </form>
-
-
+    <button asp-action="Resend" class="btn btn-primary btn-sm">Resend</button>
 </div>

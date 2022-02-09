@@ -69,8 +69,7 @@ namespace HealthUP.Pages
                     }
                     else
                     {
-                        MyMessage = "User Id already exist!";
-                        return Page();
+                       
                     }
                 }
                 else
