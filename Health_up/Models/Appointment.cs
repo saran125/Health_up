@@ -11,7 +11,7 @@ namespace Health_up.Models
         
         public string Id { get; set; }
 
-        [Required, MaxLength(25)]
+        [Required]
         public string Symptoms { get; set; }
         [Required]
         [DataType(DataType.Date)]
@@ -25,6 +25,6 @@ namespace Health_up.Models
         public double ConsultationFee { get; set; }
         public string DoctorId { get; set; }
         public string ElderlyId { get; set; }
-
+        public string PhotoPath { get; set; }
     }
 }

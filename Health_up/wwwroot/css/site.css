@@ -74,3 +74,8 @@ body {
 form label {
     font-weight: bold
 }
+
+.imageThumbnail{
+    height: 200px;
+    width: auto;
+}
