@@ -32,6 +32,7 @@ namespace Health_up
             services.AddTransient<ReportService>();
             services.AddTransient<ActivityService>();
             services.AddTransient<DoctorTimeslotService>();
+            services.AddTransient<IMailService, EmailSender>();
             services.AddSession();
             services.AddDbContext<HealthUPDbContext>();
         }

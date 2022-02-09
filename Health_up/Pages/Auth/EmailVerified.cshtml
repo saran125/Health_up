@@ -1,0 +1,42 @@
+﻿@page
+@model Health_up.Pages.Registered_doneModel
+@{
+}
+<style>
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    #hello:hover {
+        letter-spacing: 0.8em;
+        background-color: blue;
+        color: #FFFFFF;
+        border: 3px solid rgb(0, 0, 0);
+    }
+
+    #hello {
+        color: black;
+    }
+
+    .button {
+        height: 4em;
+        width: auto;
+        padding: 1.5em auto;
+        margin: 1em auto;
+        margin-left: 6em;
+        left: 10px;
+        background-color: #FFFFFF;
+        border: 3px solid black;
+        border-radius: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5em;
+        transition: all 0.2s cubic-bezier(.4,0,.2,1);
+    }
+</style>
+<div>
+    <h3 >Thank you for choosing our services, your email has been verified.</h3>
+    <h4 >Please proceed to login page to login!</h4>
+    <a asp-page="/Index"><button id="hello" class="button">Home</button></a>
+    <a asp-page="/Auth/login"><button id="hello" class="button">Login</button></a>
+</div>

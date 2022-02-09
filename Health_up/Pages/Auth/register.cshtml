@@ -6,6 +6,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="~/css/register.css">
+<script src="~/js/register.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container register">
@@ -14,7 +15,7 @@
             <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
             <h3>Welcome</h3>
             <p>You are only a few minutes away to get full access of our website!</p>
-           <a class="nav-link" id="profile-tab"  asp-page="/Auth/login" role="tab" aria-controls="profile" ><input type="submit" asp-page="/Auth/login" value="Login" /></a><br />
+            <a class="nav-link" id="profile-tab" asp-page="/Auth/login" role="tab" aria-controls="profile"><input type="submit" asp-page="/Auth/login" value="Login" /></a><br />
         </div>
         <div class="col-md-9 register-right">
             <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -33,6 +34,12 @@
                         <div> <label class="text-danger">@Model.MyMessage</label> </div>
 
                         <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label><b>Phone Number:</b></label>
+                                <input asp-for="MyUser.Phone" type="tel" required class="form-control" placeholder="Your Phone Number *" />
+                                <span asp-validation-for="MyUser.Phone" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <label><b>First Name:</b></label>
                                 <input asp-for="MyUser.Fname" type="text" required class="form-control" placeholder="First Name *" value="" />
@@ -40,14 +47,9 @@
 
                             </div>
                             <div class="form-group">
-                                <label><b>Phone Number:</b></label>
-                                <input asp-for="MyUser.Phone" type="tel" required class="form-control" placeholder="Your Phone Number *" />
-                                <span asp-validation-for="MyUser.Phone" class="text-danger"></span>
-
-                            </div>
-                            <div class="form-group">
                                 <label><b>Password:</b></label>
-                                <input asp-for="MyUser.Password" type="password" required class="form-control" placeholder="Password *" value="" />
+                                <span id="pwd_validate"></span>
+                                <input asp-for="MyUser.Password" type="password" required class="form-control" onkeyup="javascript:validate()" id="psw" placeholder="Password *" value="" />
                                 <span asp-validation-for="MyUser.Password" class="text-danger"></span>
 
                             </div>
@@ -57,10 +59,10 @@
                                 <span asp-validation-for="MyUser.PostalCode" class="text-danger"></span>
 
                             </div>
-                            
-                          
+
+
                             <div class="form-group">
-                                <div >
+                                <div>
                                     <label><b>Gender:</b></label>
                                     <label class="radio inline">
                                         @Html.RadioButton("MyUser.Gender", "Male") <span>Male</span>
@@ -84,26 +86,27 @@
                                 <span asp-validation-for="MyUser.Lname" class="text-danger"></span>
 
                             </div>
-
+                            <div class="form-group">
+                                <label><b>Confirm Password:</b></label>
+                                <span id="pwd_validate1"></span>
+                                <input type="password" asp-for="Cfmpwd" class="form-control" required placeholder="Confirm Password *" onkeyup="javascript:validate1()" id="psw1" value="" />
+                                <span asp-validation-for="Cfmpwd" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <label><b>Birthday:</b></label>
                                 <input asp-for="MyUser.BirthDate" type="date" class="form-control" required placeholder="Date of Birth*" value="" />
                                 <span asp-validation-for="MyUser.BirthDate" class="text-danger"></span>
 
                             </div>
-                            <div class="form-group">
-                                <label><b>Confirm Password:</b></label>
-                                <input type="password" asp-for="Cfmpwd" class="form-control" required placeholder="Confirm Password *" value="" />
-                                <span asp-validation-for="Cfmpwd" class="text-danger"></span>
-                            </div>
-                            
+
+
                             <div class="form-group">
                                 <label><b>Address & Unit Number:</b></label>
-                                <input asp-for="MyUser.UnitNumber" type="text" class="form-control"required placeholder="Unit Number *" value="" />
+                                <input asp-for="MyUser.UnitNumber" type="text" class="form-control" required placeholder="Unit Number *" value="" />
                                 <span asp-validation-for="MyUser.UnitNumber" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                            
+
                                 <input asp-for="MyUser.Role" type="hidden" class="form-control" required placeholder="Role *" value="elderly" />
                             </div>
                             <input id="registerElderly" type="submit" class="btnRegister" value="Register" />
@@ -114,6 +117,13 @@
                     <h3 class="register-heading">Register as a Doctor</h3>
                     <form method="post" class="row register-form">
                         <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label><b>Phone Number:</b></label>
+                                <input asp-for="MyUser.Phone" type="tel" class="form-control" required placeholder="Your Phone Number *" />
+                                <span asp-validation-for="MyUser.Phone" class="text-danger"></span>
+
+                            </div>
                             <div class="form-group">
                                 <label><b>First Name:</b></label>
                                 <input asp-for="MyUser.Fname" type="text" class="form-control" required placeholder="First Name *" value="" />
@@ -122,7 +132,8 @@
                             </div>
                             <div class="form-group">
                                 <label><b>Password:</b></label>
-                                <input asp-for="MyUser.Password" type="password" class="form-control" required placeholder="Password *" value="" />
+                                <span id="pwd_validate"></span>
+                                <input asp-for="MyUser.Password" type="password" onkeyup="javascript:validate()" id="psw" class="form-control" required placeholder="Password *" value="" />
                                 <span asp-validation-for="MyUser.Password" class="text-danger"></span>
 
                             </div>
@@ -132,13 +143,9 @@
                                 <span asp-validation-for="MyUser.PostalCode" class="text-danger"></span>
 
                             </div>
-                            <div class="form-group">
-                                <label><b>Phone Number:</b></label>
-                                <input asp-for="MyUser.Phone" type="tel" class="form-control" required placeholder="Your Phone Number *" />
-                                <span asp-validation-for="MyUser.Phone" class="text-danger"></span>
 
-                            </div>
-                           
+
+
 
 
 
@@ -160,7 +167,8 @@
 
                             <div class="form-group">
                                 <label><b>Confirm Password:</b></label>
-                                <input type="password" asp-for="Cfmpwd" class="form-control" placeholder="Confirm Password *" value="" />
+                                <span id="pwd_validate1"></span>
+                                <input type="password" asp-for="Cfmpwd" class="form-control" placeholder="Confirm Password *" onkeyup="javascript:validate1()" id="psw1" value="" />
                                 <span asp-validation-for="Cfmpwd" class="text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -187,7 +195,6 @@
                                     <label class="radio inline">
                                         @Html.RadioButton("MyUser.Gender", "Female") <span>Female</span>
                                         <span asp-validation-for="MyUser.Gender" class="text-danger"></span>
-
                                     </label>
                                 </div>
                             </div>

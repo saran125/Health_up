@@ -1,0 +1,124 @@
+﻿@page
+@model Health_up.Pages.Auth.VerifyEmailModel
+@{
+}
+<style>
+   
+
+    /* basic stylings ------------------------------------------ */
+
+
+    .verify {
+        font-family: 'Roboto';
+        width: 600px;
+        margin: 30px auto 0;
+        display: block;
+        background: #FFF;
+        padding: 10px 50px 50px;
+    }
+
+        .verify h2 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+            .verify h2 small {
+                font-weight: normal;
+                color: #888;
+                display: block;
+            }
+
+ 
+
+    /* form starting stylings ------------------------------- */
+        .verify .group {
+            position: relative;
+            margin-bottom: 45px;
+        }
+
+    .verify input {
+        font-size: 18px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        width: 300px;
+        border: none;
+        border-bottom: 1px solid #757575;
+    }
+
+        .verify input:focus {
+            outline: none;
+        }
+
+    /* LABEL ======================================= */
+    .verify label {
+        color: #999;
+        font-size: 18px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 5px;
+        top: 10px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    /* active state */
+        .verify input:focus ~ label, .verify input:valid ~ label {
+            top: -20px;
+            font-size: 14px;
+            color: #5264AE;
+        }
+
+    /* BOTTOM BARS ================================= */
+   
+
+    /* active state */
+    .verify input:focus ~ .bar:before, input:focus ~ .bar:after {
+        width: 50%;
+    }
+
+    /* HIGHLIGHTER ================================== */
+        .verify .highlight {
+            position: absolute;
+            height: 60%;
+            width: 100px;
+            top: 25%;
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+    /* active state */
+    .verify input:focus ~ .highlight {
+        -webkit-animation: inputHighlighter 0.3s ease;
+        -moz-animation: inputHighlighter 0.3s ease;
+        animation: inputHighlighter 0.3s ease;
+    }
+</style>
+<div class="verify">
+
+    <h5>Enter the OTP Send to Your Email:</h5>
+
+    <form method="post">
+
+
+        <div class="group">
+            <input type="text" asp-for="MyUser.Email" value="@Model.Email" readonly required>
+            <span asp-validation-for="MyUser.Email" class="text-danger"></span>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="group">
+            <input type="text" asp-for="MyUser.OTP" required>
+            <span asp-validation-for="MyUser.OTP" class="text-danger"></span>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>OTP</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Verify</button>
+        <button type="button" class="btn btn-primary btn-sm">Resend</button>
+    </form>
+
+
+</div>

@@ -9,8 +9,13 @@ namespace Health_up.Pages.Auth
 {
     public class logoutModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+                HttpContext.Session.Clear();
+                Response.Cookies.Delete("AuthToken");
+                return RedirectToPage("/Index");
+            
+           
         }
     }
 }

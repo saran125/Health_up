@@ -13,7 +13,7 @@ namespace Health_up.Services
 {
     public class UserService
     {
-            
+
         private HealthUPDbContext _context;
         public UserService(HealthUPDbContext context)
         {
@@ -33,23 +33,18 @@ namespace Health_up.Services
         }
         public bool Register(User newuser)
         {
+            newuser.Email.ToLower();
             if (UserExists(newuser.Email))
             {
                 return false;
             }
             else
             {
-                newuser.Verify = "False";
+                newuser.Verify = false;
+                
                 var password = BC.HashPassword(newuser.Password);
                 newuser.Password = password;
-                
-                /*byte[] cipherKey;
-                byte[] cipherIV;
-                var nric = Security.Encrypt(newuser.NRIC, cipherKey, cipherIV);
 
-               var nric = Security.Encrypt(newuser.NRIC, cipherKey, iv);
-                newuser.NRIC = nric;
-                */
                 _context.Add(newuser);
                 _context.SaveChanges();
                 return true;
@@ -58,7 +53,7 @@ namespace Health_up.Services
 
         public bool Login(User existuser)
         {
-            
+            existuser.Email.ToLower();
             try
             {
                 if (!UserExists(existuser.Email))
@@ -66,9 +61,10 @@ namespace Health_up.Services
                     return false;
                 }
 
-                else {
-                  //  return true;
-                   
+                else
+                {
+                    //  return true;
+
                     User account = GetUserById(existuser.Email);
                     if (BC.Verify(existuser.Password, account.Password))
                     {
@@ -80,7 +76,7 @@ namespace Health_up.Services
 
                         // authentication successful
                         return false;
-              
+
 
                 }
             }
@@ -89,9 +85,68 @@ namespace Health_up.Services
                 throw;
 
             }
-            
-            
+
+
         }
+        public bool Verify(User existuser)
+        {
+
+            try
+            {
+                if (!UserExists(existuser.Email))
+                {
+                    return false;
+                }
+                else
+                {
+                    //  return true;
+
+                    User account = GetUserById(existuser.Email);
+                    account.Verify = true;
+                    _context.Attach(account).State = EntityState.Modified;
+                    _context.Update(account);
+                    _context.SaveChanges();
+                    return true;
+
+
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+
+            }
+
+
+        }
+        public bool CheckEmailVerify(string Email)
+        {
+            try
+            {
+                if (!UserExists(Email))
+                {
+                    return false;
+                }
+                else
+                {
+                    User account = GetUserById(Email);
+                    if (account.Verify)
+                    {
+                        return true;
+                    }
+
+                    else
+                        return false;
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+
+            }
+        }
+
+
         public User Theuser(User existuser)
         {
             User account = GetUserById(existuser.Email);
@@ -106,7 +161,8 @@ namespace Health_up.Services
         {
             return _context.Users.Any(e => e.Email == email);
         }
-
+      
+       
 
     }
 }
