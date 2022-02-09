@@ -14,17 +14,7 @@
         <div> <label class="text-danger">@Model.MyMessage</label> </div>
         <div class="form-group">
             <label>Symptoms</label>
-            <select name="MyAppointment.Symptoms" class="form-control">
-                <option class="hidden" selected disabled>--Select your symptoms--</option>
-                <option value="Stomach Pain">Stomach Pain</option>
-                <option value="Back Pain">Back Pain</option>
-                <option value="Cough">Cough</option>
-                <option value="Anxiety">Anxiety</option>
-                <option value="Abdominal bloating">Abdominal bloating</option>
-                <option value="Allergies">Allergies</option>
-                <option value="Ankle Pain">Ankle Pain</option>
-                <option value="Athlete’s Foot">Athlete’s Foot</option>
-            </select>
+            <input asp-for="MyAppointment.Symptoms" class="form-control" placeholder="Stomach Pain, Back Pain" />
             <span asp-validation-for="MyAppointment.Symptoms" class="text-danger"></span>
         </div>
         <div class="form-group">

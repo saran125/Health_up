@@ -4,47 +4,48 @@
     ViewData["Title"] = "Retrieve";
 
 }
+<style>
+    .btn{
+        width: 116px;
+    }
+</style>
 <h1>Upcoming Appointments</h1>
 <br />
+<div class="card-deck">
+    @{ if (Model.appointmentsByEmail != null)
+        {
+            @foreach (var item in Model.appointmentsByEmail)
+            {
+                var photoPath = "~/images/" + (item.PhotoPath ?? "doctorFace.jpg");
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Symptoms</th>
-            <th>Appointment Date</th>
-            <th>Appointment Timeslot</th>
-            <th>Payment Method</th>
-            <th>Consultation Fee ($)</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{ if (Model.appointmentsByEmail != null)
-           {
-                @foreach (var item in Model.appointmentsByEmail)
-                {
+                <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+                    <div class="card-header">
+                        <h3>
+                            @item.AvailableDate.ToShortDateString()
+                        </h3>
+                    </div>
+                    <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true"/>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Details" asp-route-id="@item.Id">View Details</a>
+                        <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Edit" asp-route-id="@item.Id">Reschedule</a>
+                        <a class="btn btn-danger m-1" onclick="return confirm('Are you sure you want to cancel your appointment? No refund will be made if you paid by credit card.');" asp-page="/elderly/appointment/Delete" asp-route-id="@item.Id">Cancel</a>
 
-
-                    <tr>
-                        <td>@item.Symptoms</td>
-                        <td>@item.AvailableDate.ToShortDateString()</td>
-                        <td>@item.AvailableTimeslot</td>
-                        <td>@item.PaymentMethod</td>
-                        <td>@item.ConsultationFee</td>
-                        <td>
-                            <a class="btn btn-primary" asp-page="/elderly/appointment/Edit" asp-route-id="@item.Id">Reschedule</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger"  onclick="return confirm('Are you sure you want to cancel your appointment? No refund will be made if you paid by credit card.');" asp-page="/elderly/appointment/Delete" asp-route-id="@item.Id">Cancel</a>
-                        </td>
-                    </tr>
-                 }
+                    </div>
+                </div>
+                
+                    
+                    
+                
             }
+        }
 
-            }
-        </tbody>
-</table>
+    }
 
+
+
+
+
+</div>
 
 
 
