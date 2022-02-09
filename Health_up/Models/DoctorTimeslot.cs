@@ -16,10 +16,12 @@ namespace Health_up.Models
         public DateTime Date { get; set; }
 
         [Required]
-        [RegularExpression(@"^(1[0-2]|0?[1-9]):([0-5]?[0-9]) (AM|PM)$", ErrorMessage = "Invalid Time Format")]
         public string Time { get; set; }
 
         [Required]
         public string Repeat { get; set; }
+
+        [Required]
+        public string DoctorId { get; set; }
     }
 }
