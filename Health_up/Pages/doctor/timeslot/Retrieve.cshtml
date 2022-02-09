@@ -25,9 +25,9 @@
         <a class="btn btn-primary h-25" style="margin-top: 20px;" asp-page="/doctor/timeslot/Create">Create Appointment</a>
     </div>
 
-    @{ if (Model.alltimeslots != null)
+    @{ if (Model.timeslotsByEmail != null)
         {
-            @foreach (var item in Model.alltimeslots)
+            @foreach (var item in Model.timeslotsByEmail)
             {
                 <div class="panel panel-default">
                     <div class="panel-heading">@item.Date.ToShortDateString()</div>

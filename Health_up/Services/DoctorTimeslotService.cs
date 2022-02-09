@@ -91,5 +91,12 @@ namespace Health_up.Services
             }
             return deleted;
         }
+
+        public List<DoctorTimeslot> GetTimeslotsByEmail(String email)
+        {
+            List<DoctorTimeslot> TimeslotsByEmail = new List<DoctorTimeslot>();
+            TimeslotsByEmail = _context.DoctorTimeslots.Where(e => e.DoctorId == email).ToList();
+            return TimeslotsByEmail;
+        }
     }
 }

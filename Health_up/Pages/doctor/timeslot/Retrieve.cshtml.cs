@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -13,7 +14,7 @@ namespace Health_up.Pages.doctor.timeslot
     public class RetrieveModel : PageModel
     {
         [BindProperty]
-        public List<DoctorTimeslot> alltimeslots { get; set; }
+        public List<DoctorTimeslot> timeslotsByEmail { get; set; }
 
         private readonly ILogger<RetrieveModel> _logger;
 
@@ -28,7 +29,7 @@ namespace Health_up.Pages.doctor.timeslot
 
         public void OnGet()
         {
-            alltimeslots = _svc.GetAllTimeslots();
+            timeslotsByEmail = _svc.GetTimeslotsByEmail(HttpContext.Session.GetString("Email"));
 
         }
     }
