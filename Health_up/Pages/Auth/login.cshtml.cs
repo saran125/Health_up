@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using crypto;
 using Health_up.Models;
@@ -36,7 +38,7 @@ namespace HealthUP.Pages
         }
         public static async Task Execute(string Email, string OTP, string name)
         {
-            var apiKey = "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";
+            /* var apiKey = "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";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("healthupnyp@gmail.com", "Health Up");
             var subject = "Verify Email";
@@ -45,7 +47,29 @@ namespace HealthUP.Pages
             var htmlContent = "<strong>Hello " + name + "! Please Verify Your Email!The OTP: " + OTP + "</strong><br/><h3>The OTP will end in 5 mins </h3>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
+            */
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential("healthupnyp@gmail.com", "He@lth1234");
+            smtp.EnableSsl = true;
+            MailMessage msg = new MailMessage();
+            msg.Subject = "Verify your Email address";
+            msg.Body = "<strong>Hello " + name + "! Please Verify Your Email!The OTP: " + OTP + "</strong><br/><h3>The OTP will end in 5 mins </h3>";
+            string toaddress = Email;
+            msg.To.Add(toaddress);
+            string fromaddress = "HealthUp <healthupnyp@gmail.com>";
+            msg.From = new MailAddress(fromaddress);
+            try
+            {
+                smtp.Send(msg);
+            }
+            catch
+            {
+                throw;
+            }
         }
+        
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
@@ -53,6 +77,7 @@ namespace HealthUP.Pages
                 if (_svc.Login(MyUser))
                 {
                     if (_svc.CheckEmailVerify(MyUser.Email)){
+                        
                         User currentuser = _svc.Theuser(MyUser);
                         HttpContext.Session.SetString("Email", currentuser.Email);
                         HttpContext.Session.SetString("Fname", currentuser.Fname);
