@@ -18,6 +18,7 @@ namespace Health_up.Services
         public bool AddFeedback(Activity_Feedback newfeedback)
         {
             newfeedback.Id = Guid.NewGuid().ToString();
+            newfeedback.Date = DateTime.Now;
             _context.Add(newfeedback);
             _context.SaveChanges();
             return true;
@@ -66,8 +67,14 @@ namespace Health_up.Services
             List<Activity_Feedback> AllFeedback = new List<Activity_Feedback>();
             AllFeedback = _context.Activity_Feedback.Where(e => e.Id == Id).ToList();
             return AllFeedback;
-         
         }
-        
+        public List<Activity_Feedback> FeedbackbyActivityId(string Id)
+        {
+            List<Activity_Feedback> AllFeedback = new List<Activity_Feedback>();
+            AllFeedback = _context.Activity_Feedback.Where(e => e.activity_id == Id).ToList();
+            return AllFeedback;
+        }
+
+       
     }
 }

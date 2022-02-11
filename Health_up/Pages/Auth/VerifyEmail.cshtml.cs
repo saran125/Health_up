@@ -57,7 +57,7 @@ namespace Health_up.Pages.Auth
              var htmlContent = "<strong>Hello " + name + "! Please Verify Your Email!The OTP: " + OTP + "</strong><br/><h3>The OTP will end in 5 mins </h3>";
              var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
              var response = await client.SendEmailAsync(msg);
-            */
+            
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
@@ -78,6 +78,7 @@ namespace Health_up.Pages.Auth
             {
                 throw;
             }
+            */
         }
         public IActionResult Resend(string button)
         {
@@ -86,7 +87,7 @@ namespace Health_up.Pages.Auth
             string name = MyUser.Fname + " " + MyUser.Lname;
             MyUser.OTP = r.ToString();
             MyUser.OTPTime = DateTime.Now;
-            Execute(MyUser.Email, MyUser.OTP, name).Wait();
+           // Execute(MyUser.Email, MyUser.OTP, name).Wait();
             _svc.Register(MyUser);
                 CookieOptions option = new CookieOptions();
                 option.Expires = DateTime.Now.AddMinutes(5);
@@ -100,6 +101,7 @@ namespace Health_up.Pages.Auth
             {
                 if (_svc.Verify(MyUser))
                 {
+                    
                     return Redirect("/Auth/EmailVerified");
                 }
                 else

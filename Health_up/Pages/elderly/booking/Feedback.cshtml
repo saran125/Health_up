@@ -2,3 +2,264 @@
 @model Health_up.Pages.elderly.booking.FeedbackModel
 @{
 }
+@using Microsoft.AspNetCore.Http;
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    .content-item {
+        padding: 30px 0;
+        background-color: #FFFFFF;
+    }
+
+        .content-item.grey {
+            background-color: #F0F0F0;
+            padding: 50px 0;
+            height: 100%;
+        }
+
+        .content-item h2 {
+            font-weight: 700;
+            font-size: 35px;
+            line-height: 45px;
+            text-transform: uppercase;
+            margin: 20px 0;
+        }
+
+        .content-item h3 {
+            font-weight: 400;
+            font-size: 20px;
+            color: #555555;
+            margin: 10px 0 15px;
+            padding: 0;
+        }
+
+    .content-headline {
+        height: 1px;
+        text-align: center;
+        margin: 20px 0 70px;
+    }
+
+        .content-headline h2 {
+            background-color: #FFFFFF;
+            display: inline-block;
+            margin: -20px auto 0;
+            padding: 0 20px;
+        }
+
+    .grey .content-headline h2 {
+        background-color: #F0F0F0;
+    }
+
+    .content-headline h3 {
+        font-size: 14px;
+        color: #AAAAAA;
+        display: block;
+    }
+
+
+    #comments {
+        box-shadow: 0 -1px 6px 1px rgba(0,0,0,0.1);
+        background-color: #FFFFFF;
+    }
+
+        #comments form {
+            margin-bottom: 30px;
+        }
+
+        #comments .btn {
+            margin-top: 7px;
+        }
+
+        #comments form fieldset {
+            clear: both;
+        }
+
+        #comments form textarea {
+            height: 100px;
+        }
+
+        #comments .media {
+            border-top: 1px dashed #DDDDDD;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+            #comments .media > .pull-left {
+                margin-right: 20px;
+            }
+
+            #comments .media img {
+                max-width: 100px;
+            }
+
+            #comments .media h4 {
+                margin: 0 0 10px;
+            }
+
+                #comments .media h4 span {
+                    font-size: 14px;
+                    float: right;
+                    color: #999999;
+                }
+
+            #comments .media p {
+                margin-bottom: 15px;
+                text-align: justify;
+            }
+
+        #comments .media-detail {
+            margin: 0;
+        }
+
+            #comments .media-detail li {
+                color: #AAAAAA;
+                font-size: 12px;
+                padding-right: 10px;
+                font-weight: 600;
+            }
+
+            #comments .media-detail a:hover {
+                text-decoration: underline;
+            }
+
+            #comments .media-detail li:last-child {
+                padding-right: 0;
+            }
+
+            #comments .media-detail li i {
+                color: #666666;
+                font-size: 15px;
+                margin-right: 10px;
+            }
+
+    fieldset,
+    label {
+        margin: 0;
+        padding: 0
+    }
+
+
+
+    .rating {
+        border: none;
+        margin-right: 49px
+    }
+
+    .myratings {
+        font-size: 85px;
+        color: green
+    }
+
+    .rating > [id^="star"] {
+        display: none
+    }
+
+    .rating > label:before {
+        margin: 5px;
+        font-size: 2.25em;
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f005"
+    }
+
+    .rating > .half:before {
+        content: "\f089";
+        position: absolute
+    }
+
+    .rating > label {
+        color: #ddd;
+        float: right
+    }
+
+    .rating > [id^="star"]:checked ~ label,
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: #FFD700
+    }
+
+        .rating > [id^="star"]:checked + label:hover,
+        .rating > [id^="star"]:checked ~ label:hover,
+        .rating > label:hover ~ [id^="star"]:checked ~ label,
+        .rating > [id^="star"]:checked ~ label:hover ~ label {
+            color: #FFED85
+        }
+</style>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<section class="content-item" id="comments">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Comments for @Model.name</h2>
+                <form method="post">
+                    <h3 class="pull-left">New Comment</h3>
+                    <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                    <fieldset>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-sm-3 col-lg-2 hidden-xs">
+                                <img class="img-responsive" src="~/Photos/@Model.theuser.Photo" alt="">
+                            </div>
+                            <input hidden asp-for="Myfeedback.activity_id" value="@Model.ID" />
+                            <input hidden asp-for="Myfeedback.user_id" value="@HttpContext.Session.GetString("Email")" />
+                            <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                <label for="input-2" class="control-label">Rate This</label>
+                                <fieldset class="rating"> <input asp-for="Myfeedback.Rating" type="radio" id="star5" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label> <input asp-for="Myfeedback.Rating" type="radio" id="star4half" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label> <input type="radio" id="star4" asp-for="Myfeedback.Rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label> <input type="radio" id="star3half" asp-for="Myfeedback.Rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label> <input type="radio" id="star3" asp-for="Myfeedback.Rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label> <input type="radio" id="star2half" asp-for="Myfeedback.Rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label> <input type="radio" id="star2" asp-for="Myfeedback.Rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label> <input type="radio" id="star1half" asp-for="Myfeedback.Rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label> <input type="radio" id="star1" asp-for="Myfeedback.Rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label> <input type="radio" id="starhalf" asp-for="Myfeedback.Rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>  </fieldset>
+                                <textarea asp-for="Myfeedback.Comments" class="form-control" id="message" placeholder="Your Comment" required=""></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                @{ if (Model.allfeedback.Count != 0)
+                    {
+                        if (Model.allfeedback.Count == 1)
+                        {
+                            <h3>1 Comment</h3>
+                        }
+                        else
+                        { <h3>@Model.allfeedback.Count Comments</h3>}
+
+                    @foreach (var item in Model.allfeedback)
+                    {
+                        <!-- COMMENT 1 - START -->
+                        <div class="media">
+                            <a class="pull-left" href="#"><img class="media-object" src="~/Photos/@item.user_photo" alt=""></a>
+                            <div class="media-body">
+                                <h4 class="media-heading">@item.username</h4>
+                                <p>@item.Comments</p>
+                                <p>@item.Rating/5</p>
+                                <ul class="list-unstyled list-inline media-detail pull-left">
+                                    <li><i class="fa fa-calendar"></i>@item.Date.ToShortDateString()</li>
+                                </ul>
+                                @{ if (HttpContext.Session.GetString("Email") == item.user_id)
+                                    {
+                                <ul class="list-unstyled list-inline media-detail pull-right">
+                                    <li class=""><a asp-page="/admin/Feedback/Delete"><i class="fa fa-trash" style="font-size:36px"></i>Delete</a></li>
+                                 
+                                </ul>
+                                        }
+                                    }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h4>
+                        Leave the first Comment!!!
+                    </h4>
+                }
+                }
+
+                <!-- COMMENT 4 - END -->
+
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

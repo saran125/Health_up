@@ -1,3 +1,4 @@
+using AspNetCore.ReCaptcha;
 using Health_up.Models;
 using Health_up.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -50,7 +51,7 @@ namespace Health_up
                     options.LogoutPath = "/logout";
                 });
             services.AddDbContext<HealthUPDbContext>();
-            //services.AddReCaptcha(Configuration.GetSection("ReCaptcha"));
+            services.AddReCaptcha(Configuration.GetSection("ReCaptcha"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,19 +70,14 @@ namespace Health_up
             app.UseSession();
             app.Use(async (context, next) =>
             {
-                await next();
+               
                 if (context.Response.StatusCode == 404)
                 {
+
                     context.Request.Path = "/NotFound";
-                    await next();
                 }
-                if (
-                String.IsNullOrEmpty(context.Session.GetString("AuthToken")
-                ))
-                {
-                    context.Request.Path = "/login";
-                    await next();
-                }
+                await next();
+
             });
             app.UseHttpsRedirection();
             app.UseStaticFiles();

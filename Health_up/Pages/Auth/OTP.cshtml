@@ -1,9 +1,9 @@
 ﻿@page
-@model Health_up.Pages.Auth.VerifyEmailModel
+@model Health_up.Pages.Auth.OTPModel
 @{
 }
 <style>
-   
+
 
     /* basic stylings ------------------------------------------ */
 
@@ -28,57 +28,57 @@
                 display: block;
             }
 
- 
 
-    /* form starting stylings ------------------------------- */
+
+        /* form starting stylings ------------------------------- */
         .verify .group {
             position: relative;
             margin-bottom: 45px;
         }
 
-    .verify input {
-        font-size: 18px;
-        padding: 10px 10px 10px 5px;
-        display: block;
-        width: 300px;
-        border: none;
-        border-bottom: 1px solid #757575;
-    }
-
-        .verify input:focus {
-            outline: none;
+        .verify input {
+            font-size: 18px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 300px;
+            border: none;
+            border-bottom: 1px solid #757575;
         }
 
-    /* LABEL ======================================= */
-    .verify label {
-        color: #999;
-        font-size: 18px;
-        font-weight: normal;
-        position: absolute;
-        pointer-events: none;
-        left: 5px;
-        top: 10px;
-        transition: 0.2s ease all;
-        -moz-transition: 0.2s ease all;
-        -webkit-transition: 0.2s ease all;
-    }
+            .verify input:focus {
+                outline: none;
+            }
 
-    /* active state */
+        /* LABEL ======================================= */
+        .verify label {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        /* active state */
         .verify input:focus ~ label, .verify input:valid ~ label {
             top: -20px;
             font-size: 14px;
             color: #5264AE;
         }
 
-    /* BOTTOM BARS ================================= */
-   
+        /* BOTTOM BARS ================================= */
 
-    /* active state */
-    .verify input:focus ~ .bar:before, input:focus ~ .bar:after {
-        width: 50%;
-    }
 
-    /* HIGHLIGHTER ================================== */
+        /* active state */
+        .verify input:focus ~ .bar:before, input:focus ~ .bar:after {
+            width: 50%;
+        }
+
+        /* HIGHLIGHTER ================================== */
         .verify .highlight {
             position: absolute;
             height: 60%;
@@ -89,17 +89,17 @@
             opacity: 0.5;
         }
 
-    /* active state */
-    .verify input:focus ~ .highlight {
-        -webkit-animation: inputHighlighter 0.3s ease;
-        -moz-animation: inputHighlighter 0.3s ease;
-        animation: inputHighlighter 0.3s ease;
-    }
+        /* active state */
+        .verify input:focus ~ .highlight {
+            -webkit-animation: inputHighlighter 0.3s ease;
+            -moz-animation: inputHighlighter 0.3s ease;
+            animation: inputHighlighter 0.3s ease;
+        }
 </style>
 <div class="verify">
 
-    <h6>Verify Email Entering the OTP Send to Your Email:</h6>
-    <div> <label class="text-danger">@Model.MyMessage</label> </div>
+    <h6>Enter the OTP To Change the Password:</h6>
+
     <form method="post">
         <div class="group">
             <input type="text" asp-for="MyUser.Email" value="@Model.Email" readonly required>

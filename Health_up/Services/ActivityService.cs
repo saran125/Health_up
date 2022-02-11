@@ -65,6 +65,7 @@ namespace Health_up.Services
             {
                 try
                 {
+                    
                     _context.Remove(theactivity);
                     _context.SaveChanges();
                     return true;
@@ -87,6 +88,11 @@ namespace Health_up.Services
         {
             Activity theActivity = _context.Activitys.Where(e => e.Id == id).FirstOrDefault();
             return theActivity;
+        }
+        public string GetActivityName(string Id)
+        {
+            Activity theActivity = _context.Activitys.Where(e => e.Id == Id).FirstOrDefault();
+            return theActivity.Activity_name;
         }
         public int CurrentActivity()
         {
