@@ -26,7 +26,7 @@ namespace Health_up.Pages.elderly.booking
         public Models.Activity Myactivity { get; set; }
         public void OnGet()
         {
-            allactivity = _svc.AllCurrentActivity();
+            allactivity = _svc.AllActivity();
         }
     }
 }
