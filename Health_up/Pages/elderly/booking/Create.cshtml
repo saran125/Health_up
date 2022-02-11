@@ -62,11 +62,11 @@
 
     <div>
         <label class="col-sm-2 col-form-label">Activity Price:</label>
-        <input readonly asp-for="MyBooking.ActivityPrice" class="form-control" value="3.5" />
+        <input readonly asp-for="MyBooking.ActivityPrice" class="form-control" value="3.5" name="BookingFee" />
         <span asp-validation-for="MyBooking.ActivityPrice" class="text-danger"></span>
     </div>
     <div class="col-sm-10">
-        <input id="create" type="submit" value="Pay" class="btn btn-primary" />
+        <input id="create" type="submit" value="Pay with PayPal" class="btn btn-primary" />
     </div>
 
 </form>

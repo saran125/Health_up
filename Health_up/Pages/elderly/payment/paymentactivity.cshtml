@@ -1,0 +1,84 @@
+﻿@page
+@model Health_up.Pages.elderly.payment.paymentactivityModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" type="text/css" href="~/css/payment.css">
+</head>
+<body>
+    <h2>Payment</h2>
+
+    <div class="row">
+        <div class="col-8">
+            <form runat="server" method="post">
+                <table style="width:100%;border-style:none;">
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label for="cardnum">Card Number</label>
+                                <input type="text" class="form-control" placeholder="Card Number" id="cardnum" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="expdate">Expiry Date</label>
+                                    <input type="text" class="form-control" placeholder="Expiry Date" id="expdate" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" class="form-control" placeholder="CVV" id="cvv" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <label for="name">Name on Card</label>
+                                <input type="text" class="form-control" placeholder="Name on Card" id="name" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <div class="container-login100-form-btn">
+                                    <input id="payment" type="submit" value="Payment" class="login100-form-btn">
+
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="col-4">
+            <table>
+                <tr>
+                    <td>
+                        <h6>medname 1</h6>
+                        <h6>medname 1</h6>
+                        <h6>medname 1</h6>
+                        <h6>medname 1</h6>
+                        <h6>medname 1</h6>
+                        <h6>medname 1</h6><h6>medname 1</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Total : $90
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
