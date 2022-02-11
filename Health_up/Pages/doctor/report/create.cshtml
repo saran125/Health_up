@@ -14,10 +14,8 @@
                 <input asp-for="report.Elderly_ID" class="form-control" placeholder="Elderly Email" />
                 <span asp-validation-for="report.Elderly_ID" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>Doctor Email</label>
-                <input asp-for="report.Doctor_ID" class="form-control" placeholder="Doctor Email" />
-                <span asp-validation-for="report.Doctor_ID" class="text-danger"></span>
+            <div hidden class="form-group">
+                <input asp-for="report.Doctor_ID" class="form-control" hidden value="@Model.docemail" />
             </div>
             <div class="form-group">
                 <label>Date of Report</label>
