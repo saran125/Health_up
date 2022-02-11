@@ -11,7 +11,9 @@
 </head>
 <body>
         <h2>Billing Info</h2>
-        <form runat="server" method="post">
+        <form method="post">
+            <input asp-for="report.Medicine_Cost" value="30" name="medicineFee" readonly disabled />
+
             <div class="form-group">
                 <table>
                     <tr>
@@ -27,21 +29,23 @@
                         <td colspan="2">
                             Medcine
                         </td>
-                        <td>Amount</td>
+                        <td>
+                            Amount
+
+                        </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td colspan="2" rowspan="2">medname</td>
                         <td rowspan="2">amountname</td>
                         <td rowspan="2">
-                            <div class="container-login100-form-btn">
-                                <input id="payment" type="submit" value="Payment" class="login100-form-btn" />
-                            </div>
                         </td>
                     </tr>
                 </table>
             </div>
-
+            <div class="container-login100-form-btn">
+                <input id="payment" type="submit" value="Payment" class="login100-form-btn" />
+            </div>
         </form>
 
 </body>

@@ -13,42 +13,40 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <div> <label class="text-danger">@Model.MyMessage</label> </div>
         <div class="form-group">
-            <label>Symptoms</label>
+            <label>Symptoms you are suffering</label>
             <input asp-for="MyAppointment.Symptoms" class="form-control" placeholder="Stomach Pain, Back Pain" />
             <span asp-validation-for="MyAppointment.Symptoms" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label>Available Date</label>
+            <label>Choose your preferred date</label>
             <input asp-for="MyAppointment.AvailableDate" class="form-control" value="" placeholder="Available Date *" />
             <span asp-validation-for="MyAppointment.AvailableDate" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label>Available Timeslot</label>
+            <label>Choose the available timeslot</label>
             <select name="MyAppointment.AvailableTimeslot" class="form-control">
                 <option class="hidden" selected disabled>--Select your preferred timeslot--</option>
-                <option value="00:00 - 00:30">00:00 - 00:30</option>
-                <option value="00:30 - 01:00">00:30 - 01:00</option>
-                <option value="01:00 - 01:30">01:00 - 01:30</option>
-                <option value="01:30 - 02:00">01:30 - 02:00</option>
-                <option value="02:00 - 02:30">02:00 - 02:30</option>
-                <option value="06:00 - 06:30">06:00 - 06:30</option>
-                <option value="23:00 - 23:30">23:00 - 23:30</option>
+                <option value="11:30 - 12:00">11:30 - 12:00</option>
+                <option value="12:00 - 12:30">12:00 - 12:30</option>
+                <option value="12:30 - 13:00">12:30 - 13:00</option>
+                <option value="13:00 - 13:30">13:00 - 13:30</option>
+                <option value="13:30 - 14:00">13:30 - 14:00</option>
             </select>
             <span asp-validation-for="MyAppointment.AvailableTimeslot" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label>Choose a Payment Method</label>
-            <select name="MyAppointment.PaymentMethod" class="form-control">
+            <select id="MainSelect" name="MyAppointment.PaymentMethod" class="form-control">
                 <option class="hidden" selected disabled>--Select your payment method--</option>
                 <option value="Cash">Cash</option>
-                <option value="Credit Card">Credit Card</option>
+                <option value="PayPal">PayPal</option>
                 <option value="No rush, I will pay when I can">No rush, I will pay when I can</option>
             </select>
             <span asp-validation-for="MyAppointment.AvailableTimeslot" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label>Consultation Fee ($)</label>
-            <input readonly asp-for="MyAppointment.ConsultationFee" class="form-control" value="30" />
+            <input readonly asp-for="MyAppointment.ConsultationFee" name="consultationFee" class="form-control" value="30" />
             <span asp-validation-for="MyAppointment.ConsultationFee" class="text-danger"></span>
         </div>
         @{ if (HttpContext.Session.GetString("Email") != null)
@@ -59,7 +57,8 @@
 
         @*<input type="hidden" asp-for="MyAppointment.DoctorId" class="form-control" value="@Model.MyUser.Email" />*@
 
-        <input id="create" type="submit" value="Pay" class="btn btn-primary float-right" />
+        <input id="paypalBtn" type="submit" asp-page-handler="PayPalBtn" value="Pay with PayPal" class="btn btn-primary float-right" />
+        <input id="normalBtn" type="submit" asp-page-handler="NormalBtn" value="Pay/Proceed" class="btn btn-primary float-right" />
         <br />
         <br />
         <br />
@@ -67,4 +66,25 @@
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            TogglePayPal();
+            $("#MainSelect").change(function () {
+                TogglePayPal();
+            })
+        })
+        function TogglePayPal() {
+            if ($("#MainSelect option:selected").text().includes("PayPal")) {
+                $("#paypalBtn").show();
+                $("#normalBtn").hide();
+            }
+            else {
+                $("#paypalBtn").hide();
+                $("#normalBtn").show();
+
+
+            }
+        };
+
+    </script>
 }

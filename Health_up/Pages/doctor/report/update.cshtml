@@ -10,12 +10,12 @@
         <div><label class="text-danger">@Model.msg</label></div>
         <div class="form-group">
             <label>Elderly Email</label>
-            <input asp-for="report.Elderly_ID" class="form-control" value="@Model.report.Elderly_ID" />
+            <input asp-for="report.Elderly_ID" class="form-control" value="@Model.report.Elderly_ID" hidden disabled/>
             <span asp-validation-for="report.Elderly_ID" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label>Doctor Email</label>
-            <input asp-for="report.Doctor_ID" class="form-control" value="@Model.report.Doctor_ID" />
+            <input asp-for="report.Doctor_ID" class="form-control" value="@Model.report.Doctor_ID"hidden disabled />
             <span asp-validation-for="report.Doctor_ID" class="text-danger"></span>
         </div>
         <div class="form-group">

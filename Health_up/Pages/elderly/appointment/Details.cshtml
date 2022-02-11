@@ -2,7 +2,7 @@
 @model Health_up.Pages.elderly.appointment.DetailsModel
 @{
     ViewData["Title"] = "Appointment Details";
-    var photoPath = "~/images/" + (Model.MyAppointment.PhotoPath ?? "doctorFace.jpg");
+    var photoPath = "~/images/" + (Model.MyAppointment.PhotoPath ?? "googleMaps.png");
 
 }
 <style>
@@ -26,7 +26,7 @@
             <div class="card-footer text-center">
                 <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Retrieve">Back</a>
                 <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Edit" asp-route-id="@Model.MyAppointment.Id">Reschedule</a>
-                <a class="btn btn-danger m-1" onclick="return confirm('Are you sure you want to cancel your appointment? No refund will be made if you paid by credit card.');" asp-page="/elderly/appointment/Delete" asp-route-id="@Model.MyAppointment.Id">Cancel</a>
+                <a class="btn btn-danger m-1" onclick="return confirm('Are you sure you want to cancel your appointment? No refund will be made if you paid by PayPal.');" asp-page="/elderly/appointment/Delete" asp-route-id="@Model.MyAppointment.Id">Cancel</a>
 
             </div>
         </div>

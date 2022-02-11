@@ -14,7 +14,7 @@ namespace Health_up.Pages.elderly
         }
         public IActionResult OnPost()
         {
-            return RedirectToPage("/elderly/home");
+            return RedirectToPage("/elderly/appointment/Retrieve");
         }
 
     }

@@ -58,8 +58,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <nav class="navbar navbar-expand-lg">
-                                <a class="navbar-brand" href="/">
-                                    <img src="/assets/img/logo/healthcare.png" width="50" height="50" alt="Logo"> HealthUP
+                                <a style="width:200px;" class="navbar-brand" href="/">
+                                    <img src="/assets/img/logo/healthcare.png" width="50" height="50" alt="Logo"> &nbsp;HealthUP
                                 </a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
                                                 if (Context.Session.GetString("Role") == "elderly")
                                                 {
                                                     <li class="nav-item">
-                                                        <a class="page-scroll" asp-page="/elderly/home">Home</a>
+                                                        <a class="page-scroll" asp-page="/elderly/appointment/Retrieve">Home</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="page-scroll" asp-page="/elderly/appointment/Create">See A Doctor</a>
@@ -94,7 +94,7 @@
                                                             </button>
 
                                                             <div class="dropdown-content">
-                                                                <a asp-page="/Auth/Profile">
+                                                                <a asp-page="/elderly/Profile">
                                                                     Profile
                                                                     <i class="fas fa-user"></i>
                                                                 </a>

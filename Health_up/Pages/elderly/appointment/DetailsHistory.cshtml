@@ -1,0 +1,33 @@
+﻿@page
+@model Health_up.Pages.elderly.appointment.DetailsHistoryModel
+@{
+    ViewData["Title"] = "Appointment Details History";
+    var photoPath = "~/images/" + (Model.MyAppointment.PhotoPath ?? "doctorFace.jpg");
+
+}
+<style>
+    .btn {
+        width: 116px;
+    }
+</style>
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.MyAppointment.AvailableDate.ToShortDateString()</h1>
+            </div>
+            <div class="card-body text-center">
+                <img class="card-img-top" src="@photoPath" asp-append-version="true" />
+                <h4>Symptoms : @Model.MyAppointment.Symptoms</h4>
+                <h4>Timeslot : @Model.MyAppointment.AvailableTimeslot</h4>
+                <h4>Payment Method : @Model.MyAppointment.PaymentMethod</h4>
+                <h4>Consultation Fee : @Model.MyAppointment.ConsultationFee</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a class="btn btn-primary m-1" asp-page="/elderly/appointment/History">Back</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
