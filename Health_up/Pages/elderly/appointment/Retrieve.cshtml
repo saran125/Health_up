@@ -5,12 +5,14 @@
 
 }
 <style>
-    .btn{
+    .btn {
         width: 116px;
     }
 </style>
 <h1>Upcoming Appointments</h1>
 <br />
+<a asp-page="/elderly/payment/billing" class="btn btn-warning" style="color:white;">You have payment due</a>
+
 <div class="card-deck">
     @{ if (Model.appointmentsByEmail != null)
         {
@@ -24,7 +26,7 @@
                             @item.AvailableDate.ToShortDateString()
                         </h3>
                     </div>
-                    <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true"/>
+                    <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
                     <div class="card-footer text-center">
                         <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Details" asp-route-id="@item.Id">View Details</a>
                         <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Edit" asp-route-id="@item.Id">Reschedule</a>
@@ -32,10 +34,10 @@
 
                     </div>
                 </div>
-                
-                    
-                    
-                
+
+
+
+
             }
         }
         else

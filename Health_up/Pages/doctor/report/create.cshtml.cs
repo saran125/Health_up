@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Health_up.Models;
 using Health_up.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace Health_up.Pages.doctor.report
 {
@@ -22,9 +23,10 @@ namespace Health_up.Pages.doctor.report
         [BindProperty]
         public MedicalReport report { get; set; }
         public string msg { get; set; }
-
+        public string docemail { get; set; }
         public void OnGet()
         {
+            docemail = HttpContext.Session.GetString("Email");
         }
         public IActionResult OnPost()
         {

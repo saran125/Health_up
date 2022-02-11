@@ -15,6 +15,7 @@ namespace Health_up.Pages.doctor.report
     {
         private readonly ILogger<viewModel> _logger;
         private ReportService _svc;
+        private UserService _uvc;
         public viewModel(ILogger<viewModel> logger, ReportService service)
         {
             _logger = logger;
