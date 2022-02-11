@@ -40,7 +40,7 @@ namespace HealthUP.Pages.elderly.appointments
         {
 
         }
-        public async Task<IActionResult> OnPost(double consultationFee)
+        public async Task<IActionResult> OnPostPayPalBtn(double consultationFee)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +60,19 @@ namespace HealthUP.Pages.elderly.appointments
 
             }
             return Page();
+        }
+        public IActionResult OnPostNormalBtn()
+        {
+            if (_svc.AddAppointment(MyAppointment))
+            {
+                return RedirectToPage("/elderly/appointment/ThankYou");
+            }
+            else
+            {
+                MyMessage = "Appointment Id already exist!";
+                return Page();
+            }
+
         }
     }
 }

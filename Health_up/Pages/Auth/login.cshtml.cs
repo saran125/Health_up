@@ -89,7 +89,7 @@ namespace HealthUP.Pages
                         }
                         if (currentuser.Role == "elderly")
                         {
-                            return RedirectToPage("/elderly/Home");
+                            return RedirectToPage("/elderly/appointment/Retrieve");
                         }
                         if (currentuser.Role == "admin")
                         {
