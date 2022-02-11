@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using crypto;
 using Health_up.Models;
+using Health_up.PayPalHelper;
 using Health_up.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace HealthUP.Pages.elderly.booking
@@ -15,11 +17,13 @@ namespace HealthUP.Pages.elderly.booking
 
     {
         private readonly ILogger<CreateModel> _logger;
+        private IConfiguration _configuration { get; }
         private BookingService _svc;
-        public CreateModel(ILogger<CreateModel> logger, BookingService service)
+        public CreateModel(ILogger<CreateModel> logger, BookingService service, IConfiguration configuration)
         {
             _logger = logger;
             _svc = service;
+            _configuration = configuration;
         }
 
         [BindProperty]
@@ -32,20 +36,25 @@ namespace HealthUP.Pages.elderly.booking
         {
 
         }
-        public IActionResult OnPost()
+       
+
+        public async Task<IActionResult> OnPost(double BookingFee)
         {
             if (ModelState.IsValid)
             {
                 if (_svc.AddBooking(MyBooking))
                 {
-                    return RedirectToPage("/elderly/booking/ThankYou");
+                    var payPalAPI = new PayPalAPI(_configuration);
+                    string url = await payPalAPI.getRedirectURLToPayPal(BookingFee, "SGD");
+                    return Redirect(url);
 
                 }
                 else
                 {
-                    MyMessage = "Booking Id already exist!";
+                    MyMessage = " Id already exist!";
                     return Page();
                 }
+
 
             }
             return Page();
