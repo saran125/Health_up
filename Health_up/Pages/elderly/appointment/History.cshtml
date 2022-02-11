@@ -1,0 +1,53 @@
+﻿@page
+@model Health_up.Pages.elderly.appointment.HistoryModel
+@{
+    ViewData["Title"] = "";
+}
+<style>
+    .btn {
+        width: 116px;
+    }
+</style>
+<h1>My Appointments History</h1>
+<br />
+<div class="card-deck">
+    @{ if (Model.appointmentsByEmail != null)
+        {
+            @foreach (var item in Model.appointmentsByEmail)
+            {
+                var photoPath = "~/images/" + (item.PhotoPath ?? "doctorFace.jpg");
+
+                <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+                    <div class="card-header">
+                        <h3>
+                            @item.AvailableDate.ToShortDateString()
+                        </h3>
+                    </div>
+                    <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
+                    <div class="card-footer text-center">
+                        <a class="btn btn-primary m-1" asp-page="/elderly/appointment/DetailsHistory" asp-route-id="@item.Id">View Details</a>
+
+                    </div>
+                </div>
+
+
+
+
+            }
+        }
+        else
+        {
+            <h1>You have no history of appointments</h1>
+        }
+
+    }
+
+
+
+
+
+</div>
+
+
+
+

@@ -56,6 +56,10 @@ namespace Health_up.Services
             return AppointmentsByEmail;
 
         }
+        //public List<Appointment> GetAppointmentByEmailandPastDate(String email)
+        //{
+
+        //}
 
 
         private bool AppointmentExists(string id)

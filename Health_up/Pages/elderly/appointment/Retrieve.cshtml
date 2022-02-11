@@ -28,7 +28,7 @@
                     <div class="card-footer text-center">
                         <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Details" asp-route-id="@item.Id">View Details</a>
                         <a class="btn btn-primary m-1" asp-page="/elderly/appointment/Edit" asp-route-id="@item.Id">Reschedule</a>
-                        <a class="btn btn-danger m-1" onclick="return confirm('Are you sure you want to cancel your appointment? No refund will be made if you paid by credit card.');" asp-page="/elderly/appointment/Delete" asp-route-id="@item.Id">Cancel</a>
+                        <a class="btn btn-danger m-1" onclick="return confirm('Are you sure you want to cancel your appointment? No refund will be made if you paid by PayPal.');" asp-page="/elderly/appointment/Delete" asp-route-id="@item.Id">Cancel</a>
 
                     </div>
                 </div>
