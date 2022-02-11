@@ -416,13 +416,13 @@
                                         <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
-                                <a href="#" class="table-link">
+                                <a asp-page="/admin/Users/Email" asp-route-id="@item.Email" class="table-link">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
-                                        <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                        <i class="material-icons"></i>
                                     </span>
                                 </a>
-                                <a href="#" class="table-link danger">
+                                <a asp-page="/admin/Users/Delete" asp-route-id="@item.Email" class="table-link danger">
                                     <span class="fa-stack">
                                         <i class="fa fa-square fa-stack-2x"></i>
                                         <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

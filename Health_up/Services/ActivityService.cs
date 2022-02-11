@@ -188,6 +188,23 @@ namespace Health_up.Services
             }
             return AllPastActivity;
         }
+        public List<Activity> AllActivity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            List<Activity> AllPastActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+
+            foreach (var e in AllActivity)
+            {
+                var endtime = (e.Activity_end_date - DateTime.Now).Days;
+                if (endtime >= 0)
+                {
+                    AllPastActivity.Add(e);
+                }
+
+            }
+            return AllActivity;
+        }
 
     }
 }

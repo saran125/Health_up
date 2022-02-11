@@ -5,7 +5,7 @@
 <h1>Edit Activity</h1>
 
 <form method="post">
-    <input asp-for="Myactivity.Id" value="@Model.Myactivity.Id" type="hidden"/>
+    <input asp-for="Myactivity.Id" value="@Model.Myactivity.Id" type="hidden" />
     <div class="form-group">
         <label asp-for="Myactivity.Activity_name" class="col-sm-2 col-form-label">Name:</label>
         <input class="form-control" asp-for="Myactivity.Activity_name" value="@Model.Myactivity.Activity_name" />
@@ -52,10 +52,14 @@
         <input type="number" re class="form-control" value="@Model.Myactivity.Activity_price" asp-for="Myactivity.Activity_price">
         <span asp-validation-for="Myactivity.Activity_price" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label for="end_date" required="required">Activity Location</label>
+        <input type="text" re class="form-control" asp-for="Myactivity.location" value="@Model.Myactivity.location">
+    </div>
     <hr>
     <div class="form-group mt-3">
         <label class="mr-2">Upload The Activity Image:</label>
-        <input type="file" asp-for="Myactivity.Activity_photo">
+        <input type="file" asp-for="Myactivity.Activity_photo" value="@Model.Myactivity.Activity_photo">
         <span asp-validation-for="Myactivity.Activity_photo" class="text-danger"></span>
     </div>
     <div class="col-sm-10">

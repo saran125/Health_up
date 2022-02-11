@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Health_up.Pages.admin.Activity
 {
-    public class DshboardModel : PageModel
+    public class ReplyModel : PageModel
     {
         public void OnGet()
         {

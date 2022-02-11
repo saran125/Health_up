@@ -85,31 +85,31 @@
         <div class="row pt-5 m-auto">
             @foreach (var item in Model.allactivity)
             {
-                <div class="col-md-6 col-lg-4 pb-3">
+            <div class="col-md-6 col-lg-4 pb-3">
 
-                    <!-- Add a style="height: XYZpx" to div.card to limit the card height and display scrollbar instead -->
-                    <div class="card card-custom bg-white border-white border-0" style="height: 450px">
-                        <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
-                        <div class="card-custom-avatar">
-                            <img class="img-fluid" src="~/Photos/@item.Activity_photo" alt="Avatar" />
-                        </div>
-                        <div class="card-body" style="overflow-y: auto">
-                            <h4 class="card-title">@item.Activity_name</h4>
-                            <p class="card-text"><strong>Description:</strong> @item.Activity_description</p>
-                            <p class="card-text"><strong>Time:</strong> @item.Activity_timeslot</p>
-                            <p class="card-text"><strong>Start Date:</strong> @item.Activity_start_date.ToShortDateString()</p>
-                            <p class="card-text"><strong>End Date:</strong> @item.Activity_end_date.ToShortDateString()</p>
-                            <p class="card-text"><strong>Location:</strong> @item.location</p>
-                            <p class="card-text"><strong>Price:</strong> @item.Activity_price</p>
-                        </div>
-                        <div class="card-footer" style="background: inherit; border-color: inherit;">
-                            <a asp-page="/admin/Activity/Dashboard" class="btn btn-outline-primary">Dashboard</a>
-                            <a asp-page="/admin/Activity/Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Edit</a>
-                            <a onclick="return confirm('Are you sure you want to Delete this activity?');" asp-page="/admin/Activity/Delete" asp-route-id="@item.Id" class="btn btn-outline-primary">Delete</a>
-                        </div>
+                <!-- Add a style="height: XYZpx" to div.card to limit the card height and display scrollbar instead -->
+                <div class="card card-custom bg-white border-white border-0" style="height: 450px">
+                    <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
+                    <div class="card-custom-avatar">
+                        <img class="img-fluid" src="~/Photos/@item.Activity_photo" alt="Avatar" />
                     </div>
-
+                    <div class="card-body" style="overflow-y: auto">
+                        <h4 class="card-title">@item.Activity_name</h4>
+                        <p class="card-text"><strong>Description:</strong> @item.Activity_description</p>
+                        <p class="card-text"><strong>Time:</strong> @item.Activity_timeslot</p>
+                        <p class="card-text"><strong>Start Date:</strong> @item.Activity_start_date.ToShortDateString()</p>
+                        <p class="card-text"><strong>End Date:</strong> @item.Activity_end_date.ToShortDateString()</p>
+                        <p class="card-text"><strong>Location:</strong> @item.location</p>
+                        <p class="card-text"><strong>Price:$</strong> @item.Activity_price</p>
+                    </div>
+                    <div class="card-footer" style="background: inherit; border-color: inherit;">
+                        <a asp-page="/admin/Activity/Feedback" asp-route-id="@item.Id" class="btn btn-outline-primary">Feedback</a>
+                        <a asp-page="/admin/Users/Participants" asp-route-id="@item.Id" class="btn btn-outline-primary">Participants</a>
+                        <a asp-page="/admin/Activity/Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Edit</a>
+                        <a onclick="return confirm('Are you sure you want to Delete this activity?');" asp-page="/admin/Activity/Delete" asp-route-id="@item.Id" class="btn btn-outline-primary">Delete</a>
+                    </div>
                 </div>
+            </div>
 
             }
         </div>

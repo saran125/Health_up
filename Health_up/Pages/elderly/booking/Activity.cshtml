@@ -1,5 +1,5 @@
 ﻿@page
-@model Health_up.Pages.admin.Activity.ActivityModel;
+@model Health_up.Pages.elderly.booking.ActivityModel
 @{
 }
 <!DOCTYPE html>
@@ -103,10 +103,8 @@
                                     <p class="card-text"><strong>Price:$</strong> @item.Activity_price</p>
                                 </div>
                                 <div class="card-footer" style="background: inherit; border-color: inherit;">
-                                    <a asp-page="/admin/Activity/Feedback" asp-route-id="@item.Id" class="btn btn-outline-primary">Feedback</a>
-                                    <a asp-page="/admin/Users/Participants" asp-route-id="@item.Id" class="btn btn-outline-primary">Participants</a>
-                                    <a asp-page="/admin/Activity/Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Edit</a>
-                                    <a onclick="return confirm('Are you sure you want to Delete this activity?');" asp-page="/admin/Activity/Delete" asp-route-id="@item.Id" class="btn btn-outline-primary">Delete</a>
+                                    <a asp-page="/elderly/booking/Create" asp-route-id="@item.Id" class="btn btn-outline-primary">Book</a>
+                                    <a asp-page="/elderly/booking/feedback" asp-route-id="@item.Id" class="btn btn-outline-primary">Give Feedback</a>
                                 </div>
                             </div>
 

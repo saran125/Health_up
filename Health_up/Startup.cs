@@ -1,5 +1,6 @@
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Health_up
 {
     public class Startup
@@ -33,9 +33,24 @@ namespace Health_up
             services.AddTransient<ReportService>();
             services.AddTransient<ActivityService>();
             services.AddTransient<DoctorTimeslotService>();
+            services.AddTransient<ActivityFeedbackService>();
             services.AddTransient<IMailService, EmailSender>();
-            services.AddSession();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                    options.SlidingExpiration = true;
+                    options.AccessDeniedPath = "/forbidden";
+                    options.LoginPath = "/login";
+                    options.LogoutPath = "/logout";
+                });
             services.AddDbContext<HealthUPDbContext>();
+            //services.AddReCaptcha(Configuration.GetSection("ReCaptcha"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Health_up.Pages.admin.Users
+namespace Health_up.Pages.elderly.booking
 {
-    public class ParticipantsModel : PageModel
+    public class FeedbackModel : PageModel
     {
-        public IActionResult OnGet(string Id)
+        public void OnGet()
         {
-            return Page();
         }
     }
 }
