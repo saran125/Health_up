@@ -1,5 +1,5 @@
 ﻿@page
-@model Health_up.Pages.admin.Activity.ActivityModel;
+@model Health_up.Pages.admin.Activity.UpcomigActivityModel
 @{
 }
 <!DOCTYPE html>
@@ -74,10 +74,10 @@
 
 <body>
     <a asp-page="/admin/Activity/Create"><button type="button" class="btn btn-primary"> Create Activity</button></a>
-    <h1 style="text-align:center;">Current Activities</h1>
+    <h1 style="text-align:center;">Upcoming Activities</h1>
     @{ if (Model.allactivity.Count == 0)
         {
-            <p style="text-align:center;">There is no Current Activities</p>
+            <p style="text-align:center;">There is no Upcoming Activities</p>
         }
         else
         {
@@ -117,4 +117,6 @@
         }
     }
 </body>
+
+
 </html>

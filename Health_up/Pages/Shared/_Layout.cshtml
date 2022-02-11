@@ -148,10 +148,16 @@
                                                 if (Context.Session.GetString("Role") == "admin")
                                                 {
                                                     <li class="nav-item">
-                                                        <a class="page-scroll" asp-page="/login">Log In</a>
+                                                        <a class="page-scroll" asp-page="/admin/Users/users">Users</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="page-scroll" asp-page="/register">Register</a>
+                                                        <a class="page-scroll" asp-page="/admin/Activity/View">Current Activities</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="page-scroll" asp-page="/admin/Activity/Upcoming">Upcoming Activities</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="page-scroll" asp-page="/admin/Activity/Past">Past Acitvities</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <div class="dropdown">

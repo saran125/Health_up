@@ -41,10 +41,31 @@ namespace Health_up.Services
             else
             {
                 newuser.Verify = false;
-                
-                var password = BC.HashPassword(newuser.Password);
+                string salt = BC.GenerateSalt(12);
+                var password = BC.HashPassword(newuser.Password, salt);
                 newuser.Password = password;
+                if (newuser.Gender == "Male") {
+                    if(newuser.Role == "elderly")
+                    {
+                        newuser.Photo = "Grandpa.png";
+                    }
+                    else if (newuser.Role == "doctor")
+                    {
+                        newuser.Photo = "placeholder-doctor-m-320x320.jpg";
+                    }
+                }
+                if (newuser.Gender == "Female")
+                {
+                    if (newuser.Role == "elderly")
+                    {
+                        newuser.Photo = "307-3078505_grandma-clip-art-at-vector-clip-art-hd.png";
+                    }
+                    if (newuser.Role == "doctor")
+                    {
+                        newuser.Photo = "8dd25d9051cbef9c3a4518b67a7abdf6.jpg";
+                    }
 
+                }
                 _context.Add(newuser);
                 _context.SaveChanges();
                 return true;
@@ -192,8 +213,31 @@ namespace Health_up.Services
         {
             return _context.Users.Any(e => e.Email == email);
         }
-      
-       
+
+        public int Users()
+        {
+            List<User> AllUser = new List<User>();
+            AllUser = _context.Users.ToList();
+            return AllUser.Count;
+        }
+        public List<User> GetAllUsers()
+        {
+            List<User> AllUser = new List<User>();
+            AllUser = _context.Users.ToList();
+            return AllUser;
+        }
+        public List<User> GetTheElderly()
+        {
+            List<User> AllUser = new List<User>();
+            AllUser = _context.Users.Where(e => e.Role == "elderly").ToList();
+            return AllUser;
+        }
+        public List<User> GetAllDoctors()
+        {
+            List<User> AllUser = new List<User>();
+            AllUser = _context.Users.Where(e => e.Role == "doctor").ToList();
+            return AllUser;
+        }
 
     }
 }

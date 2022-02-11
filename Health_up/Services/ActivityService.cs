@@ -57,27 +57,30 @@ namespace Health_up.Services
         }
         public bool DeleteActivity(Activity theactivity)
         {
-            bool deleted = true;
-            try
+            if (theactivity == null)
             {
-                _context.Remove(theactivity);
-                _context.SaveChanges();
-                deleted = true;
-
-
+                return true;
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!ActivityExists(theactivity.Id))
+                try
                 {
-                    deleted = false;
+                    _context.Remove(theactivity);
+                    _context.SaveChanges();
+                    return true;
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (!ActivityExists(theactivity.Id))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-            return deleted;
 
         }
         public Activity GetActivityById(String id)
@@ -85,5 +88,106 @@ namespace Health_up.Services
             Activity theActivity = _context.Activitys.Where(e => e.Id == id).FirstOrDefault();
             return theActivity;
         }
+        public int CurrentActivity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+            int current = 0;
+            foreach(var e in AllActivity)
+            {
+                var time = (e.Activity_start_date - DateTime.Now).Days;
+                var endtime = (e.Activity_end_date - DateTime.Now).Days;
+                if(time <= 0 && endtime >= 0)
+                {
+                    current += 1;
+                }
+            }
+            return current;
+        }
+        public int UpcomingActivity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+            int current = 0;
+            foreach (var e in AllActivity)
+            {
+                var time = (e.Activity_start_date - DateTime.Now).Days;
+                if (time >= 0)
+                {
+                    current += 1;
+                }
+
+            }
+            return current;
+        }
+        public int PastActivity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+            int current = 0;
+            foreach (var e in AllActivity)
+            {
+             
+                var endtime = (e.Activity_end_date - DateTime.Now).Days;
+                if (endtime <= 0)
+                {
+                    current += 1;
+                }
+
+            }
+            return current;
+        }
+        public List<Activity> AllCurrentActivity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            List<Activity> AllCurrentActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+    
+            foreach (var e in AllActivity)
+            {
+                var time = (e.Activity_start_date - DateTime.Now).Days;
+                var endtime = (e.Activity_end_date - DateTime.Now).Days;
+                if (time <= 0 && endtime >= 0)
+                {
+                    AllCurrentActivity.Add(e);
+                }
+            }
+            return AllCurrentActivity;
+        }
+        public List<Activity> AllUpcomingActivity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            List<Activity> AllUpcomingActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+           
+            foreach (var e in AllActivity)
+            {
+                var time = (e.Activity_start_date - DateTime.Now).Days;
+                if (time >= 0)
+                {
+                    AllUpcomingActivity.Add(e);
+                }
+
+            }
+            return AllUpcomingActivity;
+        }
+        public List<Activity> AllPastActivity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            List<Activity> AllPastActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+   
+            foreach (var e in AllActivity)
+            {
+                var endtime = (e.Activity_end_date - DateTime.Now).Days;
+                if (endtime <= 0)
+                {
+                    AllPastActivity.Add(e);
+                }
+
+            }
+            return AllPastActivity;
+        }
+
     }
 }

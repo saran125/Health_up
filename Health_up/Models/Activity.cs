@@ -31,6 +31,7 @@ namespace Health_up.Models
         [FileExtensions(Extensions = "jpg, jpeg, png", ErrorMessage = "Provide a valid File Type (JPG/PNG)")]
         [DataType(DataType.Upload)]
         public string Activity_photo { get; set; }
+        public string location { get; set; }
 
     }
 }

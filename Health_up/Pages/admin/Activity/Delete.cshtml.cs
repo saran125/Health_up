@@ -32,7 +32,7 @@ namespace Health_up.Pages.admin.Activity
                 Myactivity = _svc.GetActivityById(id);
 
             }
-
+            Myactivity = _svc.GetActivityById(id);
             if (_svc.DeleteActivity(Myactivity))
             {
                 return RedirectToPage("/admin/Activity/View");

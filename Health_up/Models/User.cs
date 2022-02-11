@@ -37,7 +37,9 @@ namespace Health_up.Models
         public bool Verify { get; set; }
         public string OTP { get; set; }
         public DateTime OTPTime { get; set; }
+        [FileExtensions(Extensions = "jpg, jpeg, png", ErrorMessage = "Provide a valid File Type (JPG/PNG)")]
+        [DataType(DataType.Upload)]
+        public string Photo { get; set; }
 
-       
     }
 }
