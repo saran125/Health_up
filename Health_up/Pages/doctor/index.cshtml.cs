@@ -13,17 +13,19 @@ namespace Health_up.Pages.doctor
 {
     public class indexModel : PageModel
     {
-        /*
         private readonly ILogger<indexModel> _logger;
         private AppointmentService _svc;
-        public indexModel(ILogger<indexModel> logger, AppointmentService service)
+        private UserService _usvc;
+        public indexModel(ILogger<indexModel> logger, AppointmentService service, UserService userService)
         {
             _logger = logger;
             _svc = service;
+            _usvc = userService;
         }
         [BindProperty]
-        public Appointment appointment { get; set; }
-        */
+        public List<Appointment> appointmentByEmail { get; set; }
+        public List<User> userInfo { get; set; }
+
         public void OnGet()
         {
             /*
@@ -40,6 +42,8 @@ namespace Health_up.Pages.doctor
             }
 
             */
+            appointmentByEmail = _svc.GetAppointmentByDocEmail(HttpContext.Session.GetString("Email"));
+            userInfo = _usvc.GetAllUsers();
 
         }
         public IActionResult OnPost()

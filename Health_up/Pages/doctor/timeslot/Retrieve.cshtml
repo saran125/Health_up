@@ -3,9 +3,6 @@
 @{
 }
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style>
     .dot {
@@ -29,15 +26,14 @@
         {
             @foreach (var item in Model.timeslotsByEmail)
             {
-                <div class="panel panel-default">
-                    <div class="panel-heading">@item.Date.ToShortDateString()</div>
-                    <div class="panel-body">
-                        <div class="float-left mt-3">
-                            @item.Time
-                            <span class="dot"></span>
-                            Appointment
-                        </div>
-                        <div class="float-right">
+               
+                <div class="card">
+                    <div class="card-header">
+                        @item.Date.ToShortDateString()
+                    </div>
+                    <div class="card-body d-flex mt-3">
+                        <p class="card-text mr-auto p-2">@item.Time <span class="dot"></span>Appointment</p>
+                        <div class="p-2">
                             <a class="btn btn-primary" asp-page="/doctor/timeslot/Edit" asp-route-id="@item.Id">Reschedule</a>
                             <a class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this timeslot?');" asp-page="/doctor/timeslot/Delete" asp-route-id="@item.Id">Remove</a>
                         </div>

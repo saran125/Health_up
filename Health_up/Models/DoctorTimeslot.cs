@@ -19,9 +19,6 @@ namespace Health_up.Models
         public string Time { get; set; }
 
         [Required]
-        public string Repeat { get; set; }
-
-        [Required]
         public string DoctorId { get; set; }
     }
 }

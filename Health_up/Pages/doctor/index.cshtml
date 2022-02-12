@@ -6,43 +6,34 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th scope="col">Email</th>
             <th scope="col">Name</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
-            <th scope="col">Ph Num</th>
-            <th scope="col">Address</th>
+            <th scope="col">Contact Number</th>
             <th scope="col">Reports</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">email@gmail.com</th>
-            <td>Rudy Tan</td>
-            <td>1/10/2023</td>
-            <td>11:03</td>
-            <td>98765432</td>
-            <td>yishun</td>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">View Details</button></td>
-        </tr>
-        <tr>
-            <th scope="row">email@gmail.com</th>
-            <td>Jacob Lim</td>
-            <td>2/2/2023</td>
-            <td>14:03</td>
-            <td>90877654</td>
-            <td>woodlands</td>
-            <td>View Details</td>
-        </tr>
-        <tr>
-            <th scope="row">email@gmail.com</th>
-            <td>Larry Bird</td>
-            <td>3/3/2023</td>
-            <td>17:04</td>
-            <td>98098767</td>
-            <td>serangoon</td>
-            <td>View Details</td>
-        </tr>
+        @{ if (Model.appointmentByEmail != null)
+            {
+                @foreach (var item in Model.appointmentByEmail)
+                {
+                    @foreach (var people in Model.userInfo)
+                    {
+                        @if (item.ElderlyId == people.Email)
+                        {
+                            <tr>
+                                <td>@people.Fname @people.Lname</td>
+                                <td>@item.AvailableDate.ToShortDateString()</td>
+                                <td>@item.AvailableTimeslot</td>
+                                <td>@people.Phone</td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-name="@people.Fname @people.Lname" data-email="@people.Email" data-phone="@people.Phone" data-date="@item.AvailableDate.ToShortDateString()" data-time="@item.AvailableTimeslot" data-sym="@item.Symptoms">View Details</button></td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        }
     </tbody>
 </table>
 
@@ -52,28 +43,32 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Patient's Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;
+                    <span aria-hidden="true">
+                        &times;
                     </span>
                 </button>
             </div>
             <div class="modal-body">
                 <table>
                     <tr>
-                        <td><h6 style="white-space:pre;">Name:</h6>jane lim</td>
+                        <td><h6 style="white-space:pre;">Name:</h6><p class="name"></p></td>
                     </tr>
                     <tr>
-                        <td><h6 style="white-space:pre;">Email:</h6>smth@gg.com</td>
-                        <td><h6 style="white-space:pre;">ContactNum:</h6>98765432</td>
+                        <td><h6 style="white-space:pre;">Email:</h6><p class="email"></p></td>
+                        <td><h6 style="white-space:pre;">Contact Number:</h6><p class="num"></p></td>
                     </tr>
                     <tr>
-                        <td><h6 style="white-space:pre;">Date:</h6>1/12/2023</td>
-                        <td><h6 style="white-space:pre;">Time:</h6>11:03am</td>
+                        <td><h6 style="white-space:pre;">Date:</h6><p class="date"></p></td>
+                        <td><h6 style="white-space:pre;">Time:</h6><p class="time"></p></td>
+                    </tr>
+                    <tr>
+                        <td><h6 style="white-space:pre;">Symptoms:</h6><p class="sym"></p></td>
                     </tr>
                     <tr>
                         <td rowspan="2">aaaaaaaagooglemapsapi</td>
                     </tr>
                 </table>
-            </div>
+                </div>
             <div class="modal-footer">
                 <form runat="server" method="post">
                     <button type="submit" class="btn btn-primary">Create Report</button>
@@ -82,3 +77,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#exampleModalCenter').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('name')
+        var recipientEmail = button.data('email')
+        var recipientPhone = button.data('phone')
+        var recipientDate = button.data('date')
+        var recipientTime = button.data('time')
+        var recipientSym = button.data('sym')
+
+        var modal = $(this)
+        modal.find('.name').text(recipient)
+        modal.find('.email').text(recipientEmail)
+        modal.find('.phone').text(recipientPhone)
+        modal.find('.date').text(recipientDate)
+        modal.find('.time').text(recipientTime)
+        modal.find('.sym').text(recipientSym)
+    })
+</script>
