@@ -35,7 +35,6 @@ namespace HealthUP.Pages.elderly.booking
         {
             if (id != null)
             {
-                
                 MyBooking = _svc.GetBookingById(id);
                 activitydetails = _actsv.GetActivityById(MyBooking.activity_id);
 
