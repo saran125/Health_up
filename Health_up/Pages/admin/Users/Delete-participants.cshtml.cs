@@ -55,7 +55,7 @@ namespace Health_up.Pages.admin.Users
             smtp.EnableSsl = true;
             MailMessage msg = new MailMessage();
             msg.Subject = "Removed from taking part!";
-            msg.Body = "Hello " + name + "! We Have Removed You from taking in " + activity+
+            msg.Body = "Hello " + name + "! We have removed You from taking  part in " + activity+
                 ". Contact us for any clarification. Email: healthupnyp@gmail.com";
             string toaddress = Email;
             msg.To.Add(toaddress);
@@ -83,7 +83,7 @@ namespace Health_up.Pages.admin.Users
                 Execute(thebooking.elderly_id, name, msg).Wait();
                 if (_svc.DeleteBooking(thebooking))
                 {
-                    return RedirectToPage("/Index");
+                    return RedirectToPage("/admin/Index");
                 }
                 else
                 {
