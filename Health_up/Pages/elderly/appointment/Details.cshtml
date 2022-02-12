@@ -17,7 +17,9 @@
                 <h1>@Model.MyAppointment.AvailableDate.ToShortDateString()</h1>
             </div>
             <div class="card-body text-center">
-                <img class="card-img-top" src="@photoPath" asp-append-version="true"/>
+                <img class="card-img-top" src="@photoPath" asp-append-version="true" />
+                <h4>Doctor Name : David Marshall</h4>
+                <h4>Doctor's Phone Number : 90675687</h4>
                 <h4>Symptoms : @Model.MyAppointment.Symptoms</h4>
                 <h4>Timeslot : @Model.MyAppointment.AvailableTimeslot</h4>
                 <h4>Payment Method : @Model.MyAppointment.PaymentMethod</h4>
