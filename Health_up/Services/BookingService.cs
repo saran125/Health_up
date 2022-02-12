@@ -32,6 +32,12 @@ namespace Health_up.Services
             AllBookings = _context.Bookings.ToList();
             return AllBookings;
         }
+        public List<Booking> GetByActivityBookings(string Id)
+        {
+            List<Booking> AllBookings = new List<Booking>();
+            AllBookings = _context.Bookings.Where(e => e.Id == Id).ToList();
+            return AllBookings;
+        }
 
         public Booking GetBookingById(String id)
         {

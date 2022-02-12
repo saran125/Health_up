@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using AspNetCore.ReCaptcha;
 using Health_up.Models;
 using Health_up.Services;
 using Microsoft.AspNetCore.Http;
@@ -70,9 +71,12 @@ namespace HealthUP.Pages
             {
                 throw;
             }
+            
         }
+        [ValidateReCaptcha]
         public IActionResult OnPost()
         {
+        
             if (ModelState.IsValid)
             {
                 if (Cfmpwd == MyUser.Password)

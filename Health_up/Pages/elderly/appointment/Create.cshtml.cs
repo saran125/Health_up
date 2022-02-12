@@ -36,8 +36,16 @@ namespace HealthUP.Pages.elderly.appointments
         public string MyMessage { get; set; }
 
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (HttpContext.Session.GetString("Role") == "elderly")
+            {
+                return Page();
+            }
+            else
+            {
+                return Redirect("/forbidden");
+            }
 
         }
         public async Task<IActionResult> OnPostPayPalBtn(double consultationFee)

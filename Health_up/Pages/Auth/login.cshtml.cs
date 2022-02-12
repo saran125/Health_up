@@ -47,7 +47,7 @@ namespace HealthUP.Pages
             var htmlContent = "<strong>Hello " + name + "! Please Verify Your Email!The OTP: " + OTP + "</strong><br/><h3>The OTP will end in 5 mins </h3>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
-            */
+             */
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
@@ -68,16 +68,18 @@ namespace HealthUP.Pages
             {
                 throw;
             }
+            
         }
-        
+
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
                 if (_svc.Login(MyUser))
                 {
-                    if (_svc.CheckEmailVerify(MyUser.Email)){
-                        
+                    if (_svc.CheckEmailVerify(MyUser.Email))
+                    {
+
                         User currentuser = _svc.Theuser(MyUser);
                         HttpContext.Session.SetString("Email", currentuser.Email);
                         HttpContext.Session.SetString("Fname", currentuser.Fname);
@@ -120,7 +122,8 @@ namespace HealthUP.Pages
                     return Page();
                 }
             }
-            return Page();
-        }
+           
+                return Page();
+                    }
     }
 }
