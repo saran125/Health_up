@@ -211,6 +211,12 @@ namespace Health_up.Services
             }
             return AllPastActivity;
         }
+        public List<Activity> Activity()
+        {
+            List<Activity> AllActivity = new List<Activity>();
+            AllActivity = _context.Activitys.ToList();
+            return AllActivity;
+        }
 
     }
 }

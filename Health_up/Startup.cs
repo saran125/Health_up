@@ -73,8 +73,15 @@ namespace Health_up
                
                 if (context.Response.StatusCode == 404)
                 {
-
                     context.Request.Path = "/NotFound";
+                }
+                if (context.Response.StatusCode == 400)
+                {
+                    context.Request.Path = "/BadRequest";
+                }
+                if (context.Response.StatusCode == 500)
+                {
+                    context.Request.Path = "/InternalError";
                 }
                 await next();
 

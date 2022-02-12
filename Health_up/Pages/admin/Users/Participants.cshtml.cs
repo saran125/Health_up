@@ -37,6 +37,7 @@ namespace Health_up.Pages.admin.Users
 
         public void OnGet(String Id)
         {
+
             List<User> AllTheUser = new List<User>();
             theactivity = _svc.GetActivityById(Id);
             Allbookings = _bookingsvc.GetByActivityBookings(Id);
@@ -45,7 +46,7 @@ namespace Health_up.Pages.admin.Users
                 theuser = _Usersvc.GetUserById(i.elderly_id);
                  theuser.BirthDate = i.Date;
                 theuser.HospitalAddress = i.Id;
-                
+
                 AllTheUser.Add(theuser);
               
             }
