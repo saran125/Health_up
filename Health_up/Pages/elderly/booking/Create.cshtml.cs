@@ -18,8 +18,7 @@ namespace HealthUP.Pages.elderly.booking
     public class CreateModel : PageModel
 
     {
-        [BindProperty]
-        public Activity activitydetails { get; set; }
+   
 
         private readonly ILogger<CreateModel> _logger;
         private IConfiguration _configuration { get; }
@@ -39,24 +38,27 @@ namespace HealthUP.Pages.elderly.booking
         public Booking MyBooking { get; set; }
         [BindProperty]
         public string MyMessage { get; set; }
-        public string id = Security.GenerateText(16);
+        [BindProperty]
+        public Activity activitydetails { get; set; }
 
         public void OnGet(string Id)
         {
-           activitydetails = _actsv.GetActivityById(HttpContext.Session.GetString("id"));
+           activitydetails = _actsv.GetActivityById(Id);
 
         }
        
 
-        public async Task<IActionResult> OnPost(double BookingFee)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
                 if (_svc.AddBooking(MyBooking))
                 {
-                    var payPalAPI = new PayPalAPI(_configuration);
-                    string url = await payPalAPI.getRedirectURLToPayPal(BookingFee, "SGD");
-                    return Redirect(url);
+                     var payPalAPI = new PayPalAPI(_configuration);
+                     string url = await payPalAPI.getRedirectURLToPayPal(MyBooking.ActivityPrice, "SGD");
+                     return Redirect(url);
+                    
+                
 
                 }
                 else
@@ -67,6 +69,7 @@ namespace HealthUP.Pages.elderly.booking
 
 
             }
+            activitydetails = _actsv.GetActivityById(MyBooking.activity_id);
             return Page();
         }
     }
