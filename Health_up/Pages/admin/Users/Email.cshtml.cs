@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Health_up.Models;
 using Health_up.Services;
@@ -41,6 +43,45 @@ namespace Health_up.Pages.admin.Users
             {
                 return Redirect("/forbidden");
             }
+        }
+        public static async Task Execute(string Email, string Message, string subject)
+        {
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new NetworkCredential("healthupnyp@gmail.com", "He@lth1234");
+            smtp.EnableSsl = true;
+            MailMessage msg = new MailMessage();
+            msg.Subject = subject;
+            msg.Body = Message;
+            string toaddress = Email;
+            msg.To.Add(toaddress);
+            string fromaddress = "HealthUp <healthupnyp@gmail.com>";
+            msg.From = new MailAddress(fromaddress);
+            try
+            {
+                smtp.Send(msg);
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        public IActionResult OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                
+                    Execute(email,message, subject).Wait();
+                    return Redirect("/admin/Activity/Success");
+               
+              
+            }
+
+            return Page();
         }
     }
 }

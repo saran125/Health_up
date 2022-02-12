@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -38,6 +39,10 @@ namespace Health_up.Pages.admin.Activity
 
         public IActionResult OnGet(string Id)
         {
+            if (HttpContext.Session.GetString("Role") != "admin")
+            {
+                return Redirect("/forbidden");
+            }
             if (Id == null)
             {
                 return Redirect("/NotFound");

@@ -48,7 +48,7 @@ namespace Health_up.Pages.admin.Users
             smtp.EnableSsl = true;
             MailMessage msg = new MailMessage();
             msg.Subject = "Your Account Is Removed!";
-            msg.Body = "Hello " + name + "! We have removed Your account accessing Our service! " +
+            msg.Body = "Hello " + name + "! We Have Removed Your Account From Accessing Our service! " +
                 "Contact us for any clarification. Email: healthupnyp@gmail.com";
             string toaddress = Email;
             msg.To.Add(toaddress);
