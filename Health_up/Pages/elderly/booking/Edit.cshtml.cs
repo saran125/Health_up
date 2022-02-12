@@ -35,6 +35,7 @@ namespace HealthUP.Pages.elderly.booking
         {
             if (id != null)
             {
+                
                 MyBooking = _svc.GetBookingById(id);
                 activitydetails = _actsv.GetActivityById(MyBooking.activity_id);
 
@@ -44,6 +45,8 @@ namespace HealthUP.Pages.elderly.booking
                 return RedirectToPage("Index");
 
         }
+
+
 
         public IActionResult OnPost()
         {

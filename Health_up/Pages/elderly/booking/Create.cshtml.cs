@@ -40,14 +40,24 @@ namespace HealthUP.Pages.elderly.booking
         [BindProperty]
         public Activity activitydetails { get; set; }
 
-        public void OnGet(string Id)
+        
+
+        public IActionResult OnGet(string Id)
         {
-           activitydetails = _actsv.GetActivityById(Id);
+            if (HttpContext.Session.GetString("Role") == "elderly")
+            {
+                activitydetails = _actsv.GetActivityById(Id);
+                return Page();
+            }
+            else
+            {
+                return Redirect("/forbidden");
+            }
 
         }
-       
 
-        public async Task<IActionResult> OnPostAsync()
+
+            public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
