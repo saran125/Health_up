@@ -18,18 +18,25 @@ namespace Health_up.Pages.admin.Users
         private readonly ILogger<Delete_participantsModel> _logger;
 
 
-        private readonly UserService _svc;
-        public Delete_participantsModel(ILogger<Delete_participantsModel> logger, UserService service)
+        private readonly BookingService _svc;
+        private readonly UserService _Usersvc;
+        private readonly ActivityService _Activitysvc;
+        public Delete_participantsModel(ILogger<Delete_participantsModel> logger, BookingService service, UserService service1, ActivityService service2)
         {
             _logger = logger;
-
+            _Usersvc = service1;
+            _Activitysvc = service2;
             _svc = service;
         }
         [BindProperty]
+        public Booking thebooking { get; set; }
+        [BindProperty]
         public User theuser { get; set; }
+       [BindProperty]
+       public Models.Activity theactivity { get; set; }
         [BindProperty]
         public string MyMessage { get; set; }
-        public static async Task Execute(string Email, string name)
+        public static async Task Execute(string Email, string name, string activity)
         {
             /* var apiKey = "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";
             var client = new SendGridClient(apiKey);
@@ -47,9 +54,9 @@ namespace Health_up.Pages.admin.Users
             smtp.Credentials = new NetworkCredential("healthupnyp@gmail.com", "He@lth1234");
             smtp.EnableSsl = true;
             MailMessage msg = new MailMessage();
-            msg.Subject = "Your Account Is Removed!";
-            msg.Body = "Hello " + name + "! We Have Removed Your Account From Accessing Our service! " +
-                "Contact us for any clarification. Email: healthupnyp@gmail.com";
+            msg.Subject = "Removed from taking part!";
+            msg.Body = "Hello " + name + "! We Have Removed You from taking in " + activity+
+                ". Contact us for any clarification. Email: healthupnyp@gmail.com";
             string toaddress = Email;
             msg.To.Add(toaddress);
             string fromaddress = "HealthUp <healthupnyp@gmail.com>";
@@ -69,18 +76,18 @@ namespace Health_up.Pages.admin.Users
             if ((HttpContext.Session.GetString("Role") == "admin"))
             {
 
-                theuser = _svc.GetUserById(id);
-
+                thebooking = _svc.GetBookingById(id);
+                theuser = _Usersvc.GetUserById(thebooking.elderly_id);
                 string name = theuser.Fname + " " + theuser.Lname;
-
-                Execute(theuser.Email, name).Wait();
-                if (_svc.DeleteUser(id))
+                var msg = _Activitysvc.GetActivityById(thebooking.activity_id).Activity_name;
+                Execute(thebooking.elderly_id, name, msg).Wait();
+                if (_svc.DeleteBooking(thebooking))
                 {
-                    return RedirectToPage("/admin/Users/users");
+                    return RedirectToPage("/Index");
                 }
                 else
                 {
-                    MyMessage = "Users does not exist!";
+                    MyMessage = "Booking Id does not exist!";
                     return Page();
                 }
 

@@ -257,6 +257,35 @@ namespace Health_up.Services
 
             }
         }
+        public bool UpdateUser(User theuser)
+        {
+            try
+            {
+                if (!UserExists(theuser.Email))
+                {
+                    return false;
+                }
+                else
+                {
+                    User account = GetUserById(theuser.Email);
+                    account.Fname = theuser.Fname;
+                    account.Lname = theuser.Lname;
+                    account.PostalCode = theuser.PostalCode;
+                    account.Photo = theuser.Photo;
+                    account.UnitNumber = theuser.UnitNumber;
+                    account.Phone = theuser.Phone;
+                    _context.Attach(account).State = EntityState.Modified;
+                    _context.Update(account);
+                    _context.SaveChanges();
+                    return true;
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+
+            }
+        }
 
         public User Theuser(User existuser)
         {

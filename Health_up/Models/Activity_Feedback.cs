@@ -9,8 +9,6 @@ namespace Health_up.Models
     public class Activity_Feedback
     {
         public string Id { get; set; }
-
-     
         public string Comments { get; set; }
      
         public Double Rating{ get; set; }
