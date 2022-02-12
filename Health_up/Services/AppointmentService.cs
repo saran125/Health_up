@@ -56,6 +56,13 @@ namespace Health_up.Services
             return AppointmentsByEmail;
 
         }
+        public List<Appointment> GetAppointmentByDocEmail(String email)
+        {
+            List<Appointment> AppointmentsByDocEmail = new List<Appointment>();
+            AppointmentsByDocEmail = _context.Appointments.Where(e => e.DoctorId == email).ToList();
+            return AppointmentsByDocEmail;
+
+        }
         //public List<Appointment> GetAppointmentByEmailandPastDate(String email)
         //{
 

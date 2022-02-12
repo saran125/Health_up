@@ -32,7 +32,7 @@ namespace Health_up.Pages.doctor.timeslot
                 return Page();
             }
             else
-                return RedirectToPage("Index");
+                return RedirectToPage("/doctor/404");
 
         }
 
