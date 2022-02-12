@@ -7,7 +7,7 @@
     body {
         margin-top: 20px;
     }
-
+       
     .content-item {
         padding: 30px 0;
         background-color: #FFFFFF;
@@ -157,13 +157,14 @@
                             <a class="pull-left" href="#"><img class="media-object" src="~/Photos/@item.user_photo" alt=""></a>
                             <div class="media-body">
                                 <h4 class="media-heading">@item.username</h4>
-                                <p>@item.Comments</p>
-                                <p>@item.Rating/5</p>
+                                <p><strong>Comment:</strong> @item.Comments</p>
+                                <p><strong>Rate:</strong>@item.Rating/5</p>
+                                <p><strong>Admin Reply:</strong> Thanks For </p>
                                 <ul class="list-unstyled list-inline media-detail pull-left">
                                     <li><i class="fa fa-calendar"></i>@item.Date</li>
                                 </ul>
                                 <ul class="list-unstyled list-inline media-detail pull-right">
-                                    <li class=""><a asp-page="/admin/Feedback/Delete"><i class="fa fa-reply" style="font-size:36px"></i>Delete</a></li>
+                                    <li class=""><a asp-page="/admin/Feedback/Delete" asp-route-id="@item.Id"><i class="fa fa-trash" style="font-size:36px"></i>Delete</a></li>
                                     <li class=""><a asp-page="/admin/Activity/Reply"><i class="fa fa-reply" style="font-size:36px"></i>Reply</a></li>
                                 </ul>
 

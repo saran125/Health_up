@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-
 namespace HealthUP.Pages.elderly.booking
 {
     public class CreateModel : PageModel

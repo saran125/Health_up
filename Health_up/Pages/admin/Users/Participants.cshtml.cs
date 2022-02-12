@@ -27,19 +27,20 @@ namespace Health_up.Pages.admin.Users
         public int Elderly { get; set; }
         public List<Health_up.Models.User> alluser { get; set; }
         public List<Health_up.Models.Booking> Allbookings { get; set; }
-
+        public Models.Activity theactivity { get; set; }
+        public Models.User theuser { get; set; }
 
         public IActionResult OnGet(String Id)
         {
 
-            
+            theactivity = _svc.GetActivityById(Id);
             Allbookings = _bookingsvc.GetByActivityBookings(Id);
-            foreach(var i in Allbookings)
+            foreach (var i in Allbookings)
             {
-                alluser.Add(_Usersvc.GetUserById(i.elderly_id));
+                theuser = _Usersvc.GetUserById(i.elderly_id);
+                theuser.BirthDate = i.Date;
+                alluser.Add(theuser);
             }
-          
-
             return Page();
         }
     }
