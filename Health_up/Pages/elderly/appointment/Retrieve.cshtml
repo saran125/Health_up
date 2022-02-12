@@ -11,7 +11,10 @@
 </style>
 <h1>Upcoming Appointments</h1>
 <br />
-<a asp-page="/elderly/payment/billing" class="btn btn-warning" style="color:white;">You have payment due</a>
+@{
+    if (HttpContext.Session.GetString("paymetn") != null)
+    {
+        <a asp-page="/elderly/payment/billing" class="btn btn-warning" style="color:white;">You have payment due</a>
 
     }
 }
