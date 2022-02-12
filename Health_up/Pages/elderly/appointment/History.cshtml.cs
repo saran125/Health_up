@@ -31,10 +31,17 @@ namespace Health_up.Pages.elderly.appointment
         [BindProperty]
         public string MyMessage { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             //appointmentsByEmail = _svc.GetAppointmentByEmail(HttpContext.Session.GetString("Email"));
-
+            if (HttpContext.Session.GetString("Role") == "elderly")
+            {
+                return Page();
+            }
+            else
+            {
+                return Redirect("/forbidden");
+            }
         }
     }
 }
