@@ -153,6 +153,9 @@
                         <li class="nav-item">
                             <a class="nav-link" id="booking-tab" data-toggle="tab" href="#booking" role="tab" aria-controls="booking" aria-selected="false">Bookings</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="booking-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payments</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -214,6 +217,10 @@
                         <a asp-page="/elderly/booking/Retrieve">My Upcoming Bookings</a>
                         <br />
                         <a asp-page="/elderly/booking/History">My Booking History</a>
+                    </div>
+                    <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+                        <a asp-page="/elderly/payment/billing" >My Payment Due</a>
+
                     </div>
                 </div>
         </div>
