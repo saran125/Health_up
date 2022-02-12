@@ -36,6 +36,7 @@ namespace Health_up.Pages.doctor.report
 
                 if(_svc.AddReport(report))
                 {
+                    HttpContext.Session.SetString("paymetn", "true");
                     return RedirectToPage("success");
 
                 }
