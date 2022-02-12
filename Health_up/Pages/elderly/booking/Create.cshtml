@@ -5,12 +5,12 @@
     ViewData["Title"] = "Book an Activity";
 
 }
-<h1>Book an activity</h1>
+<h1>Book for @Model.activitydetails.Activity_name</h1>
 
 <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div> <label class="text-danger">@Model.MyMessage</label> </div>
-    <label>@Model.activitydetails.Activity_name</label>
+    
 
 
     <div class="form-group">
