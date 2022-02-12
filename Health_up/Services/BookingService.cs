@@ -32,7 +32,7 @@ namespace Health_up.Services
         public List<Booking> GetByActivityBookings(string Id)
         {
             List<Booking> AllBookings = new List<Booking>();
-            AllBookings = _context.Bookings.Where(e => e.Id == Id).ToList();
+            AllBookings = _context.Bookings.Where(e => e.activity_id == Id).ToList();
             return AllBookings;
         }
 

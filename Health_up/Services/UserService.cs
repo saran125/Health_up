@@ -245,6 +245,9 @@ namespace Health_up.Services
                     string salt = BC.GenerateSalt(12);
                     var password = BC.HashPassword(theuser.Password, salt);
                    account.Password = password;
+                    _context.Attach(account).State = EntityState.Modified;
+                    _context.Update(account);
+                    _context.SaveChanges();
                     return true;
                 }
             }

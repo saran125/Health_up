@@ -55,7 +55,8 @@ namespace HealthUP.Pages
             smtp.EnableSsl = true;
             MailMessage msg = new MailMessage();
             msg.Subject = "Verify your Email address";
-            msg.Body = "<strong>Hello " + name + "! Please Verify Your Email!The OTP: " + OTP + "</strong><br/><h3>The OTP will end in 5 mins </h3>";
+            msg.Body = "Hello " + name + "! Please Verify Your Email!The OTP: " + OTP +  
+                " The OTP will end in 5 mins!";
             string toaddress = Email;
             msg.To.Add(toaddress);
             string fromaddress = "HealthUp <healthupnyp@gmail.com>";

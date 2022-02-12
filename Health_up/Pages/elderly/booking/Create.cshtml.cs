@@ -51,13 +51,14 @@ namespace HealthUP.Pages.elderly.booking
         {
             if (ModelState.IsValid)
             {
+                MyBooking.elderly_id = HttpContext.Session.GetString("Email");
                 if (_svc.AddBooking(MyBooking))
                 {
                      var payPalAPI = new PayPalAPI(_configuration);
                      string url = await payPalAPI.getRedirectURLToPayPal(MyBooking.ActivityPrice, "SGD");
                      return Redirect(url);
                     
-                
+      
 
                 }
                 else

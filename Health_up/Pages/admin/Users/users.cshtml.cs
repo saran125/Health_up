@@ -7,6 +7,7 @@ using Health_up.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace HealthUP.Pages.admin
 {
@@ -29,7 +30,11 @@ namespace HealthUP.Pages.admin
 
         public IActionResult OnGet()
         {
-            Users = _Usersvc.Users();
+            if ((HttpContext.Session.GetString("Role") != "admin"))
+            {
+                return Redirect("/forbidden");
+            }
+                Users = _Usersvc.Users();
             Doctor = _Usersvc.GetAllDoctors().Count;
             Elderly = _Usersvc.GetTheElderly().Count;
             alluser = _Usersvc.GetAllUsers();
