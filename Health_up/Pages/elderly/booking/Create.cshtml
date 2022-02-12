@@ -1,5 +1,6 @@
 ﻿@page
 @model HealthUP.Pages.elderly.booking.CreateModel
+
 @{
     ViewData["Title"] = "Book an Activity";
 
@@ -9,6 +10,7 @@
 <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div> <label class="text-danger">@Model.MyMessage</label> </div>
+    
 
     <div class="form-group">
         <input type="hidden" asp-for="MyBooking.Id" class="form-control" value="@Model.id" />
@@ -23,7 +25,7 @@
             <option value="Admiralty">Admiralty</option>
             <option value="Yishun">Yishun</option>
             <option value="Jurong">Jurong</option>
-        
+
         </select>
         <span asp-validation-for="MyBooking.Location" class="text-danger"></span>
     </div>

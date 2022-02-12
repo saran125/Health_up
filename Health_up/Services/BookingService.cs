@@ -106,5 +106,12 @@ namespace Health_up.Services
             return deleted;
 
         }
+        public List<Booking> GetBookingByEmail(String email)
+        {
+            List<Booking> BookingByEmail = new List<Booking>();
+            BookingByEmail = _context.Bookings.Where(e => e.elderly_id == email).ToList();
+            return BookingByEmail;
+
+        }
     }
 }

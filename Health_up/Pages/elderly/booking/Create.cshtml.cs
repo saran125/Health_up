@@ -6,24 +6,33 @@ using crypto;
 using Health_up.Models;
 using Health_up.PayPalHelper;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+
 
 namespace HealthUP.Pages.elderly.booking
 {
     public class CreateModel : PageModel
 
     {
+        [BindProperty]
+        public Activity activitydetails { get; set; }
+
         private readonly ILogger<CreateModel> _logger;
         private IConfiguration _configuration { get; }
         private BookingService _svc;
-        public CreateModel(ILogger<CreateModel> logger, BookingService service, IConfiguration configuration)
+        private ActivityService _actsv;
+
+        
+        public CreateModel(ILogger<CreateModel> logger, BookingService service, ActivityService service1, IConfiguration configuration)
         {
             _logger = logger;
             _svc = service;
             _configuration = configuration;
+            _actsv = service1;
         }
 
         [BindProperty]
@@ -34,6 +43,7 @@ namespace HealthUP.Pages.elderly.booking
 
         public void OnGet()
         {
+           activitydetails = _actsv.GetActivityById(HttpContext.Session.GetString("id"));
 
         }
        
