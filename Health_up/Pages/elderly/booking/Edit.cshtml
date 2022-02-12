@@ -3,65 +3,52 @@
 @{
     ViewData["Title"] = "Edit";
 }
-<h1>Edit your booking</h1>
+<h1>Book for @Model.activitydetails.Activity_name</h1>
 
 <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div> <label class="text-danger">@Model.MyMessage</label> </div>
+    
 
-    <div>
+
+    <div class="form-group">
+        <input type="hidden" asp-for="MyBooking.activity_id" class="form-control" value="@Model.activitydetails.Id" />
         <input type="hidden" asp-for="MyBooking.Id" class="form-control" value="@Model.MyBooking.Id" />
+        <input type="hidden" asp-for="MyBooking.elderly_id" class="form-control" value="@Model.MyBooking.elderly_id" />
     </div>
 
-
     <div>
-        <label>Do you need to change your Location?</label>
-        <select name="MyBooking.Location" class="form-control">
-            <option value="@Model.MyBooking.Location">@Model.MyBooking.Location</option>
-            <option value="Kelvins House">Kelvins House</option>
-            <option value="Woodlands">Woodlands</option>
-            <option value="Admiralty">Admiralty</option>
-            <option value="Yishun">Yishun</option>
-            <option value="Jurong">Jurong</option>
-        </select>
+        <label class="col-sm-2 col-form-label">Location</label>
+        <input readonly asp-for="MyBooking.Location" class="form-control" value="@Model.activitydetails.location" />
         <span asp-validation-for="MyBooking.Location" class="text-danger"></span>
     </div>
 
     <div>
-        <label>Reschedule your booking date:</label>
-        <input asp-for="MyBooking.Date" class="form-control" value="@Model.MyBooking.Date.ToString("yyyy-MM-dd")" />
+        <label class="col-sm-2 col-form-label">Available Date:</label>
+        <input asp-for="MyBooking.Date" class="form-control" value="" placeholder="Available Date *" />
         <span asp-validation-for="MyBooking.Date" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>Reschedule your timeslot:</label>
-        <select name="MyBooking.TimeSlot" class="form-control">
-            <option value="@Model.MyBooking.TimeSlot">@Model.MyBooking.TimeSlot</option>
-            <option value="00:00 - 00:30">00:00 - 00:30</option>
-            <option value="00:30 - 01:00">00:30 - 01:00</option>
-            <option value="01:00 - 01:30">01:00 - 01:30</option>
-            <option value="01:30 - 02:00">01:30 - 02:00</option>
-            <option value="02:00 - 02:30">02:00 - 02:30</option>
-            <option value="06:00 - 06:30">06:00 - 06:30</option>
-            <option value="23:00 - 23:30">23:00 - 23:30</option>
-        </select>
-        <span asp-validation-for="MyBooking.TimeSlot" class="text-danger"></span>
-    </div>
+
 
     <div>
-        <label>Do you need to change your payment method?</label>
-        <select name="MyBooking.PaymentMethod" class="form-control">
-            <option value="@Model.MyBooking.PaymentMethod">@Model.MyBooking.PaymentMethod</option>
+        <label class="col-sm-2 col-form-label">Available Timeslot:</label>
+        <input readonly asp-for="MyBooking.TimeSlot" class="form-control" value="@Model.activitydetails.Activity_timeslot" />
+        <span asp-validation-for="MyBooking.TimeSlot" class="text-danger"></span>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">Choose a Payment Method:</label>
+        <select asp-for="MyBooking.PaymentMethod" class="form-control">
+            <option class="hidden" selected disabled>--Select your payment method--</option>
             <option value="Credit Card">Credit Card</option>
             <option value="PayPal">PayPal</option>
             <option value="No rush, I will pay when I can">No rush, I will pay when I can</option>
         </select>
         <span asp-validation-for="MyBooking.PaymentMethod" class="text-danger"></span>
     </div>
-
     <div>
-        <label class="col-sm-2 col-form-label">Activity Price:</label>
-        <input readonly asp-for="MyBooking.ActivityPrice" class="form-control" value="3.5" />
+        <label class="col-sm-2 col-form-label">Price</label>
+        <input readonly asp-for="MyBooking.ActivityPrice" class="form-control" value="@Model.activitydetails.Activity_price" />
         <span asp-validation-for="MyBooking.ActivityPrice" class="text-danger"></span>
     </div>
 
