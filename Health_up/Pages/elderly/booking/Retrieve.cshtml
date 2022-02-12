@@ -14,7 +14,6 @@
             <th>Date</th>
             <th>Timeslot</th>
             <th>Location</th>
-            <th>Payment Method</th>
             <th>Activity Price($)</th>
             <th>Action</th>
         </tr>
@@ -31,7 +30,6 @@
                         <td>@item.Date.ToShortDateString()</td>
                         <td>@item.TimeSlot</td>
                         <td>@item.Location</td>
-                        <td>@item.PaymentMethod</td>
                         <td>@item.ActivityPrice</td>
                         <td>
                             <a class="btn btn-primary" asp-page="/elderly/booking/Edit" asp-route-id="@item.Id">Reschedule</a>
