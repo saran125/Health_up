@@ -176,6 +176,35 @@ namespace Health_up.Services
 
             }
         }
+        public bool DeleteUser(string Email)
+        {
+            if (Email == null)
+            {
+                return true;
+            }
+            else
+            {
+                try
+                {
+
+                    User account = GetUserById(Email);
+                    _context.Remove(account);
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(Email))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
         public bool CheckEmailVerify(string Email)
         {
             try
