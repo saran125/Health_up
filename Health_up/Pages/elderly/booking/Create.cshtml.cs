@@ -32,7 +32,7 @@ namespace HealthUP.Pages.elderly.booking
         public string MyMessage { get; set; }
         public string id = Security.GenerateText(16);
 
-        public void OnGet()
+        public void OnGet(string Id)
         {
 
         }

@@ -43,7 +43,7 @@ namespace Health_up.Pages.Auth
             {
                 if (_svc.Verify(MyUser))
                 {
-                    return Redirect("/Auth/EmailVerified");
+                    return Redirect("/Auth/ChangePassword");
                 }
                 else
                 {

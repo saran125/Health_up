@@ -83,7 +83,7 @@ namespace Health_up.Pages
                     if (_svc.ResendCode(MyUser))
                     {
                         CookieOptions option = new CookieOptions();
-                        option.Expires = DateTime.Now.AddMinutes(5);
+                        option.Expires = DateTime.Now.AddMinutes(10);
                         Response.Cookies.Append("Email", MyUser.Email, option);
                         return RedirectToPage("/Auth/OTP");
                     }

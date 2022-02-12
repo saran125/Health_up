@@ -27,6 +27,7 @@ namespace Health_up.Pages.admin.Activity
         public string MyMessage { get; set; }
         public IActionResult OnGet(string id)
         {
+           
             if (id != null)
             {
                 Myactivity = _svc.GetActivityById(id);

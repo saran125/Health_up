@@ -202,7 +202,29 @@ namespace Health_up.Services
 
             }
         }
+        public bool ChangePassword(User theuser)
+        {
+            try
+            {
+                if (!UserExists(theuser.Email))
+                {
+                    return false;
+                }
+                else
+                {
+                    User account = GetUserById(theuser.Email);
+                    string salt = BC.GenerateSalt(12);
+                    var password = BC.HashPassword(theuser.Password, salt);
+                   account.Password = password;
+                    return true;
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
 
+            }
+        }
 
         public User Theuser(User existuser)
         {

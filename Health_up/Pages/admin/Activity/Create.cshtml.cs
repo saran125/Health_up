@@ -19,7 +19,6 @@ namespace Health_up.Pages.admin
         public ActivityModel(ActivityService service)
         {
             _svc = service;
-
         }
       
         [BindProperty]
