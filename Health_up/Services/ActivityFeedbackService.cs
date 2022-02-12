@@ -62,10 +62,42 @@ namespace Health_up.Services
             }
 
         }
-        public List<Activity_Feedback> FeedbackbyId(string Id)
+        public bool ReplyFeedback(Activity_Feedback thefeedback)
         {
-            List<Activity_Feedback> AllFeedback = new List<Activity_Feedback>();
-            AllFeedback = _context.Activity_Feedback.Where(e => e.Id == Id).ToList();
+            if (thefeedback == null)
+            {
+                return true;
+            }
+            else
+            {
+                try
+                {
+                    Activity_Feedback Replyfeedback = FeedbackbyId(thefeedback.Id);
+                    Replyfeedback.Reply = thefeedback.Reply;
+                    _context.Attach(Replyfeedback).State = EntityState.Modified;
+                    _context.Update(Replyfeedback);
+               
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!FeedbackExists(thefeedback.Id))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+        }
+        public Activity_Feedback FeedbackbyId(string Id)
+        {
+
+            Activity_Feedback AllFeedback = _context.Activity_Feedback.Where(e => e.Id == Id).FirstOrDefault();
             return AllFeedback;
         }
         public List<Activity_Feedback> FeedbackbyActivityId(string Id)

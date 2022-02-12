@@ -10,9 +10,9 @@ namespace Health_up.Models
     {
         public string Id { get; set; }
 
-       [Required]
+     
         public string Comments { get; set; }
-        [Required]
+     
         public Double Rating{ get; set; }
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
@@ -22,5 +22,6 @@ namespace Health_up.Models
         [DataType(DataType.Upload)]
         public string user_photo { get; set; }
         public string activityname { get; set; }
+        public string Reply { get; set; }
     }
 }

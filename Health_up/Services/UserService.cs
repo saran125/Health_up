@@ -204,7 +204,6 @@ namespace Health_up.Services
                     }
                 }
             }
-
         }
         public bool CheckEmailVerify(string Email)
         {
