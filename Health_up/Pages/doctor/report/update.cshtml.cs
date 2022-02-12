@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Health_up.Services;
 using Health_up.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace Health_up.Pages.doctor.report
 {
@@ -23,11 +25,20 @@ namespace Health_up.Pages.doctor.report
 
         [BindProperty]
         public MedicalReport report { get; set; }
+        [BindProperty]
+        public string docemail { get; set; }
+        public string setid { get; set; }
         public IActionResult OnGet(string id)
         {
             if (id != null)
             {
+                docemail = HttpContext.Session.GetString("Email");
                 report = _svc.GetReportById(id);
+                setid = id;
+                System.Diagnostics.Debug.WriteLine(setid);
+                report.Report_id = setid;
+                System.Diagnostics.Debug.WriteLine(report.Report_id);
+
                 return Page();
             }
             else return RedirectToPage("/doctor/404");
@@ -38,6 +49,9 @@ namespace Health_up.Pages.doctor.report
             {
                 return Page();
             }
+            System.Diagnostics.Debug.WriteLine("ID HERE");
+            System.Diagnostics.Debug.WriteLine(setid);
+            System.Diagnostics.Debug.WriteLine(report.Report_id);
             if (_svc.UpdateReport(report) == true)
             {
                 return RedirectToPage("/doctor/report/view");

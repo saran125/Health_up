@@ -47,9 +47,7 @@
                 <input asp-for="report.Note" class="form-control" placeholder="Additional Note" />
             </div>
             <input type="checkbox" id="doctor_validation" name="doctor_validation" value="false" asp-for="report.Signature" onclick="Change"/>
-            <label for="doctor_validation">I,[doctorname] of [specialisation] in [hospital] approve of this medical report</label><br />
-            <input type="checkbox"  id="mail" name="mail" value="mail" />
-            <label for="mail">Email this medical report to the patient</label>
+            <label for="doctor_validation">I approve of this medical report</label><br />
             <input id="create" type="submit" value="Create Report" class="btn btn-primary float-right" />
             <br />
             <br />
