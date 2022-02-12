@@ -9,14 +9,14 @@
         <div asp-validation-summary="All" class="text-danger"></div>
         <div><label class="text-danger">@Model.msg</label></div>
         <div class="form-group">
-            <label>Elderly Email</label>
-            <input asp-for="report.Elderly_ID" class="form-control" value="@Model.report.Elderly_ID" hidden disabled/>
-            <span asp-validation-for="report.Elderly_ID" class="text-danger"></span>
+            <input type="hidden" asp-for="report.Report_id" class="form-control" value="@Model.setid" />
+            <input asp-for="report.Doctor_ID" class="form-control" value="@Model.docemail" type="hidden" />
         </div>
         <div class="form-group">
-            <label>Doctor Email</label>
-            <input asp-for="report.Doctor_ID" class="form-control" value="@Model.report.Doctor_ID"hidden disabled />
-            <span asp-validation-for="report.Doctor_ID" class="text-danger"></span>
+            <label>Elderly Email</label>
+
+            <input asp-for="report.Elderly_ID" class="form-control" value="@Model.report.Elderly_ID" />
+            <span asp-validation-for="report.Elderly_ID" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label>Date of Report</label>
@@ -48,9 +48,7 @@
             <input asp-for="report.Note" class="form-control" value="@Model.report.Note" />
         </div>
         <input type="checkbox" id="doctor_validation" name="doctor_validation" value="@Model.report.Signature" asp-for="report.Signature" onclick="Change" />
-        <label for="doctor_validation">I,[doctorname] of [specialisation] in [hospital] approve of this medical report</label><br />
-        <input type="checkbox" id="mail" name="mail" value="mail" />
-        <label for="mail">Email this medical report to the patient</label>
+        <label for="doctor_validation">I approve of this medical report</label><br />
         <input id="create" type="submit" value="Update Report" class="btn btn-primary float-right" />
         <br />
         <br />

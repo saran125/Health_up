@@ -6,6 +6,7 @@ using Health_up.Services;
 using Health_up.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Http;
 
 namespace Health_up.Pages.admin
 {
@@ -21,6 +22,10 @@ namespace Health_up.Pages.admin
 
         public IActionResult OnGet(string id)
         {
+            if (HttpContext.Session.GetString("Role") != "admin")
+            {
+                return Redirect("/forbidden");
+            }
             if (id == null)
             {
                 return NotFound();

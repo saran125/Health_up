@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -29,10 +30,19 @@ namespace HealthUP.Pages.elderly.booking
         public Booking MyBooking { get; set; }
         [BindProperty]
         public string MyMessage { get; set; }
-        public void OnGet()
-        {
-            allbookings = _svc.GetAllBookings();
+       
 
+        public IActionResult OnGet()
+        {
+            if (HttpContext.Session.GetString("Role") == "elderly")
+            {
+                allbookings = _svc.GetAllBookings();
+                return Page();
+            }
+            else
+            {
+                return Redirect("/forbidden");
+            }
 
         }
         //public IActionResult OnPost()

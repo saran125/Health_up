@@ -18,10 +18,7 @@ namespace Health_up.Services
 
         public bool AddBooking(Booking newbooking)
         {
-            if (BookingExists(newbooking.Id))
-            {
-                return false;
-            }
+            newbooking.Id = Guid.NewGuid().ToString();
             _context.Add(newbooking);
             _context.SaveChanges();
             return true;
@@ -30,6 +27,12 @@ namespace Health_up.Services
         {
             List<Booking> AllBookings = new List<Booking>();
             AllBookings = _context.Bookings.ToList();
+            return AllBookings;
+        }
+        public List<Booking> GetByActivityBookings(string Id)
+        {
+            List<Booking> AllBookings = new List<Booking>();
+            AllBookings = _context.Bookings.Where(e => e.activity_id == Id).ToList();
             return AllBookings;
         }
 
@@ -104,6 +107,13 @@ namespace Health_up.Services
                 }
             }
             return deleted;
+
+        }
+        public List<Booking> GetBookingByEmail(String email)
+        {
+            List<Booking> BookingByEmail = new List<Booking>();
+            BookingByEmail = _context.Bookings.Where(e => e.elderly_id == email).ToList();
+            return BookingByEmail;
 
         }
     }

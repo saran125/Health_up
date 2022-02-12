@@ -8,7 +8,7 @@ namespace Health_up.Models
 {
     public class Booking
     {
-        [Required]
+       
         public string Id { get; set; }
 
         [Required]
@@ -25,6 +25,10 @@ namespace Health_up.Models
 
         [Required]
         public double ActivityPrice { get; set; }
+        public string elderly_id { get; set; }
+
+        public string admin_id { get; set; }
+        public string activity_id { get; set; }
 
 
 

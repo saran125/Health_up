@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Health_up.Models;
 using Health_up.Services;
 using crypto;
+using Microsoft.AspNetCore.Http;
 
 namespace Health_up.Pages.admin
 {
@@ -18,15 +19,21 @@ namespace Health_up.Pages.admin
         public ActivityModel(ActivityService service)
         {
             _svc = service;
-
         }
       
         [BindProperty]
         public string MyMessage { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-           
+            if (HttpContext.Session.GetString("Role") == "admin")
+            {
+                return Page();
+            }
+            else
+            {
+                return Redirect("/forbidden");
+            }
         }
         public IActionResult OnPost()
         {

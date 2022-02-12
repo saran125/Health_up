@@ -21,8 +21,9 @@ namespace Health_up.Pages.doctor.timeslot
         }
         [BindProperty]
         public DoctorTimeslot DocTimeslot { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return Page();
         }
         public IActionResult OnPost()
         {

@@ -12,7 +12,7 @@ namespace Health_up.Pages.Auth
         public IActionResult OnGet()
         {
                 HttpContext.Session.Clear();
-                Response.Cookies.Delete("AuthToken");
+                Response.Cookies.Delete("Email");
                 return RedirectToPage("/Index");
             
            

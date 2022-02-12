@@ -65,6 +65,7 @@ namespace Health_up.Services
             {
                 try
                 {
+                    
                     _context.Remove(theactivity);
                     _context.SaveChanges();
                     return true;
@@ -87,6 +88,11 @@ namespace Health_up.Services
         {
             Activity theActivity = _context.Activitys.Where(e => e.Id == id).FirstOrDefault();
             return theActivity;
+        }
+        public string GetActivityName(string Id)
+        {
+            Activity theActivity = _context.Activitys.Where(e => e.Id == Id).FirstOrDefault();
+            return theActivity.Activity_name;
         }
         public int CurrentActivity()
         {
@@ -112,7 +118,7 @@ namespace Health_up.Services
             foreach (var e in AllActivity)
             {
                 var time = (e.Activity_start_date - DateTime.Now).Days;
-                if (time >= 0)
+                if (time > 0)
                 {
                     current += 1;
                 }
@@ -163,7 +169,7 @@ namespace Health_up.Services
             foreach (var e in AllActivity)
             {
                 var time = (e.Activity_start_date - DateTime.Now).Days;
-                if (time >= 0)
+                if (time > 0)
                 {
                     AllUpcomingActivity.Add(e);
                 }
@@ -197,13 +203,13 @@ namespace Health_up.Services
             foreach (var e in AllActivity)
             {
                 var endtime = (e.Activity_end_date - DateTime.Now).Days;
-                if (endtime >= 0)
+                if (endtime > 0)
                 {
                     AllPastActivity.Add(e);
                 }
 
             }
-            return AllActivity;
+            return AllPastActivity;
         }
 
     }

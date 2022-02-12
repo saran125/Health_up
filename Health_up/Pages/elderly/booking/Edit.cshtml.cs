@@ -14,16 +14,21 @@ namespace HealthUP.Pages.elderly.booking
     {
         private readonly ILogger<EditModel> _logger;
         private BookingService _svc;
-        public EditModel(ILogger<EditModel> logger, BookingService service)
+        private ActivityService _actsv;
+        public EditModel(ILogger<EditModel> logger, BookingService service, ActivityService service1)
         {
             _logger = logger;
             _svc = service;
+            _actsv = service1;
         }
 
         [BindProperty]
         public Booking MyBooking { get; set; }
         [BindProperty]
         public string MyMessage { get; set; }
+
+        [BindProperty]
+        public Activity activitydetails { get; set; }
         //public DateTime AvailableDate { get; set; }
 
         public IActionResult OnGet(string id)
@@ -31,6 +36,7 @@ namespace HealthUP.Pages.elderly.booking
             if (id != null)
             {
                 MyBooking = _svc.GetBookingById(id);
+                activitydetails = _actsv.GetActivityById(MyBooking.activity_id);
 
                 return Page();
             }
@@ -39,12 +45,15 @@ namespace HealthUP.Pages.elderly.booking
 
         }
 
+
+
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+            activitydetails = _actsv.GetActivityById(MyBooking.activity_id);
 
             if (_svc.UpdateBooking(MyBooking) == true)
             {
@@ -54,6 +63,7 @@ namespace HealthUP.Pages.elderly.booking
             else
                 return BadRequest();
         }
+
 
     }
 }

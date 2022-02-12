@@ -1,5 +1,6 @@
 ﻿@page
 @model HealthUP.Pages.RegisterModel
+@using AspNetCore.ReCaptcha
 @{
 }
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -111,6 +112,8 @@
                             </div>
                             <input id="registerElderly" type="submit" class="btnRegister" value="Register" />
                         </div>
+                        @Html.ReCaptcha()
+                        <recaptcha />
                     </form>
                 </div>
                 <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -204,6 +207,7 @@
 
                             <input id="registerDoctor" type="submit" class="btnRegister" value="Register" />
                         </div>
+
                     </form>
                 </div>
             </div>

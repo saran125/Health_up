@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Health_up.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Health_up.Pages.admin.Activity
 {
@@ -25,9 +26,14 @@ namespace Health_up.Pages.admin.Activity
         }
         public string ID { get; set; }
         public Models.Activity Myactivity { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (HttpContext.Session.GetString("Role") != "admin")
+            {
+                return Redirect("/forbidden");
+            }
             allactivity = _svc.AllCurrentActivity();
+            return Page();
         }
         public IActionResult OnPost()
         {
