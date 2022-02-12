@@ -36,7 +36,7 @@ namespace Health_up.Pages.admin.Users
             Allbookings = _bookingsvc.GetByActivityBookings(Id);
             foreach(var i in Allbookings)
             {
-                alluser.Add(_Usersvc.GetUserById(i.Elderly_Id));
+                alluser.Add(_Usersvc.GetUserById(i.elderly_id));
             }
           
 

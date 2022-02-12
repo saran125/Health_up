@@ -18,10 +18,7 @@ namespace Health_up.Services
 
         public bool AddBooking(Booking newbooking)
         {
-            if (BookingExists(newbooking.Id))
-            {
-                return false;
-            }
+            newbooking.Id = Guid.NewGuid().ToString();
             _context.Add(newbooking);
             _context.SaveChanges();
             return true;
