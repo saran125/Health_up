@@ -1,8 +1,7 @@
-﻿@page 
+﻿@page
+
 @model HealthUP.Pages.loginModel
-@{
-    ViewData["Title"] = "login";
-}
+@{ ViewData["Title"] = "login"; }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,18 +38,19 @@
                     <span class="login100-form-title">
                         Member Login
                     </span>
-
+                    <span asp-validation-for="MyUser.Email" class="text-danger"></span>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        
+
                         <input asp-for="MyUser.Email" class="input100" type="email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
-
+                    <span asp-validation-for="MyUser.Password" class="text-danger"></span>
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input asp-for="MyUser.Password" class="input100" type="password" placeholder="Password" >
+
+                        <input asp-for="MyUser.Password" class="input100" type="password" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
@@ -105,3 +105,6 @@
 
 </body>
 </html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

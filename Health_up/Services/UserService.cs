@@ -123,11 +123,16 @@ namespace Health_up.Services
                     //  return true;
 
                     User account = GetUserById(existuser.Email);
-                    account.Verify = true;
-                    _context.Attach(account).State = EntityState.Modified;
-                    _context.Update(account);
-                    _context.SaveChanges();
-                    return true;
+                    if (account.OTP == existuser.OTP)
+                    {
+                        account.Verify = true;
+                        _context.Attach(account).State = EntityState.Modified;
+                        _context.Update(account);
+                        _context.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
 
 
                 }
@@ -140,6 +145,7 @@ namespace Health_up.Services
 
 
         }
+
         public bool ResendCode(User existuser)
         {
             try
@@ -153,6 +159,7 @@ namespace Health_up.Services
                     //  return true;
 
                     User account = GetUserById(existuser.Email);
+                  
                     account.OTP = existuser.OTP;
                     account.OTPTime = existuser.OTPTime;
                     _context.Attach(account).State = EntityState.Modified;
@@ -168,8 +175,6 @@ namespace Health_up.Services
                 throw;
 
             }
-
-
         }
         public bool CheckEmailVerify(string Email)
         {
@@ -210,6 +215,10 @@ namespace Health_up.Services
             return theuser;
         }
         private bool UserExists(string email)
+        {
+            return _context.Users.Any(e => e.Email == email);
+        }
+        public bool UserExist(string email)
         {
             return _context.Users.Any(e => e.Email == email);
         }

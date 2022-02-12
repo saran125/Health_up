@@ -34,4 +34,5 @@ namespace Health_up.Models
         public string location { get; set; }
 
     }
+   
 }

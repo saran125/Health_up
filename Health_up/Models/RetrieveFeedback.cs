@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace Health_up.Models
 {
-    public class Activity_Feedback
+    public class RetrieveFeedback
     {
         public string Id { get; set; }
-
-       [Required]
         public string Comments { get; set; }
-        [Required]
-        public Double Rating{ get; set; }
+        public double Rating{ get; set; }
+
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        public string user_id { get; set; }
-        public string activity_id { get; set; }
         public string username { get; set; }
         [DataType(DataType.Upload)]
         public string user_photo { get; set; }
