@@ -33,7 +33,7 @@ namespace Health_up.Pages.elderly.appointment
 
         public void OnGet()
         {
-            appointmentsByEmail = _svc.GetAppointmentByEmail(HttpContext.Session.GetString("Email"));
+            //appointmentsByEmail = _svc.GetAppointmentByEmail(HttpContext.Session.GetString("Email"));
 
         }
     }
