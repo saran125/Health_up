@@ -25,7 +25,13 @@ namespace Health_up.Models
 
         [Required]
         public double ActivityPrice { get; set; }
-        public string Elderly_Id { get; set; }
+
+        public string elderly_id { get; set; }
+
+        public string admin_id { get; set; }
+
+        public string activity_id { get; set; }
+
 
 
 
