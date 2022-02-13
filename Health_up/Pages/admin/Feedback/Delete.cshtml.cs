@@ -28,7 +28,7 @@ namespace Health_up.Pages.admin.Feedback
         public string MyMessage { get; set; }
         public IActionResult OnGet(string id)
         {
-            if (HttpContext.Session.GetString("Role") != "admin")
+            if (HttpContext.Session.GetString("Role") == null)
             {
                 return Redirect("/forbidden");
             }
@@ -38,10 +38,23 @@ namespace Health_up.Pages.admin.Feedback
                 Myfeedback = _svc.FeedbackbyId(id);
 
             }
+            if (!_svc.FeedbackExists(id))
+            {
+                return Redirect("/BadRequest");
+            }
             Myfeedback = _svc.FeedbackbyId(id);
+            
             if (_svc.DeleteFeedback(Myfeedback))
             {
-                return Redirect("/admin/Activity/Feedback?Id=" + Myfeedback.activity_id);
+                if (HttpContext.Session.GetString("Role") == "admin")
+                {
+                    return Redirect("/admin/Activity/Feedback?Id=" + Myfeedback.activity_id);
+                }
+                if (HttpContext.Session.GetString("Role") == "elderly")
+                {
+                    return Redirect("/elderly/booking/Feedback?Id=" + Myfeedback.activity_id);
+                }
+                return Page();
             }
             else
             {
