@@ -410,7 +410,8 @@
                                 <a href="#">@item.Email</a>
                             </td>
                             <td style="width: 20%;">
-                               
+                               @{ if (item.Role != "admin")
+                                   {
                                 <a asp-page="/admin/Users/Email" asp-route-id="@item.Email" class="table-link">
                                     <span class="fa-stack">
                       
@@ -423,6 +424,8 @@
                                         <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
+                                       }
+                                   }
                             </td>
                         </tr>
                             }
