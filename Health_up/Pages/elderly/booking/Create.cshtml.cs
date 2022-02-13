@@ -39,6 +39,7 @@ namespace HealthUP.Pages.elderly.booking
         public string MyMessage { get; set; }
         [BindProperty]
         public Activity activitydetails { get; set; }
+        public List<DateTime> Dates { get; set; }
 
         
 
@@ -47,6 +48,24 @@ namespace HealthUP.Pages.elderly.booking
             if (HttpContext.Session.GetString("Role") == "elderly")
             {
                 activitydetails = _actsv.GetActivityById(Id);
+                var dates = new List<DateTime>();
+                var time = (activitydetails.Activity_start_date - DateTime.Now).Days;
+                if (time < 0)
+                {
+
+                    for (var dt = DateTime.Now; dt == activitydetails.Activity_end_date; dt = dt.AddDays(1))
+                    {
+                        dates.Add(dt);
+                    }
+                }
+                else
+                {
+                    for (var dt = activitydetails.Activity_start_date; dt == activitydetails.Activity_end_date; dt = dt.AddDays(1))
+                    {
+                        dates.Add(dt);
+                    }
+                }
+                Dates = dates;
                 return Page();
             }
             else
