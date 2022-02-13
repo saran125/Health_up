@@ -35,8 +35,8 @@ namespace HealthUP.Pages.elderly.booking
 
         public IActionResult OnGet(string Id)
         {
-            
 
+            
             if (HttpContext.Session.GetString("Role") == "elderly")
             {               
                 allbookings = _svc.GetAllBookings();
