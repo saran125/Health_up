@@ -18,25 +18,29 @@ namespace HealthUP.Pages.elderly.booking
 
         private readonly ILogger<RetrieveModel> _logger;
 
-
         private readonly BookingService _svc;
+     
         public RetrieveModel(ILogger<RetrieveModel> logger, BookingService service)
         {
             _logger = logger;
 
             _svc = service;
+
+           
         }
         [BindProperty]
         public Booking MyBooking { get; set; }
         [BindProperty]
         public string MyMessage { get; set; }
-       
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(string Id)
         {
+            
+
             if (HttpContext.Session.GetString("Role") == "elderly")
-            {
+            {               
                 allbookings = _svc.GetAllBookings();
+                
                 return Page();
             }
             else

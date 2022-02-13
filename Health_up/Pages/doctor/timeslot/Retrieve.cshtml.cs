@@ -15,22 +15,26 @@ namespace Health_up.Pages.doctor.timeslot
     {
         [BindProperty]
         public List<DoctorTimeslot> timeslotsByEmail { get; set; }
+        public List<Appointment> appointmentByEmail { get; set; }
 
         private readonly ILogger<RetrieveModel> _logger;
 
 
         private readonly DoctorTimeslotService _svc;
-        public RetrieveModel(ILogger<RetrieveModel> logger, DoctorTimeslotService service)
+        private readonly AppointmentService _asvc;
+        public RetrieveModel(ILogger<RetrieveModel> logger, DoctorTimeslotService service, AppointmentService appointmentService)
         {
             _logger = logger;
 
             _svc = service;
+
+            _asvc = appointmentService;
         }
 
         public void OnGet()
         {
             timeslotsByEmail = _svc.GetTimeslotsByEmail(HttpContext.Session.GetString("Email"));
-
+            appointmentByEmail = _asvc.GetAppointmentByDocEmail(HttpContext.Session.GetString("Email"));
         }
     }
 }

@@ -10,7 +10,7 @@
 <table class="table">
     <thead>
         <tr>
-
+            <th>Activity Name</th>
             <th>Date</th>
             <th>Timeslot</th>
             <th>Location</th>
@@ -23,10 +23,8 @@
             {
                 @foreach (var item in Model.allbookings)
                 {
-
-
                     <tr>
-
+                        
                         <td>@item.Date.ToShortDateString()</td>
                         <td>@item.TimeSlot</td>
                         <td>@item.Location</td>
