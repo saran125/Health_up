@@ -4,6 +4,7 @@
     ViewData["Title"] = "Retrieve";
 
 }
+@using Microsoft.AspNetCore.Http;
 <h1>Upcoming Bookings</h1>
 <br />
 
@@ -21,22 +22,25 @@
     <tbody>
         @{ if (Model.allbookings != null)
             {
-                @foreach (var item in Model.allbookings)
-                {
-                    <tr>
-                        
-                        <td>@item.Date.ToShortDateString()</td>
-                        <td>@item.TimeSlot</td>
-                        <td>@item.Location</td>
-                        <td>@item.ActivityPrice</td>
-                        <td>
-                            <a class="btn btn-primary" asp-page="/elderly/booking/Edit" asp-route-id="@item.Id">Reschedule</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel your booking? No refund will be made.');" asp-page="/elderly/booking/Delete" asp-route-id="@item.Id">Cancel</a>
-                        </td>
-                    </tr>
-                }
+                @foreach (var item in Model.allbookings) { 
+                   @if (HttpContext.Session.GetString("Email") == item.elderly_id)
+                        {
+                            <tr>
+
+                                <td>@item.Date.ToShortDateString()</td>
+                                <td>@item.TimeSlot</td>
+                                <td>@item.Location</td>
+                                <td>@item.ActivityPrice</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-page="/elderly/booking/Edit" asp-route-id="@item.Id">Reschedule</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel your booking? No refund will be made.');" asp-page="/elderly/booking/Delete" asp-route-id="@item.Id">Cancel</a>
+                                </td>
+                            </tr>
+                        }
+                
+            }
             }
 
         }
