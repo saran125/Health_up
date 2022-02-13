@@ -2,15 +2,16 @@
 @model Health_up.Pages.doctor.indexModel
 @{
 }
+@using Microsoft.AspNetCore.Http;
 <h2>Upcoming Appointments</h2>
-<table class="table table-hover">
+<table class="table table-hover mt-5">
     <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
             <th scope="col">Contact Number</th>
-            <th scope="col">Reports</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +28,31 @@
                                 <td>@item.AvailableDate.ToShortDateString()</td>
                                 <td>@item.AvailableTimeslot</td>
                                 <td>@people.Phone</td>
-                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-name="@people.Fname @people.Lname" data-email="@people.Email" data-phone="@people.Phone" data-date="@item.AvailableDate.ToShortDateString()" data-time="@item.AvailableTimeslot" data-sym="@item.Symptoms">View Details</button></td>
+                                <td>
+                                    <button type="button" id="myArrBtn" class="btn btn-success" onclick="myArr()">Arrival</button>
+                                    <button type="button" class="btn btn-primary" onclick="myDetail()">View More</button>
+                                </td>
+                            </tr>
+                            <tr id="detail" style="display:none;">
+                                <td>
+                                    <h6 class="mt-2">Email:</h6>
+                                    <p class="mb-3">@people.Email</p>
+                                    <h6 class="mt-2">Gender:</h6>
+                                    <p class="mb-3">@people.Gender</p>
+                                    <h6>Symptoms:</h6>
+                                    <p class="mb-3">@item.Symptoms</p>
+                                    <h6>Location:</h6>
+                                    <iframe width="600"
+                                            height="450"
+                                            style="border:0"
+                                            loading="lazy"
+                                            allowfullscreen
+                                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDVgl9LUoEg-1sgLTQO_6plCheXeWAmFKg&q=@people.PostalCode">
+                                    </iframe>
+                                    <form runat="server" method="post">
+                                        <button type="submit" id="myReportBtn" class="btn btn-primary mt-3" style="display:none;">Create Report</button>
+                                    </form>
+                                </td>
                             </tr>
                         }
                     }
@@ -37,97 +62,19 @@
     </tbody>
 </table>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Patient's Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">
-                        &times;
-                    </span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table>
-                    <tr>
-                        <td><h6 style="white-space:pre;">Name:</h6>Rudy Tan</td>
-                    </tr>
-                    <tr>
-                        <td><h6 style="white-space:pre;">Email:</h6>altmile@gmail.com</td>
-                        <td><h6 style="white-space:pre;">ContactNum:</h6>98765432</td>
-                    </tr>
-                    <tr>
-                        <td><h6 style="white-space:pre;">Date:</h6>1/10/2023</td>
-                        <td><h6 style="white-space:pre;">Time:</h6>11:03am</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2">aaaaaaaagooglemapsapi</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <form runat="server" method="post">
-                    <button type="submit" class="btn btn-primary">Create Report</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle2">Patient's Details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">
-                        &times;
-                    </span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table>
-                    <tr>
-                        <td><h6 style="white-space:pre;">Name:</h6><p class="name"></p></td>
-                    </tr>
-                    <tr>
-                        <td><h6 style="white-space:pre;">Email:</h6><p class="email"></p></td>
-                        <td><h6 style="white-space:pre;">Contact Number:</h6><p class="num"></p></td>
-                    </tr>
-                    <tr>
-                        <td><h6 style="white-space:pre;">Date:</h6><p class="date"></p></td>
-                        <td><h6 style="white-space:pre;">Time:</h6><p class="time"></p></td>
-                    </tr>
-                    <tr>
-                        <td><h6 style="white-space:pre;">Symptoms:</h6><p class="sym"></p></td>
-                    </tr>
-                </table>
-                </div>
-            <div class="modal-footer">
-                <form runat="server" method="post">
-                    <button type="submit" class="btn btn-primary">Create Report</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
-    $('#exampleModalCenter').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('name')
-        var recipientEmail = button.data('email')
-        var recipientPhone = button.data('phone')
-        var recipientDate = button.data('date')
-        var recipientTime = button.data('time')
-        var recipientSym = button.data('sym')
-
-        var modal = $(this)
-        modal.find('.name').text(recipient)
-        modal.find('.email').text(recipientEmail)
-        modal.find('.phone').text(recipientPhone)
-        modal.find('.date').text(recipientDate)
-        modal.find('.time').text(recipientTime)
-        modal.find('.sym').text(recipientSym)
-    })
+    function myDetail() {
+        var x = document.getElementById("detail");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    function myArr() {
+        document.getElementById("myArrBtn").className = "btn btn-secondary";
+        document.getElementById("myArrBtn").innerHTML = "Arrived";
+        document.getElementById("myArrBtn").disabled = true;
+        document.getElementById("myReportBtn").style.display = "block";
+    }
 </script>
