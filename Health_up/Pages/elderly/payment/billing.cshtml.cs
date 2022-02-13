@@ -29,7 +29,7 @@ namespace HealthUP.Pages.payment
         public MedicalReport report { get; set; }
         public void OnGet()
         {
-            HttpContext.Session.SetString("paymetn", null);
+           
             string email = HttpContext.Session.GetString("Email");
             List<MedicalReport> docappts = _svc.GetAllReports().Where(e => e.Doctor_ID == email).ToList();
         }

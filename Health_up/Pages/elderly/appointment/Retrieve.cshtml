@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Retrieve";
 }
-@using Microsoft.AspNetCore.Http;
 <style>
     .btn {
         width: 116px;
@@ -11,13 +10,7 @@
 </style>
 <h1>Upcoming Appointments</h1>
 <br />
-@{
-    if (HttpContext.Session.GetString("paymetn") != null)
-    {
-        <a asp-page="/elderly/payment/billing" class="btn btn-warning" style="color:white;">You have payment due</a>
 
-    }
-}
 
 <div class="card-deck">
     @{ if (Model.appointmentsByEmail != null)

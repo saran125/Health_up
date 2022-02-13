@@ -42,7 +42,7 @@ namespace Health_up.Pages.doctor
             }
 
             */
-            appointmentByEmail = _svc.GetAppointmentByDocEmail(HttpContext.Session.GetString("Email"));
+            appointmentByEmail = _svc.GetAllAppointments();
             userInfo = _usvc.GetAllUsers();
 
         }
