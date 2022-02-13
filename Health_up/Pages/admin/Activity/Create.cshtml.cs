@@ -8,6 +8,7 @@ using Health_up.Models;
 using Health_up.Services;
 using crypto;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Health_up.Pages.admin
 {
@@ -23,6 +24,8 @@ namespace Health_up.Pages.admin
       
         [BindProperty]
         public string MyMessage { get; set; }
+        [BindProperty]
+        public byte[] Image { get; set; }
 
         public IActionResult OnGet()
         {
@@ -39,6 +42,15 @@ namespace Health_up.Pages.admin
         {
             if (ModelState.IsValid)
             {
+                foreach (var file in Request.Form.Files)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    file.CopyTo(ms);
+                    Image = ms.ToArray();
+                    Myactivity.Activity_photo = Convert.ToBase64String(Image);
+                    ms.Close();
+                    ms.Dispose();
+                }
                 if (_svc.AddActivity(Myactivity))
                 {
                     return RedirectToPage("/admin/Activity/View");

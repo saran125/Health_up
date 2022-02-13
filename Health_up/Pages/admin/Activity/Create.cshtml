@@ -14,7 +14,7 @@
 
     <h1>Adding Activity</h1>
     <div asp-validation-summary="All" class="text-danger"></div>
-    <form accept-charset="UTF-8" method="POST">
+    <form accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
         <div class="form-group">
             <label for="name">Activity Name</label>
             <input type="text" class="form-control" asp-for="Myactivity.Activity_name" placeholder="Enter Activity Name" required="required">
@@ -60,7 +60,7 @@
         <hr>
         <div class="form-group mt-3">
             <label class="mr-2">Upload The Activity Image:</label>
-            <input type="file" asp-for="Myactivity.Activity_photo">
+            <input type="file" asp-for="Image" >
         </div>
         <hr>
         <button type="submit" class="btn btn-success float-right">Submit</button>

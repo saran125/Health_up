@@ -89,10 +89,8 @@
 
                             <!-- Add a style="height: XYZpx" to div.card to limit the card height and display scrollbar instead -->
                             <div class="card card-custom bg-white border-white border-0" style="height: 450px">
-                                <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
-                                <div class="card-custom-avatar">
-                                    <img class="img-fluid" src="~/Photos/@item.Activity_photo" alt="Avatar" />
-                                </div>
+                                <div class="card-custom-img" style="background-image: url(@string.Format("data:image/jpg;base64,{0}", item.Activity_photo));"></div>
+                               
                                 <div class="card-body" style="overflow-y: auto">
                                     <h4 class="card-title">@item.Activity_name</h4>
                                     <p class="card-text"><strong>Description:</strong> @item.Activity_description</p>

@@ -48,6 +48,7 @@ namespace Health_up.Pages.Auth
                 else
                 {
                     MyMessage = "Invalid Code!";
+                    Email = Request.Cookies["Email"];
                     return Page();
                 }
 
