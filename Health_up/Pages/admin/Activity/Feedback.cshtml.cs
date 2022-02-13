@@ -47,6 +47,10 @@ namespace Health_up.Pages.admin.Activity
             {
                 return Redirect("/NotFound");
             }
+            if (!_Activitysvc.ActivityExists(Id))
+            {
+                return Redirect("/BadRequest");
+            }
             name = _Activitysvc.GetActivityName(Id);
             ID = Id;
             allfeedback = _svc.FeedbackbyActivityId(Id);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Health_up.Models;
 using Health_up.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -35,9 +36,20 @@ namespace Health_up.Pages.admin.Users
         [BindProperty]
         public Models.User theuser { get; set; }
 
-        public void OnGet(String Id)
+        public IActionResult OnGet(String Id)
         {
-
+            if (HttpContext.Session.GetString("Role") != "admin")
+            {
+                return Redirect("/forbidden");
+            }
+            if (Id == null)
+            {
+                return Redirect("/NotFound");
+            }
+            if (!_svc.ActivityExists(Id))
+            {
+                return Redirect("/BadRequest");
+            }
             List<User> AllTheUser = new List<User>();
             theactivity = _svc.GetActivityById(Id);
             Allbookings = _bookingsvc.GetByActivityBookings(Id);
@@ -50,7 +62,9 @@ namespace Health_up.Pages.admin.Users
                 AllTheUser.Add(theuser);
               
             }
+            
             alluser = AllTheUser;
+            return Page();
             
         }
     }

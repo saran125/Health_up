@@ -28,6 +28,10 @@ namespace Health_up.Pages.elderly
         public Models.Activity Myactivity { get; set; }
         public IActionResult OnGet()
         {
+            if (HttpContext.Session.GetString("Role") != "elderly")
+            {
+                return Redirect("/forbidden");
+            }
             theuser = _svc.GetUserById(@HttpContext.Session.GetString("Email"));
             return Page();
         }

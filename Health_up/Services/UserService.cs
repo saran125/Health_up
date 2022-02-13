@@ -21,16 +21,6 @@ namespace Health_up.Services
 
         }
 
-        private static string CreateSalt(int size)
-        {
-            //Generate a cryptographic random number.
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            byte[] buff = new byte[size];
-            rng.GetBytes(buff);
-
-            // Return a Base64 string representation of the random number.
-            return Convert.ToBase64String(buff);
-        }
         public bool Register(User newuser)
         {
             newuser.Email.ToLower();
@@ -188,6 +178,16 @@ namespace Health_up.Services
                 {
 
                     User account = GetUserById(Email);
+                    foreach(var i in _context.Bookings.Where(e => e.elderly_id == Email).ToList())
+                    {
+                        _context.Remove(i);
+                        _context.SaveChanges();
+                    }
+                    foreach (var i in _context.Activity_Feedback.Where(e => e.user_id == Email).ToList())
+                    {
+                        _context.Remove(i);
+                        _context.SaveChanges();
+                    }
                     _context.Remove(account);
                     _context.SaveChanges();
                     return true;

@@ -132,7 +132,7 @@
                                                                     <i class="fas fa-user"></i>
                                                                 </a>
                                                                 <a asp-page="/doctor/report/view">
-                                                                    Reports                                                                
+                                                                    Reports
                                                                     <i class="fas fa-calendar-alt"></i>
 
                                                                 </a>
@@ -148,6 +148,9 @@
                                                 }
                                                 if (Context.Session.GetString("Role") == "admin")
                                                 {
+                                                    <li class="nav-item">
+                                                        <a class="page-scroll" asp-page="/admin/Index">Home</a>
+                                                    </li>
                                                     <li class="nav-item">
                                                         <a class="page-scroll" asp-page="/admin/Users/users">Users</a>
                                                     </li>

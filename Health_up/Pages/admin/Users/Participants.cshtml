@@ -370,10 +370,13 @@
                 <div class="table-responsive">
                     @{ if (Model.alluser.Count == 0)
                         {
-                            <h1>No Participants for this Activity</h1>}
+                            <h1>No Participants for this Activity</h1>
+                            <a asp-page="/admin/Users/Email-Everyone" asp-route-id="@Model.theactivity.Id" class="btn btn-outline-primary pull-center">Promote This Activity</a>
+                            }
+                           
                         else
                         {
-
+                            <a asp-page="/admin/Users/Email-Participants" asp-route-id="@Model.theactivity.Id" class="btn btn-outline-primary pull-right">Email Participants</a>
                             <table class="table user-list">
                                 <thead>
                                     <tr>
@@ -421,7 +424,7 @@
                                                 </a>
                                             </td>
                                         </tr>
-}
+                                    }
 
                                 </tbody>
                             </table>

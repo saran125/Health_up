@@ -32,6 +32,10 @@ namespace Health_up.Pages.admin.Activity
             {
                 return Redirect("/forbidden");
             }
+            if (!_svc.ActivityExists(id))
+            {
+                return Redirect("/BadRequest");
+            }
             if (id != null)
             {
                 Myactivity = _svc.GetActivityById(id);

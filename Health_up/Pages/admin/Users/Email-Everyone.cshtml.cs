@@ -4,66 +4,64 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Health_up.Models;
 using Health_up.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Health_up.Pages.admin.Activity
+namespace Health_up.Pages.admin.Users
 {
-    public class ReplyModel : PageModel
+    public class Email_EveryoneModel : PageModel
     {
-        [BindProperty]
-        public List<Models.Activity_Feedback> allfeedback { get; set; }
-
-        private readonly ILogger<ReplyModel> _logger;
-
-        private ActivityFeedbackService _svc;
-        private ActivityService _Activitysvc;
+        private readonly ILogger<Email_EveryoneModel> _logger;
         private UserService _Usersvc;
-        public ReplyModel(ILogger<ReplyModel> logger, ActivityFeedbackService service, ActivityService activityService, UserService userService)
+        private ActivityService _svc;
+        private BookingService _booking;
+        public Email_EveryoneModel(ILogger<Email_EveryoneModel> logger, ActivityService service, UserService service1, BookingService booking)
         {
             _logger = logger;
+            _Usersvc = service1;
             _svc = service;
-            _Activitysvc = activityService;
-            _Usersvc = userService;
+            _booking = booking;
         }
         [BindProperty]
-        public string ID { get; set; }
-        public string name { get; set; }
+        public User theuser { get; set; }
         [BindProperty]
-        public Models.Activity_Feedback Myfeedback { get; set; }
+        public Health_up.Models.Activity theactivity { get; set; }
         [BindProperty]
-        public List<Models.RetrieveFeedback> thefeedback { get; set; }
+        public string subject { get; set; }
         [BindProperty]
-        public Models.RetrieveFeedback feedback { get; set; }
+        public string message { get; set; }
         [BindProperty]
-
-        public string Subject { get; set; }
+        public string email { get; set; }
         public IActionResult OnGet(string Id)
         {
             if (HttpContext.Session.GetString("Role") == "admin")
             {
-                if (!_svc.FeedbackExists(Id))
+                if (!_svc.ActivityExists(Id))
                 {
                     return Redirect("/BadRequest");
                 }
-                Myfeedback = _svc.FeedbackbyId(Id);
-
-                return Page();
-
+                theactivity = _svc.GetActivityById(Id);
+                foreach (var i in _Usersvc.GetTheElderly())
+                {
+                    email = i.Email;
+                    message = "Dear " + i.Fname + " " + i.Lname + ", We have an Interesting Activity For You to take part!" +" The activity is " + theactivity.Activity_name+ ". It is from " + theactivity.Activity_start_date.ToShortDateString() + " to " +theactivity.Activity_end_date.ToShortDateString() + ". The time is " + theactivity.Activity_timeslot+". For more details, visit our website!" ;
+                    subject = "Interesting Activtiy";
+                    Execute(email, message, subject).Wait();
+                }
+                return Redirect("/admin/Activity/Success");
             }
-           
             else
             {
                 return Redirect("/forbidden");
             }
-
         }
         public static async Task Execute(string Email, string Message, string subject)
         {
-           
+
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
@@ -86,26 +84,5 @@ namespace Health_up.Pages.admin.Activity
             }
 
         }
-
-        public IActionResult OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                if (_svc.ReplyFeedback(Myfeedback))
-                {
-                        Execute(Myfeedback.user_id, Myfeedback.Reply   ,Subject).Wait();
-                    return Redirect("/admin/Activity/Success");
-                }
-                else
-                {
-                 
-                    return Page();
-                }
-            }
-
-            return Page();
-        }
-
-
     }
 }

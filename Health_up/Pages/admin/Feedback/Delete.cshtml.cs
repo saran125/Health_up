@@ -34,6 +34,7 @@ namespace Health_up.Pages.admin.Feedback
             }
             if (id != null)
             {
+
                 Myfeedback = _svc.FeedbackbyId(id);
 
             }

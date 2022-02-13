@@ -22,7 +22,7 @@ namespace Health_up.Services
             _context.SaveChanges();
             return true;
         }
-        private bool ActivityExists(string id)
+        public bool ActivityExists(string id)
         {
             return _context.Activitys.Any(e => e.Id == id);
         }

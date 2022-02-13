@@ -23,7 +23,7 @@ namespace Health_up.Services
             _context.SaveChanges();
             return true;
         }
-        private bool FeedbackExists(string id)
+        public bool FeedbackExists(string id)
         {
             return _context.Activity_Feedback.Any(e => e.Id == id);
         }
@@ -94,6 +94,7 @@ namespace Health_up.Services
             }
 
         }
+       
         public Activity_Feedback FeedbackbyId(string Id)
         {
 

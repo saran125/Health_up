@@ -131,7 +131,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="~/Photos/blank-profile-picture-973460_640.png" alt="" />
+                    <img src="~/Photos/@Model.theuser" alt="" />
 
                 </div>
             </div>
@@ -201,6 +201,46 @@
                             </div>
                             <div class="col-md-6">
                                 <p>@HttpContext.Session.GetString("Role")</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Gender</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.theuser.Gender</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Birthdate</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.theuser.BirthDate.ToShortDateString()</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone Number</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.theuser.Phone</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Postal Code:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.theuser.PostalCode</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.theuser.UnitNumber</p>
                             </div>
                         </div>
                     </div>

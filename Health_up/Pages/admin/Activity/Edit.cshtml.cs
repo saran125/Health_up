@@ -26,6 +26,10 @@ namespace Health_up.Pages.admin
             {
                 return Redirect("/forbidden");
             }
+            if (!_svc.ActivityExists(id))
+            {
+                return Redirect("/BadRequest");
+            }
             if (id == null)
             {
                 return NotFound();
