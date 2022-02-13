@@ -10,43 +10,32 @@
     <link rel="stylesheet" type="text/css" href="~/css/billing.css">
 </head>
 <body>
-        <h2>Billing Info</h2>
+    <div class="col-md-6 offset-md-3 mt-5">
+
+        <h1>Billing Info</h1>
+        <br />
         <form method="post">
-            <input asp-for="report.Medicine_Cost" value="30" name="medicineFee" readonly disabled />
+            <input asp-for="report.Medicine_Cost" value="30" name="medicineFee" readonly hidden disabled />
 
             <div class="form-group">
-                <table>
-                    <tr>
-                        <td colspan="3" class="details">
-                            <h6>Johnathanan Smith</h6>
-                            <h6>S1223456S</h6>
-                            <h6>Male</h6>
-                            <h6>1/12/12</h6>
-                        </td>
-                        <td><p>qr code here</p></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            Medcine
-                        </td>
-                        <td>
-                            Amount
-
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" rowspan="2">medname</td>
-                        <td rowspan="2">amountname</td>
-                        <td rowspan="2">
-                        </td>
-                    </tr>
-                </table>
+                <h6>Johnathanan Smith</h6>
+                <h6>S1223456S</h6>
+                <h6>Male</h6>
+                <h6>1/12/12</h6>
             </div>
-            <div class="container-login100-form-btn">
+            <div class="form-group">
+                <label>Medicines</label>
+                <input class="form-control" value="Panadol" disabled />
+            </div>
+            <div class="form-group">
+                <label>Cost</label>
+                <input class="form-control" value="$40" disabled />
+            </div>
+            <div class="form-group">
                 <input id="payment" type="submit" value="Payment" class="login100-form-btn" />
             </div>
-        </form>
 
+        </form>
+        </div>
 </body>
 </html>
