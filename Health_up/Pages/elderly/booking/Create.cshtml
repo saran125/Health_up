@@ -17,15 +17,24 @@
     <div class="form-group">
         <input type="hidden" asp-for="MyBooking.activity_id" class="form-control" value="@Model.activitydetails.Id" />
     </div>
-    
+
     <div>
         <label class="col-sm-2 col-form-label">Location</label>
         <input readonly asp-for="MyBooking.Location" class="form-control" value="@Model.activitydetails.location" />
         <span asp-validation-for="MyBooking.Location" class="text-danger"></span>
     </div>
+   
     <div>
         <label class="col-sm-2 col-form-label">Available Date:</label>
-        <input asp-for="MyBooking.Date" class="form-control" value="" placeholder="Available Date *" />
+        <select asp-for="MyBooking.Date" class="form-control">
+            <option class="hidden" selected disabled>--Select The Date--</option>
+            @{foreach (var i in Model.Dates)
+                {
+                    <option value="@i">@i.ToShortDateString()</option>
+                } }
+
+
+        </select>
         <span asp-validation-for="MyBooking.Date" class="text-danger"></span>
     </div>
     <div>

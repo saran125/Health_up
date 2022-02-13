@@ -236,7 +236,7 @@
                                 @{ if (HttpContext.Session.GetString("Email") == item.user_id)
                                     {
                                 <ul class="list-unstyled list-inline media-detail pull-right">
-                                    <li class=""><a asp-page="/admin/Feedback/Delete"><i class="fa fa-trash" style="font-size:36px"></i>Delete</a></li>
+                                    <li class=""><a asp-page="/admin/Feedback/Delete" asp-route-id="@item.Id"><i class="fa fa-trash" style="font-size:36px"></i>Delete</a></li>
                                  
                                 </ul>
                                         }

@@ -70,20 +70,23 @@ namespace Health_up
             app.UseSession();
             app.Use(async (context, next) =>
             {
-               
+                await next();
                 if (context.Response.StatusCode == 404)
                 {
                     context.Request.Path = "/NotFound";
+                    await next();
                 }
                 if (context.Response.StatusCode == 400)
                 {
                     context.Request.Path = "/BadRequest";
+                    await next();
                 }
                 if (context.Response.StatusCode == 500)
                 {
                     context.Request.Path = "/InternalError";
+                    await next();
                 }
-                await next();
+               
 
             });
             app.UseHttpsRedirection();

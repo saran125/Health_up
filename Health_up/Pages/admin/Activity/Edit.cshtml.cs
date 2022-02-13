@@ -32,7 +32,7 @@ namespace Health_up.Pages.admin
             }
             if (id == null)
             {
-                return NotFound();
+                return Redirect("/BadRequest");
             }
             Myactivity = _svc.GetActivityById(id);
             if (Myactivity == null)

@@ -45,13 +45,8 @@
         </div>
 
         <div class="form-group">
-            <label>Do you need to change your payment method?</label>
-            <select name="MyAppointment.PaymentMethod" class="form-control">
-                <option value="@Model.MyAppointment.PaymentMethod">@Model.MyAppointment.PaymentMethod</option>
-                <option value="Cash">Cash</option>
-                <option value="PayPal">PayPal</option>
-                <option value="No rush, I will pay when I can">No rush, I will pay when I can</option>
-            </select>
+            <label>Your Payment Method</label>
+            <input readonly value="@Model.MyAppointment.PaymentMethod" asp-for="MyAppointment.PaymentMethod" class="form-control">
             <span asp-validation-for="MyAppointment.PaymentMethod" class="text-danger"></span>
         </div>
 
