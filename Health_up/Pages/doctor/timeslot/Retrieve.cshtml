@@ -26,19 +26,39 @@
         {
             @foreach (var item in Model.timeslotsByEmail)
             {
-               
-                <div class="card mb-4">
-                    <div class="card-header">
-                        @item.Date.ToShortDateString()
-                    </div>
-                    <div class="card-body d-flex mt-3">
-                        <p class="card-text mr-auto p-2">@item.Time <span class="dot"></span>Appointment</p>
-                        <div class="p-2">
-                            <a class="btn btn-primary" asp-page="/doctor/timeslot/Edit" asp-route-id="@item.Id">Reschedule</a>
-                            <a class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this timeslot?');" asp-page="/doctor/timeslot/Delete" asp-route-id="@item.Id">Remove</a>
+                @foreach (var appointment in Model.appointmentByEmail)
+                {
+                    @if (item.Date.ToShortDateString() == appointment.AvailableDate.ToShortDateString() && item.Time == appointment.AvailableTimeslot)
+                    {
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                @item.Date.ToShortDateString()
+                            </div>
+                            <div class="card-body d-flex mt-3">
+                                <p class="card-text mr-auto p-2">@item.Time <span class="dot"></span>Appointment</p>
+                                <div class="p-2">
+                                    <button class="btn btn-secondary" style="cursor:default">Reschedule</button>
+                                    <button class="btn btn-secondary" style="cursor:default">Remove</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                    else
+                    {
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                @item.Date.ToShortDateString()
+                            </div>
+                            <div class="card-body d-flex mt-3">
+                                <p class="card-text mr-auto p-2">@item.Time <span class="dot"></span>Appointment</p>
+                                <div class="p-2">
+                                    <a class="btn btn-primary" asp-page="/doctor/timeslot/Edit" asp-route-id="@item.Id">Reschedule</a>
+                                    <a class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this timeslot?');" asp-page="/doctor/timeslot/Delete" asp-route-id="@item.Id">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
             }
         }
 
