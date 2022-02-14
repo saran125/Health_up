@@ -97,8 +97,9 @@
     }
 </style>
 <div class="verify">
-    <div> <label class="text-danger">@Model.MyMessage</label> </div>
+
     <h6>Verify Email Entering the OTP Send to Your Email:</h6>
+    <p class="text-danger">@Model.MyMessage</p>
     <form method="post">
         <div class="group">
             <input type="text" asp-for="MyUser.Email" value="@Model.Email" readonly required>
